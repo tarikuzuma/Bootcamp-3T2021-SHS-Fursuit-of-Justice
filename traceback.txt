@@ -1,0 +1,22 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 48, in script
+    jump choices1_b
+ScriptError: could not find label 'choices1_b'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 48, in script
+    jump choices1_b
+  File "renpy/ast.py", line 1757, in execute
+    rv = renpy.game.script.lookup(target)
+  File "renpy/script.py", line 918, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'choices1_b'.
+
+Windows-10-10.0.19041
+Ren'Py 7.4.11.2266
+Fursuit of Justice 1.0
+Tue May 10 12:42:46 2022
