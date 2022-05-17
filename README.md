@@ -5,8 +5,6 @@ This is the main directory. This is where all of the files are put regardless of
 
 -We are still under construction-
 
-**Join our Google Docs to help us edit live:
-https://docs.google.com/document/d/1RN2EzEvHoniE0LseotJheR2ZvE3VkSoBeXtrA-CAF0w/edit?usp=sharing**
 
 
 
