@@ -3,7 +3,7 @@ Team Wright’s general goal is to educate people about the justice system and t
 
 This is the main directory. This is where all of the files are put regardless of locaiton. We'll edit more if it soon. 
 
--We are still under construction-
+**-We are still under construction-**
 
 
 
