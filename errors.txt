@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 42: Menu does not contain any choices.
-    menu:
-         ^
+File "game/script.rpy", line 53: expected menuitem
+    default WrongBase = 0
+    ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Tue May 10 12:35:58 2022
+Tue May 17 15:55:29 2022

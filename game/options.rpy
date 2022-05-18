@@ -76,7 +76,6 @@ define config.has_voice = True
 define config.enter_transition = dissolve
 define config.exit_transition = dissolve
 
-
 ## Between screens of the game menu.
 
 define config.intra_transition = dissolve

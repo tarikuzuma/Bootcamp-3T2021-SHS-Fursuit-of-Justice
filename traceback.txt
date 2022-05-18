@@ -1,22 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 48, in script
-    jump choices1_b
-ScriptError: could not find label 'choices1_b'.
+  File "game/script.rpy", line 45, in script
+    "Are you sure you want my name to be "[povname]"? I'll be stuck with this all-throughout the playthroough"
+Exception: Sayer '"Are you sure you want my name to be "[povname]' is not defined.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 48, in script
-    jump choices1_b
-  File "renpy/ast.py", line 1757, in execute
-    rv = renpy.game.script.lookup(target)
-  File "renpy/script.py", line 918, in lookup
-    raise ScriptError("could not find label '%s'." % str(original))
-ScriptError: could not find label 'choices1_b'.
+  File "game/script.rpy", line 45, in script
+    "Are you sure you want my name to be "[povname]"? I'll be stuck with this all-throughout the playthroough"
+  File "renpy/ast.py", line 681, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "renpy/ast.py", line 574, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer '"Are you sure you want my name to be "[povname]' is not defined.
 
 Windows-10-10.0.19041
 Ren'Py 7.4.11.2266
 Fursuit of Justice 1.0
-Tue May 10 12:42:46 2022
+Tue May 17 15:24:23 2022
