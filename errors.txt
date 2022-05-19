@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 53: expected menuitem
-    default WrongBase = 0
-    ^
+File "game/script.rpy", line 149: expected statement.
+    RouteChecker += 1
+                 ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Tue May 17 15:55:29 2022
+Wed May 18 15:36:57 2022
