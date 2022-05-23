@@ -18,10 +18,12 @@ label start:
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
-    "During a video tutorial, I will have to slay you"
-    "Why so?"
-    "Because..."
-    "*slash*"
+    "Finally, all my time spent in law school..."
+    "All the money I spent..."
+    "And the horrid, horrid, HORRIDD bar exam."
+    "It has all come into a halt."
+    "A new chapter of my life is unfloding."
+    "This is not the end, but the beginning."
     with fade
 
 label Start:
@@ -82,21 +84,43 @@ label Chapter1:
     player "I mean I'm just a rookie lawyer after all!"
     player "I ain't like those OP lawyers you probs see on tv!"
     show zeil normal
-    player "I am still a rookie"
+    player "I am still learning the basics"
+    player "But that won't stop me!"
+    show zeil delighted
+    player "let's go to the lawfirm, shall we?"
+    hide zeil
 
+    with fade
+    scene bg officefirm
+    show zeil normal
+    player "Hey, is that Benjamin sleeping in the firm?"
     show zeil normal at left
     with moveinleft
-    pause (3.0)
-
-    show benjamin at right
+    pause (3.0) #Pauses screen and shows better transition till the next line.
+    show benjamin neutral at right
     with moveinright
     pause (3.0)
+    show zeil smile2
+    player "Yeah, it's him alright!"
+
+#Menu to see what player will do to benjamin
+menu:
+
+    "Tap him":
+        Ben "WAIT WHQAT WHO'S THERE?"
+        jump benjaminWake
+    
+    "Wake him up":
+        Ben "AGH I PROMISE I WASN'T SLEEPING!!"
+        jump benjaminWake
+
+label benjaminWake:
+    show zeil laugh
     Ben "WHOA!-hey you scared me there [povname] , I didnt know youd be this early Ho Ho Ho"
     show zeil smile
-    scene bg officefirm
-    with fade
+    
     show zeil delighted at left
-    show benjamin at right
+    show benjamin neutral at right
     player "I thought it’d be nice to start the day early today with my first case and all"
     Ben "Ah… yes, of course! That’s the kind of energy this firm needs."
     Ben "This is your first case… to think you were just getting coffee and printing papers just weeks ago…"
