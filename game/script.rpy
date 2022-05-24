@@ -6,7 +6,8 @@
 define e = Character("Eileen")
 define Zeil = Character('Zeil', color="#0000FF")
 define Ben = Character('Benjamin', color="#271c07")
-define Player = Character('player', color='#30b670')
+define player = Character('player', color='#30b670')
+define Cassie = Character('Cassie', color='#4f16d2bc')
 
 
 # The game starts here.
@@ -37,7 +38,7 @@ label Start:
 
 label nameChoose:
 
-define player = Character("[povname]", color='#322b20')
+define player = Character("[povname]", color='#3633d7f6')
 
 python:
     povname = renpy.input("What's the name you want to give me?", length=32)
@@ -101,6 +102,9 @@ label Chapter1:
     with moveinright
     pause (3.0)
     show zeil smile2
+
+    #3rd Scene
+
     player "Yeah, it's him alright!"
 
 #Menu to see what player will do to benjamin
@@ -122,15 +126,76 @@ label benjaminWake:
     show zeil delighted at left
     show benjamin neutral at right
     player "I thought it’d be nice to start the day early today with my first case and all"
-    Ben "Ah… yes, of course! That’s the kind of energy this firm needs."
-    Ben "This is your first case… to think you were just getting coffee and printing papers just weeks ago…"
+    Ben "Ah… yes, of course! That’s the kind of energy this firm needs..."
+    Ben "*sigh*"
+    Ben "Your first case… to think you were just getting coffee and printing papers just weeks ago…"
 
     show zeil smile
     player "Well, that’s all thanks to you Ben"
-    player "No, really, you made it far with your own hard work."
-    Ben "Now let’s catch you up on your case, I'll walk you through it"
+    Ben "No, really, you made it far with your own hard work."
+    show zeil shocked
+    player "But-"
 
-    Ben "Okay, let's start the first case, shall we?"
+    #Dito na ako, now going to introduce Cassie
+    #ADD TRANSITIONSSS!! 
+    #4th Scene
+    show cassie neutral at center
+    with moveinright
+    Cassie "Just accept the compliment, [povname]"
+    player "WAHH!!"
+    show zeil bored
+    player "Cassie, you scared me!"
+    show zeil normal
+    Cassie "*sigh"
+    Cassie "I've been here all this time, dumdum! You were too busy sucking up to Benjamin to notice."
+    show zeil annoyed 
+    player "I'm greatful! There's a difference"
+    Cassie "Sure thing."
+    show zeil smug
+    player "Even if I was... You'd do the same as well!"
+    Cassie "That is SOOOOO not true!"
+    show zeil angry
+    "Bickering continues..."
+
+    #5th Scene
+    Ben "(Uhm I think they forgot I'm still here ;-;)"
+    player "Well you're still pretty smol, Cassi-"
+    show zeil normal
+    Ben "Ahem."
+
+    #6th Scene
+    Cassie "Ah..."
+    player "Uhm..."
+    Ben "Oh! Before I forget, congratulations, Cassie! You amazingly won your last case."
+    Cassie "(OWO) Thank you sir ^-^ your guidance helped me tremendously <3"
+    Ben "Still, you did a spectacular job! I'm so proud of you. "
+    Cassie "*Blush* Thank you so much, sir... TT-TT"
+    show zeil annoyed
+    player "(For always mocking me, she's still as affected of Ben's praise)"
+    show zeil normal
+
+    Ben "Now, I would like to ask you to handle the firm for a bit"
+    Cassie "!!!"
+    Ben "For now, I will assist [povname] with his first case"
+    Cassie "Of course, sir!"
+    Ben "Thank you, Cassie. I can always count on you."
+    Cassie "Thank you sir ... o//o If you ever need me, I'll be in my office"
+    Ben "Now let’s catch you up on your case, [povname] , I'll walk you through it"
+
+    show black
+    hide cassie
+
+label chapter1_beforeTalk:
+
+    scene bg isfirm with fade
+
+    #ACT 1
+    show zeil normal at left
+    with moveinleft
+    show benjamin neutral at right
+    with moveinleft
+
+
     Ben "What we have here is quite an unusual one, it will require some professionalism so make sure you keep your composure 
     while addressing the case. We don’t want to look silly infront of our clients do you understand?"   
 
@@ -148,18 +213,19 @@ label benjaminWake:
     player "sounds melo intense, sire."
     ""
     Ben "So, are you going to accept the case or not?"
-    $ RouteChecker = 0
+    $ RouteChecker = 0 #routeChekcer states the amount of routes Taken.
 
+#confirmation of case to see if player will accept or not
 label Chapter1_choice:
 menu:
     "Do the case":
-        jump Chapter1_con
+        jump Chapter1_con #jumps to confirmation
 
     "Skip the case":
         Ben "Are you sure you don't want to take this case? I mean lawyers in our firm are pretty occupied now. Your decision is the thing I will fully respect."
-        jump Chapter1_dec
+        jump Chapter1_dec #jumps to declination
 
-label Chapter1_con:
+label Chapter1_con: 
     Ben "Yoyoyo! Baby steps I tell ya! Baby steps."
     show zeil smile2
     player "oh shush!"
@@ -170,10 +236,10 @@ menu:
     "Yeah, I'm sure. Let's start!":
         $ RouteChecker += 1
         Ben "Great!!!!!!! Let's finally get started then."
-        jump Case1
+        jump Case1 #confirms case
     "Wait, let me think again.":
         Ben "Alright! No problem, just take your time in thinking."
-        jump Chapter1_choice
+        jump Chapter1_choice #goes back to route confirmation
 
 label Chapter1_dec:
     Ben ""
@@ -183,7 +249,7 @@ menu:
     "Yep, I don't want to take the case":
         Ben "Understandable, kiddo! Though you're missing up a whole check here."
         Ben "Welp I'll see you later!"
-        #Add another route here.
+        #Add another route here. Completely declines firm.
         $ renpy.full_restart()
     "Wait! Lemme think again.":
         Ben "Alrighties, think critically here. Pressure's tight and the opportunity is rare."
