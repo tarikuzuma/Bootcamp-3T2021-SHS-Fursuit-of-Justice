@@ -91,9 +91,33 @@ gui\slider\vertical_hover_bar.png
 gui\slider\vertical_hover_thumb.png
 gui\slider\vertical_idle_bar.png
 gui\slider\vertical_idle_thumb.png
+images\benjamin neutral.png
+images\bg basement.png
 images\bg classroom.png
+images\bg courtroom.png
+images\bg dforest.png
 images\bg gym.jpg
+images\bg isfirm.png
+images\bg nforest.png
+images\bg officefirm.png
+images\bg osfirm.png
+images\bg reccomp.png
+images\carl neutral.png
+images\carl neutralHammer.png
+images\cassie neutral.png
+images\cassie.png
+images\chi neutral.png
 images\extra normal.png
+images\felipe neutral.png
+images\ferret lady.png
+images\gina neutral.png
+images\iro neutral.png
+images\mommabeaver neutral.png
+images\nugget neutral.png
+images\paddles neutral.png
+images\sheep neutral.png
+images\stumpy neutral.png
+images\tristan neutral.png
 images\zeil angry.png
 images\zeil annoyed.png
 images\zeil bored.png
@@ -105,6 +129,7 @@ images\zeil shocked.png
 images\zeil smile.png
 images\zeil smile2.png
 images\zeil smug.png
+saves\_reload-2-LT1.save
 saves\auto-1-LT1.save
 saves\auto-10-LT1.save
 saves\auto-2-LT1.save

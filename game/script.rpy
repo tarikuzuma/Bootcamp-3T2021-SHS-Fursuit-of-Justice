@@ -8,7 +8,10 @@ define Zeil = Character('Zeil', color="#0000FF")
 define Ben = Character('Benjamin', color="#271c07")
 define player = Character('player', color='#30b670')
 define Cassie = Character('Cassie', color='#4f16d2bc')
-
+define Lady = Character('Lady', color='#d23c16bc')
+define Carl = Character('Carl', color='#905c0ff0')
+define Iro = Character('Iro', color='#f6ce03ff')
+define Barr = Character('Barretto', color='#7d8782ff')
 
 # The game starts here.
 
@@ -91,7 +94,6 @@ label Chapter1:
     player "let's go to the lawfirm, shall we?"
     hide zeil
 
-    with fade
     scene bg officefirm
     show zeil normal
     player "Hey, is that Benjamin sleeping in the firm?"
@@ -127,7 +129,7 @@ label benjaminWake:
     show benjamin neutral at right
     player "I thought it’d be nice to start the day early today with my first case and all"
     Ben "Ah… yes, of course! That’s the kind of energy this firm needs..."
-    Ben "*sigh*"
+    Ben "{i}sigh{/i}*"
     Ben "Your first case… to think you were just getting coffee and printing papers just weeks ago…"
 
     show zeil smile
@@ -146,7 +148,7 @@ label benjaminWake:
     show zeil bored
     player "Cassie, you scared me!"
     show zeil normal
-    Cassie "*sigh"
+    Cassie "{i}sigh{/i}"
     Cassie "I've been here all this time, dumdum! You were too busy sucking up to Benjamin to notice."
     show zeil annoyed 
     player "I'm greatful! There's a difference"
@@ -158,7 +160,7 @@ label benjaminWake:
     "Bickering continues..."
 
     #5th Scene
-    Ben "(Uhm I think they forgot I'm still here ;-;)"
+    Ben "{i}Uhm I think they forgot I'm still here ;-;{/i}"
     player "Well you're still pretty smol, Cassi-"
     show zeil normal
     Ben "Ahem."
@@ -169,9 +171,9 @@ label benjaminWake:
     Ben "Oh! Before I forget, congratulations, Cassie! You amazingly won your last case."
     Cassie "(OWO) Thank you sir ^-^ your guidance helped me tremendously <3"
     Ben "Still, you did a spectacular job! I'm so proud of you. "
-    Cassie "*Blush* Thank you so much, sir... TT-TT"
+    Cassie "{i}Blush{/i} Thank you so much, sir... TT-TT"
     show zeil annoyed
-    player "(For always mocking me, she's still as affected of Ben's praise)"
+    player "{i}For always mocking me, she's still as affected of Ben's praise{/i}"
     show zeil normal
 
     Ben "Now, I would like to ask you to handle the firm for a bit"
@@ -211,8 +213,8 @@ label chapter1_beforeTalk:
     Ben "Due to their relationship failing because Mr Rivero doesn't want to get intimate with Ms. Rosa"
     show zeil normal
     player "sounds melo intense, sire."
-    ""
-    Ben "So, are you going to accept the case or not?"
+    Ben "Your objective is to see through this to the end."
+    Ben "Are you going to accept the case or not?"
     $ RouteChecker = 0 #routeChekcer states the amount of routes Taken.
 
 #confirmation of case to see if player will accept or not
@@ -236,6 +238,8 @@ menu:
     "Yeah, I'm sure. Let's start!":
         $ RouteChecker += 1
         Ben "Great!!!!!!! Let's finally get started then."
+        Ben "Show them what your mighty Benjamin has taught you!"
+        player "Yes, your honor!"
         jump Case1 #confirms case
     "Wait, let me think again.":
         Ben "Alright! No problem, just take your time in thinking."
@@ -255,5 +259,127 @@ menu:
         Ben "Alrighties, think critically here. Pressure's tight and the opportunity is rare."
         jump Chapter1_choice
 
+#Scene 8
 label Case1:
-    player "Fuck"
+    show black
+    hide benjamin
+    scene bg courtroom
+    show zeil smile2 at center
+    player "{i} Finally! I'm in my first official case procedure, I need to make sure that I can fight for the rights of my client! I will not fail you, Benjamin! {/i}"
+    "Witnesses, please stand up"
+    show zeil normal at left with moveinleft
+    show ferret lady at right with moveinright
+    Lady "For the trial, all rise. RTC Branch 139 is now in session. Honorable Carl please proceed"
+    show carl neutral with moveinbottom
+    Carl "Thank you, you may all be seated."
+    "{i}Witnesses sits down{/i}"
+    Lady "The court is now in session, we call on case number 119190 (Mr. Robert Barreto Versus the Court of Appeals and Ms. Rosa Barreto)"
+    hide ferret lady with dissolve
+    Carl "Is the Prosecution ready?"
+    hide zeil
+    hide carl
+
+    #Show IRO with Ms. Baretto.
+    show iro neutral with dissolve
+    Iro "Arf"
+    hide iro
+    show carl neutral with dissolve
+    Carl "..."
+    hide carl with dissolve
+    show iro neutral with dissolve
+    Iro "..."
+    Iro "I mean yes, your honor."
+    hide iro
+    show carl neutral
+    Carl "Is the Defense ready?"
+    
+    #Show PLAYER with Mr. virgin
+    hide carl
+    show zeil normal
+    player "Yes, your honor."
+    hide zeil
+    show carl neutral
+    Carl "We will now hear the opening of the prosecution"
+    hide carl
+    show zeil delighted with dissolve
+    player "Your honor, I am [povname] and I represent here Mr. Robert Barretto age 24, husband of Ms Rosa Barretto. "
+    show zeil normal
+    player "To explain the case, Ms Rosa Barretto wanted to annul their wedding due to the lack of intimacy that she experienced with Mr. Robert Barretto in the past 1 year of their marriage."
+    player "As we all know, love comes in a different form not only in the act of sexual intercourse. As hard as it may, we would be defending the case, and once we had laid all the facts we hope that you will give us a verdict of DENIED."
+
+    hide zeil
+    show carl neutral with dissolve
+    Carl "I see..."
+    Carl "Would the defense want to make an opening statement?"
+    Carl "Or would you rather let the defendant finish with their statement?"
+    hide carl with dissolve
+
+    show iro neutral with dissolve
+    Iro "Your honor, we would like it for the defense to finish their statement before we make a decision."
+    hide iro with dissolve
+
+    show carl neutral with dissolve
+    Carl "As per request of the prosecution side. Defense, you may now state your case."
+    hide carl with dissolve
+    show zeil normal with dissolve
+    player "{i}This Iro is just gonna let me defend? He could rebute a lot right now. Should I let him go first?{/i}"
+
+menu:
+    "Deny and let him explain his stance":
+        show zeil smile
+        player "I think I am done with my introduction, I would like to hear the Prosecutor's stance or introduction now."
+        #Write a boolean here that states true.
+        $ DenyIro = True
+        jump IroAdvance
+
+    "Explain Further":
+        show zeil smile2
+        player "Thank you, I'll take the stage, sir."
+        $ DenyIro = False
+        jump IroAdvance
+
+label IroAdvance:
+    if DenyIro:
+        hide zeil with dissolve
+        show iro neutral with dissolve
+        Iro "Alright, if you wish."
+        jump Chap1Iro_Explain
+    else:
+        hide zeil with dissolve
+        show carl neutral with dissolve
+        Carl "Go on, [povname]"
+        hide carl with dissolve
+        jump Chap1Player_Explain
+
+label Chap1Player_Explain:
+    show zeil normal with dissolve
+    player "Your honor, my client Mr. Barretto truly loves Ms Barretto."
+    player "It is no doubt that Mr. Barretto tries to provide the intimate relationship that Ms Barretto wanted but according to his testimony, when such actions are being made, Ms Barretto refused to take one step further."
+    hide zeil
+    show gina neutral with dissolve
+    Barr "Yeah..."
+    hide gina
+    show iro neutral
+    Iro "{i}So much for filing a case, I'm toast{/i}"
+    hide iro
+
+    show carl neutral
+    Carl "Go on."
+
+    hide carl
+    show zeil smile with dissolve
+    player "Mr. Barretto also claims, that he forced his wife to have sexual intercourse with him only once but he did not continue because she was shaking and she did not like it."
+    show zeil sad
+    player "So he stopped to consideration for Ms. Barretto feelings."
+    player "After these events, there had been 0 progress regarding their marriage life most especially, sexual life."
+    show zeil bored
+    player "In addition, a medical record had been made in order to prove that psychological incapacity is not the reason for the couple to not partake in an intimate relationship. His medical record stated that he can fully reproduce and has no problem regarding his libido."
+    hide zeil
+
+    show iro neutral with dissolve
+    Iro "{i}Mr. Barr has a medical condition... he can't copulate no matter how hard he tries... {/i}"
+    Iro "{i}oh my Dalmatians... this case really is a dead end for me.{/i}"
+    hide iro
+
+    show zeil normal with dissolve
+    player "With respect to Article 68 of the Family Code which hearsay “the husband and wife are obliged to live together, observe mutual love, respect and fidelity, and render mutual help and support.” Mr. Barretto was only exhibiting the statement of Art 68 towards Ms. Barretto."
