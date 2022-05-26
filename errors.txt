@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 378: end of line expected.
-    show iro neutral with dissolve at center
-                                   ^
+File "game/script.rpy", line 864: expected statement.
+    RouteChecker += 1
+                 ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Wed May 25 15:46:42 2022
+Fri May 27 02:43:16 2022
