@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 3111: expected statement.
-    Jump IroCaught3
-                   ^
+File "game/script.rpy", line 3432: expected 'label_name_declare' not found.
+    label 
+         ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Fri Jun  3 03:19:00 2022
+Fri Jun  3 21:48:04 2022

@@ -3138,13 +3138,381 @@ label IroOut3:
     hide hog with moveoutleft
 
 label IroOut4:
-    scene bg nforest5
+    scene bg nforest5 with dissolve
     show iro neutral with moveinright
-    show hog neutral with moveinright
+    show hog neutral at right with moveinright
 
     Iro "Looks like we're halfway out of the forest."
     Hog "I've never been into this part of the forest."
-    Iro ""
+    Iro "Well you're in for a treat because people here are nuts!"
+    hide iro with moveoutleft
+    hide hog with moveoutleft
+
+    show goose2 neutral at left with dissolve
+    show goose neutral at center with dissolve
+    show goosewalky right at right with dissolve
+
+    Guard "I know they're here!"
+    Crew "Quack."
+    Guard "Welp, I'm calling for reinforcements."
+    Crew "Is that necessary? It's 3 against 2"
+    Guard "plus we have guns!"
+    Crew "Right?!"
+    Guard "Ok fine."
+    Iro "Ulala, 3 geese."
+    Hog "now that's a flock."
+    Iro "Okay, I think it's possible to beat em up. We can tag team."
+
+    if AssultPoints >= 30:
+        Hog "Good call."
+        Hog "I'll beat the goose at the left."
+        Iro "I'll kick the one at the right, then we sandwich the center!"
+        Iro "Haha! Goose sandwich."
+    else:
+        Hog "No, it's better if we sneak."
+    menu:
+        "Tag Team Brawl!":
+            Hog "Alright, if you insist!"
+            show hog neutral at left with moveinleft
+            show hog with hpunch
+            hide goose2 with dissolve
+            if AssultPoints >= 40:
+                Guard "{sc=3}Quack!!!{/sc}"
+                Hog "{sc=3}Now, Iro!{/sc}"
+                Crew "{sc=3}Oh no you don't! Freeze, I have a gun!{/sc}"
+                transform alpha_dissolve:
+                    alpha 0.0
+                    linear 0.5 alpha 1.0
+                    on hide:
+                        linear 0.5 alpha 0
+                    # This is to fade the bar in and out, and is only required once in your script
+
+                init: ### just setting variables in advance so there are no undefined variable problems
+                    $ timer_range = 0
+                    $ timer_jump = 0
+                    $ time = 0
+
+                screen countdown:
+                    timer 0.00001 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)]) 
+                        ### ^this code decreases variable time by 0.01 until time hits 0, at which point, the game jumps to label timer_jump (timer_jump is another variable that will be defined later)
+
+                    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve 
+                        # ^This is the timer bar.
+                        
+                label questiontime5:
+                    
+                    label menu5:
+                        $ time = 3                                     ### set variable time to 3
+                        $ timer_range = 3                              ### set variable timer_range to 3 (this is for purposes of showing a bar)
+                        $ timer_jump = 'menu4_slow'                    ### set where you want to jump once the timer runs out
+                        show screen countdown                          ### call and start the timer
+
+                        menu:
+                            "Kick his Snout!":
+                                hide screen countdown 
+                                show hog at center with moveinleft
+                                Hog "{sc=2}*Attempts to kick snout*{/sc}"
+                                Guard "{bt=4}*Kick Sweeps Hog's Feet*{/bt}"
+                                Hog "{bt=2}*Falls Down*{/bt}"
+                                Hog "Awwww man."
+                                Guard "Freeze! I have a gun!"
+                                Iro "CRAP I didn't save him in time."
+
+                                jump IroCaught3
+                            "Grab a Grip Of His Gun!":
+                                hide screen countdown                  ### stop the timer
+                                Guard "I'm not afraid to shoot y-"
+                                show hog neutral at center with moveinleft
+                                show hog with vpunch
+                                Hog "{bt=2}*Moves the Gun and Grips The Gun*{/bt}"
+                                Guard "{bt=2}*Struggles*{/bt}"
+                                Crew "I got 'ya, Boss!"
+                                Crew "{bt=2}*Points gun at Hog*{/bt}"
+                                Crew "{sc=2}Screw off, little man!{/sc}"
+                                Iro "Now's my chance!"
+                                transform alpha_dissolve:
+                                    alpha 0.0
+                                    linear 0.5 alpha 1.0
+                                    on hide:
+                                        linear 0.5 alpha 0
+                                    # This is to fade the bar in and out, and is only required once in your script
+
+                                init: ### just setting variables in advance so there are no undefined variable problems
+                                    $ timer_range = 0
+                                    $ timer_jump = 0
+                                    $ time = 0
+
+                                screen countdown:
+                                    timer 0.0001 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)]) 
+                                        ### ^this code decreases variable time by 0.01 until time hits 0, at which point, the game jumps to label timer_jump (timer_jump is another variable that will be defined later)
+
+                                    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve 
+                                        # ^This is the timer bar.
+                                        
+                                label questiontime6:
+                                    
+                                    label menu6:
+                                        $ time = 3                                     ### set variable time to 3
+                                        $ timer_range = 3                              ### set variable timer_range to 3 (this is for purposes of showing a bar)
+                                        $ timer_jump = 'menu4_slow'                    ### set where you want to jump once the timer runs out
+                                        show screen countdown                          ### call and start the timer
+
+                                        menu:
+                                            "Throw A Rock While Hidden":
+                                                hide screen countdown
+                                                Iro "{sc=3}Skiddaddllee Skiddloddle, your face is now a noodle! {/sc}{bt=2}*Picks Up Rock*{/bt}"
+                                                Crew "Huh who said that?!"
+                                                Iro "{bt=2}*Throws Rock at Crew*{/bt}"
+                                                show rock at right with moveinright
+                                                show rock with hpunch
+                                                Crew "AUGH!"
+                                                Iro "Happy Birthday to the Ground!"
+                                                hide rock with dissolve
+                                                show iro neutral at right with moveinright
+                                                show iro with hpunch
+                                                Iro "{bt=2}*Summmersault*{/bt}"
+                                                hide goosewalky with dissolve
+
+                                                Guard "{sc}Awwww crap.{/sc}"
+                                                menu:
+                                                    "Goose Sandwich!":
+                                                        show iro at center with moveinright
+                                                        show iro with hpunch
+                                                        Guard "{sc}AAAAAAAAAAAAAAAAAAAAAA{/sc}"
+                                                        hide goose with dissolve
+                                                        Iro "haha goose sandwich"
+
+                                                        $ AssultPoints += 10
+                                                        jump IroOut5
+                                                    "Take Down! (The Cool Way)":
+                                                        show iro at center with moveinright
+                                                        show iro with hpunch
+                                                        Guard "{sc}AAAAAAAAAAAAAAAAAAAAAA{/sc}"
+                                                        hide goose with dissolve
+
+                                                        Hog "That was pretty cool."
+                                                        Iro "I am something of a judo expert myself."
+                                                        $ AssultPoints += 10
+                                                        jump IroOut5
+
+                                            "Summersault!":
+                                                hide screen countdown                  ### stop the timer
+                                                Iro "Summersault!!!!!"
+                                                show iro neutral at right with moveinright
+                                                Crew "{sc=2}WHO SAID THAT?{/sc} {bt=2}*points the gun at Iro*{/bt}"
+                                                Hog "You just gotta say it?!"
+                                                jump IroCaught3
+
+                                                
+
+                                    label menu6_slow:
+                                        Crew "Boomboom! {sc=5}FLOOR, NOW!{/sc}"
+                                        jump IroCaught3
+
+                                
+
+                            "Throw A Rock in his Face!":
+                                hide screen countdown
+                                Hog "{bt=2}*Grabs a Rock*{/bt}"
+                                Guard "Oh no you don't!"
+                                show hig with hpunch
+                                Guard "{bt=2}*Shoot Hog's arm*{/bt}"
+                                Hog "{sc=6}GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{/sc}"
+                                Guard "Freeze! I'm not afraid to shoot!"
+                                Iro "Oh crap, I can't move or else he'll get shot more."
+                                jump IroCaught3
+                                
+
+
+                    label menu5_slow:
+                        Crew "Can't think can you! {sc=5}Now Go DOWN THE FLOOR!{/sc}"
+                        jump IroCaught3
+
+            else:
+                Iro "Time to butt i-"
+                Crew "Oh no you don't"
+                Crew "Freeze! I have a gun and I'm not afraid to use it!"
+                Iro "Oh dalmatians."
+                jump IroCaught3
+        "Sneak":
+            if SneakPoints >= 20:
+                Iro "I changed my mind! Let's sneak past them."
+                Hog "I catch your drift."
+                $ SneakPoints += 10 
+            else:
+                Iro "Let's just sneak past them."
+                Hog "Good call, but I want you to be careful since this place has too many twigs-"
+                Iro "{bt=3}*Snaps Twig*{/bt}"
+                Hog "Oh no."
+                Guard "OVER THERE! I KNEW IT!"
+                Crew "Put yoru hands in the air!"
+                jump IroCaught3
+
+label IroOut5:
+    scene bg nforest6 with dissolve
+    show hog neutral at right with dissolve
+    show iro neutral at center with dissolve
+    Hog "That was a bit hard..."
+    Iro "That was literally Crazy. We just skiaddled 3 geese"
+    if AssultPoints == 50:
+        Iro "All we did was attack right now. I think we can handle the world."
+    if SneakPoints == 50:
+        Iro "All we did was sneak right now. I think I may have mastered the art of the SNEAK."
+    
+    Iro "In-game wise, we would've had around [SneakPoints] SneakPoints now!"
+    Hog "And we would acquire about [AssultPoints] AssultPoints now!"
+
+    if SneakPoints == 50:
+        Iro "Hmm we have maxxed our SneakPoints Tree now I guess."
+    elif AssultPoints == 50:
+        Hog "Hmm we have maxxed our AssultPoints now then"
+    else:
+        Iro "Our points are pretty random."
+    
+    Iro "Hmm we have good stats to begin with. Let's keep going now, Ho-"
+    Guard "{sc=2}THERE THEY ARE!! REINFORCEMENTS!!!!!{/sc}"
+    Iro "Welp hehe, I think we should be running now."
+    "..."
+    Hog "{sc=3}RUNNNNN!!!!{/sc}"
+    hide iro with moveoutleft
+    hide hog with moveoutleft
+
+    show goose2 neutral at center with moveinright
+    show goosewalky left at right with moveinright
+    Guard "Gah! I see them over there!"
+    Crew "... HAH... {sc}HAHHHHH REINFORCEMENTSSSSSSSS!!!!{/sc}"
+    hide goose2 with moveoutleft
+    hide goosewalky with moveoutleft
+
+label IroOut6:
+    scene bg nforest3 with dissolve
+    show iro neutral at center with moveinright
+    show hog neutral at right with moveinright
+    Iro "{bt=2}*pants*{/bt} We've been running all night, Hog..."
+    Hog "Indeed, my friend... {bt=2}*pants*{/bt}"
+    Hog "Wait, this is the road to my village!"
+    Iro "Omg! I recommend we split up, I have some unfinished business to do in law."
+    Iro "You'd be more safer there than here."
+    Hog "Iro... you freed me from the depths of despair."
+    Hog "And we fought side by side in the midst of trouble."
+    Hog "Forever, you have my deepest gratitude."
+    Hog "Thank you for everything."
+    Iro "Hahaha! I feel flattered but it's all in the day's work~! You be careful now, okie?"
+    Hog "{bt=2}*Salutes* I proclaim you as master of stealth now.{/bt}"
+    hide hog with dissolve
+
+    Iro "What a nice guy."
+    Guard "Hey! There he is!"
+    Iro "Gotta blast!"
+    hide iro with moveoutleft
+
+    show iro neutral with moveinright
+    Iro "Okay, this is bad... Looks like I gotta go all out it running all night!"
+    Crew "STOP HIM!"
+    Iro "heh... I'm gonna love this."
+    Iro "Good thing the sun is rising."
+    Iro "I might be able to say my last words whilst staring at this glorius sunrise."
+    Crew "{sc=4}FIRE IN THE HOLE!!{/sc}"
+    Crew "{bt=2}*GUNSHOTS*{/bt}"
+
+    show iro with hpunch
+    show iro with vpunch
+    show iro with hpunch
+    show iro with vpunch
+    show iro with hpunch
+    show iro with vpunch
+    show blood1 with dissolve
+    Iro "{sc=5}*Arms get hit*{/sc}"
+    Iro "{sc=5}AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRFFF{/sc}"
+    Crew "I heard him squeel in pain! let's get him!"
+    Iro "I...'m not going down wihtout a fight!"
+    Iro "[povname] You gotta... stall the time... before I get.. there.."
+    hide iro with moveoutleft
+
+label Case2_Start2:
+    show black with Dissolve(2.0)
+    "-Iro Couldn't Come In Time-"
+    "-Now it is...-"
+    "-Court Day.-"
+    scene bg courtroom with Fade(2.0,1.5,2.0)
+    show zeil normal with dissolve
+    player "{i}Iro isn't here yet... this is bad.{/i}"
+    Bmom "He isn't here yet?"
+    show mommabeaver neutral at left with moveinleft
+    show zeil sad
+    player "Not yet…. Looks like we have to rely on our instincts to pull this court session off."
+
+    show zeil normal 
+    Bmom "Have you filed the police yet?"
+    player "Yes and they didn’t give a reply too. I asked 5 police stations now… and I have been up all night trying to identify his location…"
+    Bmom "This is bad..."
+
+    hide zeil with dissolve
+    hide mommabeaver with dissolve
+    show baliff neutral with dissolve
+
+    Lady "For the trial, all rise. Trial 101083 in now in session. Honorable (Carl Cabales) please proceed."
+
+    show carl neutral at center with dissolve
+    show baliff at right with moveinleft
+    Carl "Alright, we’ve been in court for two days now. This issue is so big that it might take more than two days to solve this session. Why so? Because we are asking for the freedom of trees in a particular area while making a lot of laws regarding the session at hand."
+    Carl "Welp, you know how sessions work. Opposition, please start your stance."
+
+    hide baliff with dissolve
+    hide carl with dissolve
+
+    show zeil normal at right with dissolve
+    show triplet neutral at center with dissolve
+    player "Thank you, your honor. Today I’m representing these 3 triplets with their right of expression. The subject matter of the complaint is of common and general interest not just to several, but to all citizens of the Philippines. "
+    player "Consequently, since the parties are so numerous, it becomes impracticable, if not totally impossible, to bring all of them before the court. We likewise declare that the plaintiffs therein are numerous and representative enough to ensure the full protection of all concerned interests. "
+    player "To put in perspective, the triplets are representing a generation to come. Needless to say, every generation has a responsibility to the next to preserve that rhythm and harmony for the full enjoyment of a balanced and healthful ecology."
+    player "Put a little differently, the minors' assertion of their right to a sound environment constitutes, at the same time, the performance of their obligation to ensure the protection of that right for the generations to come."
+    player "The complaint focuses on one specific fundamental legal right -- the right to a balanced and healthful ecology which, for the first time in our nation's constitutional history, is solemnly incorporated in the fundamental law."
+    player "Section 16, Article II of the 1987 Constitution explicitly provides:
+            SEC. 16. The State shall protect and advance the right of the people to a balanced and healthful ecology in accord with the rhythm and harmony of nature."
+    player "This right unites with the right to health which is provided for in the preceding section of the same article:
+            SEC. 15. The State shall protect and promote the right to health of the people and instill health consciousness among them."
+    
+    hide zeil with dissolve
+    show sheep neutral with dissolve
+    Sheep " {i}What a feisty introduction, player. I am starting  to like how you let things roll.{/i}"
+    hide sheep with dissolve
+
+    show carl neutral with dissolve
+    Carl "I’m guessing that they sitll want certain laws to be implemented?"
+    hide carl
+
+    show zeil normal
+    player "Yes"
+    hide zeil
+
+    show carl neutral
+    Carl "Alright. Miss Sheep, what is your statement?"
+    hide carl
+
+    show sheep neutral
+    Sheep " Despite the stance that these beaver kids potray, the court of appeles state that, with the right of permit, the ruling of chopping trees is uphold well. "
+    Sheep "As stated, the rigt for an ecological future is indeed maintained."
+    Sheep "The Right for a human right’s environment is maintained becasue we, as practitioners of what is ecologically right, conduct monthly replants of trees. In addition to that, the permits provided last court session were proof of belief that we operate under law.  "
+    Sheep "Public records reveal that the defendant's, predecessors have granted timber license agreements ('TLA's') to various corporations to cut the aggregate area of 3.89 million hectares for commercial logging purposes."
+    Sheep "With that plot of land at hand, indigenous tribes living daily lives will definately get the respect they need for their ancient land."
+    Sheep "With that, I conclude my statement."
+    hide sheep with dissolve
+
+    show carl neutral with dissolve
+    Carl "Alright, this is Indeed a tough one again hays."
+    hide carl 
+
+    show zeil annoyed
+    player "Court was never easy >:("
+    player "Where is Iro anyways?"
+    hide zeil
+
+
+
+
+
+    
 
 
     
@@ -3173,16 +3541,6 @@ label IroOut4:
 
 
 
-
-
-
-
-
-    
-    
-
-
-    
 
 
 
