@@ -39,7 +39,6 @@ style label_text is gui_text:
 style prompt_text is gui_text:
     properties gui.text_properties("prompt")
 
-
 style bar:
     ysize gui.bar_size
     left_bar Frame("gui/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
@@ -223,7 +222,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 270
+    ypos 265
     yanchor 0.5
 
     spacing gui.choice_spacing
@@ -247,20 +246,17 @@ screen quick_menu():
 
     if quick_menu:
 
-        hbox:
+        vbox:
             style_prefix "quick"
 
-            xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            #Save
+            imagebutton hover "gui/button/save_button_hover.png" idle "gui/button/save_button_idle.png" action ShowMenu('save') xpos 1010
+            #Load
+            imagebutton hover "gui/button/load_button_hover.png" idle "gui/button/load_button_idle.png" action ShowMenu('history') xpos 1040
+            #Settings
+            imagebutton hover "gui/button/settings_button_hover.png" idle "gui/button/settings_button_idle.png" action ShowMenu('preferences') xpos 1030
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -294,24 +290,34 @@ screen navigation():
     vbox:
         style_prefix "navigation"
 
-        xpos gui.navigation_xpos
-        yalign 0.5
+        if renpy.get_screen("main_menu"):
+            xalign 0.2
+            yalign 0.6
+        else:
+            xoffset 60
+            yalign 0.5
+
 
         spacing gui.navigation_spacing
 
         if main_menu:
 
-            textbutton _("Start") action Start()
+            #Start
+            imagebutton hover "gui/button/nav_menu_start_hover.png" idle "gui/button/nav_menu_start_idle.png" action Start()
 
         else:
 
-            textbutton _("History") action ShowMenu("history")
+            #History
+            imagebutton hover "gui/button/nav_menu_history_hover.png" idle "gui/button/nav_menu_history_idle.png" selected_idle "gui/button/nav_menu_history_select.png" action ShowMenu("history")
 
-            textbutton _("Save") action ShowMenu("save")
+            #Save
+            imagebutton hover "gui/button/nav_menu_save_hover.png" idle "gui/button/nav_menu_save_idle.png" selected_idle "gui/button/nav_menu_save_select.png" action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+        #Load
+        imagebutton hover "gui/button/nav_menu_load_hover.png" idle "gui/button/nav_menu_load_idle.png" selected_idle "gui/button/nav_menu_load_select.png" action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        #Preferences
+        imagebutton hover "gui/button/nav_menu_settings_hover.png" idle "gui/button/nav_menu_settings_idle.png" selected_idle "gui/button/nav_menu_settings_select.png" action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -319,21 +325,13 @@ screen navigation():
 
         elif not main_menu:
 
-            textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
-
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            #Main Menu
+            imagebutton hover "gui/button/nav_menu_main_hover.png" idle "gui/button/nav_menu_main_idle.png" selected_idle "gui/button/nav_menu_main_select.png" action MainMenu()
 
         if renpy.variant("pc"):
 
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
-
+            #Quit
+            imagebutton hover "gui/button/nav_menu_quit_hover.png" idle "gui/button/nav_menu_quit_idle.png" selected_idle "gui/button/nav_menu_quit_select.png" action Quit(confirm=not main_menu)
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
@@ -344,6 +342,8 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
+    xalign 0.5
+
 
 
 ## Main Menu screen ############################################################
@@ -389,14 +389,14 @@ style main_menu_frame:
     xsize 280
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    #background "gui/overlay/main_menu.png/"
 
 style main_menu_vbox:
-    xalign 1.0
+    xalign 0.17
     xoffset -20
     xmaximum 800
     yalign 1.0
-    yoffset -20
+    yoffset -500
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
@@ -716,6 +716,11 @@ screen preferences():
 
     tag menu
 
+    if renpy.mobile:
+        $ cols = 2
+    else:
+        $ cols = 4
+
     use game_menu(_("Preferences"), scroll="viewport"):
 
         vbox:
@@ -731,22 +736,6 @@ screen preferences():
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
-
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
 
             null height (4 * gui.pref_spacing)
 
@@ -782,15 +771,6 @@ screen preferences():
                             if config.sample_sound:
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
-
-                    if config.has_voice:
-                        label _("Voice Volume")
-
-                        hbox:
-                            bar value Preference("voice volume")
-
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing

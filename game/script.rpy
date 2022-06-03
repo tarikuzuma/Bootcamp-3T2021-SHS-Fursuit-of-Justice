@@ -1,7 +1,11 @@
-﻿# The script of the game goes in this file.
+# The script of the game goes in this file.
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
+
+define config.default_music_volume = 0.5
+define config.default_sfx_volume = 0.5
+define config.default_voice_volume = 0.5
 
 
 define e = Character("Eileen")
@@ -9,12 +13,24 @@ define Zeil = Character('Zeil', color="#0000FF")
 define Ben = Character('Benjamin', color="#271c07")
 define player = Character('player', color='#30b670')
 define Cassie = Character('Cassie', color='#4f16d2bc')
-define Lady = Character('Lady', color='#d23c16bc')
+define Lady = Character('Baliff Lady', color='#d23c16bc')
 define Carl = Character('Carl', color='#905c0ff0')
 define Iro = Character('Iro', color='#f6ce03ff')
 define Barr = Character('Mrs. Barretto (Gina)', color='#7d8782ff')
 define Chi = Character('Mr. Barretto (Chi)', color='#7d8782ff')
-define Bmom = Character('Momma Beaver', color='#4e4409ff')
+define Bmom = Character('Beaverra Rivera', color='#4e4409ff')
+define Nugget = Character('Nugget', color='#4e4409ff')
+define Stumpy = Character('Stumpy', color='#4e4409ff')
+define Paddles = Character('Paddles', color='#4e4409ff')
+define Sheep = Character('Sheep De Lune', color='#fa01c4ff')
+define Celtic = Character('Celtic of Dunrar Mifflin', color='#27ccc1ff')
+define Witness = Character('Witness', color='#1caaa1ff')
+define Beary = Character('Beary Bear', color='#47464bff')
+define Crew = Character('Crew', color='#1caaa1ff')
+define Guard = Character('Guard', color='#1caaa1ff')
+define Hog = Character('Indigenous Hedgehog', color='#aa1c53ff')
+define unk = Character('???', color='#290505ff')
+define Felipe = Character('Felipe Fevidal', color='#290505ff')
 
 # The game starts here.
 
@@ -97,6 +113,8 @@ label Chapter1:
     player "let's go to the lawfirm, shall we?"
     hide zeil
 
+    play music "audio/bgm_lawfirm.mp3" fadein 3.0 volume 0.3 #MUSIC BUTTON
+
     scene bg officefirm with Fade(0.5, 0.0, 0.5)
     show zeil normal
     player "Hey, is that Benjamin sleeping in the firm?"
@@ -107,6 +125,8 @@ label Chapter1:
     with dissolve
     pause (3.0)
     show zeil smile2
+
+    
 
     #3rd Scene
 
@@ -122,6 +142,7 @@ menu:
     "Wake him up":
         Ben "AGH I PROMISE I WASN'T SLEEPING!!"
         jump benjaminWake
+
 
 label benjaminWake:
     show zeil laugh
@@ -219,6 +240,7 @@ label chapter1_beforeTalk:
     Ben "Your objective is to see through this to the end."
     Ben "Are you going to accept the case or not?"
     $ RouteChecker = 0 #routeChekcer states the amount of routes Taken.
+    $ Objection_FirstCase = False
 
 #confirmation of case to see if player will accept or not
 label Chapter1_choice:
@@ -243,6 +265,7 @@ menu:
         Ben "Great!!!!!!! Let's finally get started then."
         Ben "Show them what your mighty Benjamin has taught you!"
         player "Yes, your honor!"
+        stop music fadeout 1.0
         jump Case1 #confirms case
     "Wait, let me think again.":
         Ben "Alright! No problem, just take your time in thinking."
@@ -257,10 +280,13 @@ menu:
         Ben "Understandable, kiddo! Though you're missing up a whole check here."
         Ben "Welp I'll see you later!"
         #Add another route here. Completely declines firm.
+        stop music fadeout 1.0
         jump Chap1_Ending
     "Wait! Lemme think again.":
         Ben "Alrighties, think critically here. Pressure's tight and the opportunity is rare."
         jump Chapter1_choice
+
+    
 
 #Scene 8
 label Case1:
@@ -269,19 +295,23 @@ label Case1:
     hide benjamin
     show black
     "[povname] went to court to defend Mr. Barretto regarding the annulment."
+    
 
     show zeil smile2 at center with dissolve
     player "{i} Finally! I'm in my first official case procedure, I need to make sure that I can fight for the rights of my client! I will not fail you, Benjamin! {/i}"
     scene bg courtroom with fade
     "Witnesses, please stand up"
+
+    play music "audio/bgm_courtroom.mp3" fadein 3.0 volume 0.3 #MUSIC BUTTON BUTTON WONT PLAY
+
     show zeil normal at left with moveinleft
-    show ferret lady at right with moveinright
+    show baliff neutral at right with moveinright
     Lady "For the trial, all rise. RTC Branch 139 is now in session. Honorable Carl please proceed"
     show carl neutral with moveinbottom
     Carl "Thank you, you may all be seated."
     "{i}Witnesses sits down{/i}"
     Lady "The court is now in session, we call on case number 119190 (Mr. Robert Barreto Versus the Court of Appeals and Mrs. Rosa Barreto)"
-    hide ferret lady with dissolve
+    hide baliff neutral with dissolve
     Carl "Is the Prosecution ready?"
     hide zeil
     hide carl
@@ -313,8 +343,12 @@ label Case1:
     Carl "We will now hear the opening of the Defense"
     hide carl
 
+    show chi right at left with dissolve
     show zeil delighted with dissolve
     player "Your honor, I am [povname] and I represent here Mr. Robert Barretto age 24, husband of Ms Rosa Barretto. "
+    Chi "Hello I'm Chi, also known as Mr. Barretto."
+    hide chi with dissolve
+
     show zeil normal
     player "To explain the case, Ms Rosa Barretto wanted to annul their wedding due to the lack of intimacy that she experienced with Mr. Robert Barretto in the past 1 year of their marriage."
     player "As we all know, love comes in a different form not only in the act of sexual intercourse. As hard as it may, we would be defending the case, and once we had laid all the facts we hope that you will give us a verdict of {b}DENIED.{/b}"
@@ -452,8 +486,12 @@ label Chapter1_Checker:
         jump Chap1Player_Explain
 
 label Chap1Iro_Explain:
-    show iro neutral
+    show iro neutral with dissolve
+    show gina neutral at right with dissolve
     Iro "Yes your honor, I am Iro Lockheart and I represent here Mrs. Rosa Barretto age 23, wife of Mr. Robert Barretto."
+    Barr "Hello, I am Gina, also known as Mrs. Barretto."
+    hide gina with dissolve
+
     Iro "To further elaborate the case, Mrs. Barretto  wanted to annul their wedding due to the lack of intimacy that she experienced with Mr. Barretto in the past 1 year of their marriage."
 
     if not DenyIro:
@@ -600,6 +638,7 @@ label Chapter1_Judge:
     Carl "With the current conditions that we are in. The Court of Appeals' decision dated on November 23, 2020 is hereby {b}AFFIRMED{/b} in all aspects, and the petition is hereby {b}DENIED{/b} for lack of merit."
     show carl hammer with vpunch #MAKE SOUND EFFECT
     "*Hammer Noise*"
+    stop music fadeout 1.0
     hide carl with Fade(1.5, 0.0, 0.5)
 
 label AfterChap1:
@@ -634,7 +673,7 @@ label AfterChap1:
     Chi "I swear I love you, Gina!"
     hide zeil
 
-    show chi neutral at left with dissolve
+    show chi right at left with dissolve
     show gina neutral at right with dissolve
     Barr "You don't! You always make things awkward!"
     Chi "Honey, you know I'm trying hard to make this work, right?"
@@ -659,8 +698,9 @@ label AfterChap1:
 
 label Chap1_Ending:
     scene bg isfirm with Fade(1.5, 0.0, 0.5)
+    play music "audio/bgm_sneakyben.mp3" fadein 3.0 volume 0.3
     "{i}Inside the firm in a silent evening...{/i}"
-    show benjamin neutral at left with dissolve
+    show benjamin serious at left with dissolve
     Ben "Hmm..."
     Ben "So that's what's happening in cout de Forest..."
 
@@ -671,24 +711,38 @@ label Chap1_Ending:
 
     "{i}Knock Knock{/i}"
 
+    show benjamin neutral
     Ben "Come in!"
 
     show cassie neutral at right with easeinright
     Cassie "Sir, here is your requested coffee"
+
+    show benjamin happy
     Ben "Thank you, Cassie."
+
+    show benjamin neutral
     Ben "{i}I'll have to fix this case fast...{/i}"
     Cassie "..."
     Cassie "Sir, if you don’t mind me asking, what are you working at right now?"
     Cassie "It looks like you’re not getting a decent rest and it feels like you are in a tight position."
     pause (3.0)
     Cassie "By any chance, is there something that I could do to make you feel at ease?"
+
+    show benjamin happy
     Ben "You worry too much, child."
     Ben "Thank you for asking, but this is realllly nothing."
+
+    show benjamin neutral
     Ben "How about you head out for tonight, don’t worry about me I’ll take a decent rest after I’m done with this."
     Cassie "Alright sir, good work for today!"
+
+    show benjamin neutral
     hide cassie with easeoutright
+    pause (3.0)
+    show benjamin serious with dissolve
     Ben "Okay... back to my leads."
     "Benjamin continued working all night with a case no one knows about."
+    stop music fadeout 5.0
 
     show black with Dissolve(3.0, alpha=False, time_warp=None)
     "- - - End of Act 1 - - -"
@@ -714,6 +768,7 @@ label Chap1_Ending:
 
 label Chapter2_Start:
     scene bg osfirm with Fade(1.0, 1.5, 0.5)
+    play music "audio/bgm_lawfirm.mp3" fadein 3.0 volume 0.3
     show zeil smile2 with dissolve
     player "I feel so pumped after winning that first case!"
     player "I'm going to share the details with benjamin today."
@@ -756,6 +811,35 @@ label Chapter2_Start:
     player "I’m sure he’ll text or email us when he’s awake."
     Cassie "Yeah... you're right."
     pause (1.0)
+
+    if Objection_FirstCase: #Route if Player objected. Cassie Kilig moments
+        Cassie "Oh right! Before I forget, you handled your first case well."
+
+        show zeil normal
+        player "Really?"
+        Cassie "Yep, you let the prosecuter explain first, which gave you chance to object."
+        Cassie "Psychologically, that's dangerous."
+
+        show zeil delighted
+        player "Welp looks like I learned quite a lot in lawschool!"
+        Cassie "You used to be that nerdy guy with a hoodie in class."
+
+        show zeil annoyed
+        Cassie "Look at you now."
+        player "Really? Nerdy?"
+        Cassie "That's a compliment!"
+
+        show zeil smug
+        player "Oh yeah, if I'm a nerd then you're a midget!"
+        Cassie "Hey, stop- {move}stop that!!{/move}"
+
+        show zeil smile2
+        player "Hah! Just teasing you! You've gotten more confident, you know?"
+        Cassie "{i}Blush{/i} Y-yeah..."
+        "..."
+        Cassie "Thanks, [povname] ... I guess 'confident' is a better compliment than 'nerdy'"
+        player "heh, don't mention it"
+
 
     show zeil smile
     Cassie "Oh, right! I stopped by that cafe that just newly opened."
@@ -821,18 +905,22 @@ label Chapter2_Start:
     hide cassie with dissolve
     pause(1.0)
 
-    player "{i}AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{/i}"
-    player "Hays.. oh well."
+    player "{i}{sc}{move}AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{/move}{/sc}{/i}"
+    player "Hays.. that was awkward."
     hide zeil with dissolve
 
     scene bg reccomp with dissolve
     show zeil normal with dissolve
     player "{i}That was extremely awkward!{/i}"
+
+    show zeil smile
     player "{i}But despite us always bickering, it’s nice to know she does care about Ben and I.{/i}"
     player "Speaking of Ben, I should message him and see if he's alright."
 
     show zeil shocked at left with easeinleft
     "{i}KNOCK KNOCK{/i}"
+
+    stop music fadeout 2.0
     "Hello? Is someone in?"
     player "Oh yes, would you like to talk?"
     "Yes please..."
@@ -850,7 +938,7 @@ label Chapter2_Start:
 
     show zeil sad
     Bmom "They let a petition sign all over the City, and thousands of people agreed to stop the continued cutting of virgin forests all around the country. My children are going into a fight with a big company, and they’re not going down without a fight."
-    player "{i}I've heard about this issue. These kids are brave.{/i}"
+    player "{i}I've heard about this issue... thought it was poorly explained by the media. These kids are brave.{/i}"
     Bmom "Will you please help them?"
 
 label Chapter2_Choice:
@@ -859,7 +947,7 @@ label Chapter2_Choice:
     player "{i}Should I take it? I barely have any experience...{/i}"
 
     show zeil sad
-    player "I might mess this up..."
+    player "{i}I might mess this up...{/i}"
 
     menu:
         "Take the case":
@@ -894,11 +982,20 @@ menu:
         Bmom "Every Lawfirm agreed to back me down."
         Bmom "But your lawfirm is special..."
 
+        show zeil shocked
         show mommabeaver neutral at left with easeinright
-        Bmom "I have nothing to say but thank you! {i}cries and hugs [povname] {/i}"
+        Bmom "I have nothing to say but thank you! {i}{bt} cries and hugs [povname] {/bt}{/i}"
+        player "Woah there hehe we'll try whatever we can to help you"
+
+        show zeil smile2
+        show mommabeaver neutral at center with moveinleft
+        Bmom "Yes! I'll do whatever I can to help you."
+
+
+        stop music fadeout 2.0
         $ RouteChecker += 1
 
-        jump Case2
+        jump Case2_BeforeTalk
 
     "Wait, let me think again.":
         show zeil normal
@@ -924,6 +1021,7 @@ menu:
         hide mommabeaver neutral with moveoutright
 
         player "That was hard..."
+        stop music fadeout 2.0
         $ renpy.full_restart()
     "Wait, let me think again.":
         show zeil normal
@@ -931,8 +1029,2156 @@ menu:
         Bmom "Alright.., take your time"
         jump Chapter2_Choice
 
+label Case2_BeforeTalk:
+    scene bg isfirm with dissolve
+    show zeil normal at left with dissolve
+    show mommabeaver neutral at right with dissolve
+
+    player "So how exactly did they get into this mess?"
+    Bmom "They circled a petition all around the country..."
+    player "A petition about what?"
+
+    show zeil smug
+    player "{i}A petition huh... I bet they didn't even reach a thousand.{/i}"
+    player "Go on..."
+
+    Bmom "They wanted to stop the extremete logging activities Dunrar Mifflin is conducting..."
+
+    #add effect that adds silent when these lines catch up.
+    show zeil shocked
+    player "Dunrar Miffl-..."
+    player "YOU MEAN THE {b}BIGGEST{/b} {sc}PAPER COMPANY IN THE COUNTRY?!{/sc}"
+    Bmom "Y-yeah..."
+    player "Ma'am... we're up against something really big..."
+
+    show zeil normal
+    player "When you stated 'Virgin Forests' I thought you meant that we're stopping a small company with little amounts of power..."
+    Bmom "{bt}I'm so-sorry I didn't tell you!!{/bt}"
+
+    player "It's okay, ma'am"
+    player "Can you tell me more about this petition? How many did they reach?"
+
+    
+
+    show zeil shocked
+    Bmom "Surprisingly, they reached over hundreds of thousands of signatures in 1 month!"
+    player "W-WAIT! {sc}OVER A THOUSAND?!{/sc}"
+    Bmom "Y-YEAH!!!!! T-T That is why most lawfirms don't accept us!"
+
+    show zeil normal
+    player "Miss, is it okay if we just dodge this fight? To be fair, it's just a harmless petition."
+    Bmom "We can't..."
+    player "Why so?"
+    Bmom "Because a lot of people are hoping for this activity to stop"
+    Bmom "and..."
+    Bmom "Dunrar Mifflin is hiring a fierce lawyer..."
+    
+    show zeil bored
+    Bmom "A lawyer who graduated as valedectorian in the University of the Philippines"
+
+    show zeil shocked
+    player "A {sc=1}l-law{/sc}{sc=3}yer...{/sc}{sc=5}A VALEDICTORIAN from UP?!{/sc}"
+    player "{sc=1}{i}Think, [povname] ... {/i}{/sc}"
+    
+    show zeil normal
+    player "{sc=1}{i}this isn't your usual annulment or rundown restraining order.{/i}{/sc}"
+    player "{sc=1}{i}We're talking about a big company who has made Billions...{/i}{/sc}"
+
+    show zeil sad
+    player "{sc=1}{i}Chri-Christ... I'm trembling{/i}{/sc}"
+
+    show zeil normal
+    player "{sc=3}I'ma just {/sc}{sc=1}calm down{/sc} now..."
+    player "Ma'am, has the company pressed charges yet?"
+    Bmom "Not yet..."
+
+    show zeil bored
+    player "{i}I think they're waiting for us to take the initiative and charge them first.{/i}"
+    player "Seems like we're gonna handle quite a lot of loopholes here."
+    player "The halting of deforestations..."
+    player "Moreover.... to represent a generation..."
+
+    show zeil smile
+    player "I was never wrong into thinking that your kids are brave!"
+    Bmom "T-thank you :("
+    player "I'll try my best to handle this case, ma'am."
+
+    show zeil delighted
+    player "I'm doing this for the future of our environment!"
+
+    show zeil smile2
+    Bmom "You are indeed doing all of us a favour..."
+    Bmom "You're the bravest lawyer I've met so far."
+
+    show zeil normal
+    player "I hope for good things to come at us, ma'am."
+    player "I'll study the case for further details."
+
+    show black with dissolve
+    "and so, [povname] studied the case for three weeks straight."
+
+    jump Case2
+
 label Case2:
-    player "Case shall start!"
+    show black with Fade (0.5, 0.5, 0.5)
+    "Three Weeks Later..."
+    "Court day."
+    "It's advisable that you quick save here."
+    "A series of wrong decisions will restart the game."
+
+    scene bg courtroom with Fade(2.0, 0.0, 0.5)
+    player "The Judge isn't here yet..."
+
+    show zeil normal with dissolve
+    player "The courtroom seems to be empty."
+
+    show zeil delighted
+    player "To be fair, I entered 30 minutes early."
+    player "I'll just find a spot and study my case. Ms. Rivera was kind enough to help me research information."
+    player "{i}Sits down{/i}"
+    hide zeil with dissolve
+
+
+label Case2_BeforeReview:
+    show letter chapter2 with dissolve
+    player "Let's have an overall review."
+    window hide
+    pause
+    window show
+    player "Heh, I like the footer."
+    player "So... Ms. Rivera's kids acquired {b}105,923 petitioners{/b}."
+    player "She wasn't kidding. I even have the petition documents in my suitcase."
+    player "Do they also want these laws to be implemented? Dang, they're asking for a lot."
+    player "Last but not least, we'll heavily base our actions on {b}Article 2, Section 16{/b}. The right to have a healthy environment"
+    hide letter chapter2 with dissolve
+
+    show zeil delighted with dissolve
+    player "Welp, I'm all fired up!"
+
+    show zeil smile
+    player "{b}It seems like I have to base my answers on what's written in this leaflet. I have to memorize them to sound confident!{/b}"
+
+    show zeil sad
+    player "I don't wanna sound like a clown in court."
+
+    show zeil normal
+    player "Am I ready?"
+
+    window hide
+menu:
+    "Start The Case.":
+        window show
+        player "I guess I'm ready! Time to go to unknown grounds."
+        player "I'll wait for the bell to star-"
+
+        show zeil shocked at left with easeinleft
+        Bmom "[povname] !!!"
+
+        show mommabeaver neutral at right with easeinright
+        show zeil smile2
+        player "WOAHH!! Good morning, ma'am!"
+        Bmom "Good morning to you too!!"
+        player "I was just reading our case hehe. What brings you here?"
+        Bmom "Hehe glad to hear you're diligent with the case."
+
+        show zeil normal
+        Bmom "I want you to meet my children!"
+        hide zeil with dissolve
+        hide mommabeaver with dissolve
+
+        show nugget neutral with dissolve
+        Bmom "This is Nugget! He's the youngest in our family."
+        Nugget "E..h :("
+        Bmom "Go on, Nugget. Say hello!"
+        Nugget "He-Hello!"
+        Bmom "Louder!!"
+        Nugget "{rotat}hellwo!!{/rotat}"
+        player "Cute!!!!"
+        hide nugget with dissolve
+
+        show paddles neutral with dissolve
+        Bmom "She's Paddles, the second child."
+        Paddles "Good day, sir."
+        Bmom "She has good manners!"
+        Paddles "M-mister [povname] !"
+        player "Yeah?"
+        Paddles "Someday, I want to be a lawyer like you!"
+        player "Aww! I'm sure you'll get there!"
+        hide paddles with dissolve
+
+        show stumpy neutral with dissolve
+        Bmom "Last but not least, this is my responsible Stumpy! The eldest among all."
+        Stumpy "Good morning. Pleased to meet you, Mr. [povname]."
+        Bmom "Fancy!"
+        Stumpy "Sir, I hope to work with you soon. Let us win this case! For the better good of many."
+        player "Y-you bet!"
+        hide stumpy with dissolve
+
+        show mommabeaver neutral at right with dissolve
+        show zeil smile at left with dissolve
+        Bmom "Let's give it our all, team!"
+        show zeil smile2
+        player "Let's do this!"
+        player "{i}I gotta give it my all! For them.{/i}"
+        jump Case2_Start
+
+    "Wait, review more.":
+        window show
+        show zeil annoyed
+        player "Sheeeesh I gotta learn more."
+        hide zeil with dissolve
+        jump Case2_BeforeReview
+
+label Case2_Start:
+    scene bg courtroom with Fade(0.5, 0.5, 0.5)
+    show carl neutral with dissolve
+    show baliff neutral at right with dissolve
+
+    #Player Health Indicator
+    $ PlayerChance = 3
+
+    #Boolean to Check if Player or Sheep has already explained
+    $ Chap2Player_Explain = False
+    $ Chap2Sheep_Explain = False
+
+    pause (1.5)
+    show carl hammer
+    Carl "As you may know, every court has a national law. These aren't just basic rules we have to follow idly, but rules we have to follow for our lives! It is justice! "
+    Lady "Whoa there your hono-"
+
+    show carl neutral
+    Carl "Hehe I’m just kidding. But jokes aside, we have to follow the national rules. Stand up, witnesses!"
+    "{fi}witnesses stand up{/fi}"
+    Lady "I *state your name* solemnly, sincerely and truly declare and affirm that the evidence I shall give shall be the truth the whole truth and nothing but the truth." 
+    hide carl
+    hide baliff
+
+    show zeil normal with dissolve
+    player "I [povname] solemnly, sincerely and truly declare and affirm that the evidence I shall give shall be the truth the whole truth and nothing but the truth." 
+    hide zeil
+
+    show sheep neutral with dissolve
+    Sheep "I Sheep De Lune solemnly, sincerely and truly declare and affirm that the evidence I shall give shall be the truth the whole truth and nothing but the truth." 
+    hide sheep 
+    
+    show zeil annoyed with dissolve
+    player "{i}So that's Sheep De Lune. For a lawyer, her style looks flashy.{/i}"
+    hide zeil
+
+    show carl neutral with dissolve
+    show baliff neutral at right with dissolve
+    Lady "For the trial, all rise. Trial 101083 in now in session. Honorable Carl Cabales please proceed"
+    hide baliff with dissolve
+
+    Carl "Thank you! You may all be seated."
+    Carl "Is the prosecutor ready?"
+    hide carl
+
+    show zeil normal
+    player "Yes, your honor."
+    hide zeil
+
+    show carl neutral
+    Carl "How about the defense?"
+    hide carl
+
+    show sheep neutral
+    Carl "Yes, your honor."
+    hide sheep
+
+    show carl neutral
+    Carl "Great! We will now hear the opening statement of the prosecution."
+    Carl "[povname] , may you please explain your stance?"
+    hide carl
+
+    show zeil delighted at right with dissolve
+    show triplet neutral at left with dissolve
+    player "Your honor, I have 3 humble clients today all having the same age: 16."
+    player "They’re siblings accompanied today by their mother as you may see in the audience."
+    Paddles "Hi mom! I'm wearing my favorite tophat today!"
+
+    show zeil smile2
+    Bmom "Gooo guys! <3"
+
+    show zeil smile
+    player "As I may explain, these young enthusaists care for the environment."
+    hide triplet neutral with dissolve
+
+    show zeil normal at center with easeinright
+    player "Needless to say, each generation owes it to the next to maintain that rhythm and harmony in order to fully enjoy the benefits of a balanced and healthy ecological."
+    player "Based on..."
+
+    show zeil 
+    player "{i}Christ, I am {sc=1}shaking {/sc} What article or sectiom gives people the purpose to maintain a balanced and healthy ecology again?{/i}"
+
+    show zeil annoyed
+    player "{i}I can't mess up or else this Sheep De Lune will bug me allthroughout the session.{/i}"
+    hide zeil with dissolve
+    window hide
+
+
+    menu:
+        "Section 2 of Republic Act No. 2874": #Wrong
+            show zeil normal with dissolve
+            player "Based on Section 2 on Republic Act No. 2874, the act states otherwise"
+            hide zeil
+
+            show sheep neutral
+            Sheep "Sorry to interrupt your sentence, Mr. [povname] . To avoid misleading everyone, Section 2 of Republic Act No. 2874 states that..."
+            Sheep "timber and mineral lands shall be governed by special laws and nothing in this Act provided shall be understood or construed to charge or-modify the government and disposition of the lands commonly called 'friar lands "
+            Sheep "This does not correlate with the law you stated earlier. Frankly, this act of ignorance is against my standard of court."
+            $ PlayerChance -= 2
+            hide sheep with dissolve
+
+            show zeil annoyed
+            player "{i}Pfft she does bug me.{/i}"
+
+            show zeil normal
+            player "My apologies. What I meant was Section 16, Article II of the 1987 Constitution."
+            
+
+        "Section 2, Article II of the 1987 Constitution": #Wrong
+            show zeil normal with dissolve
+            player "Based on Section 2, Article II of the 1987 Constitution, the act states otherwise"
+            hide zeil
+
+            show sheep neutral
+            Sheep "Sorry to interrupt your sentence, Mr. [povname] . To avoid misleading everyone, Section 2, Article II of the 1987 Constitution states that..."
+            Sheep "The Philippines renounces war as an instrument of national policy, adopts the generally accepted principles of international law as part of the law of the land. "
+            Sheep "and it adheres to the policy of peace, equality, justice, freedom, cooperation, and amity with all nations."
+            Sheep "They are in the same constitution, but please, do not get them mixed up. We're talking about ecological health here, not land laws."
+            Sheep "This does not correlate with the law you stated earlier. Frankly, this act of ignorance is against my standard of court."
+            $ PlayerChance -= 2
+            hide sheep with dissolve
+
+            show zeil annoyed
+            player "{i}Pfft she does bug me.{/i}"
+
+            show zeil normal
+            player "My apologies. What I meant was Section 16, Article II of the 1987 Constitution."
+        "Section 16, Article II of the 1987 Constitution": #Right
+            show zeil normal with dissolve
+            player "Based on Section 16, Article II of the 1987 Constitution, the act states otherwise"
+
+    show zeil delighted
+    player "To put it another way, the minors' assertion of their right to a healthy environment is also the fulfillment of their responsibilities to guarantee that that right is protected for future generations."
+            
+    show zeil angry
+    player "In terms of the right to a balanced and healthy ecological, their ability to sue on behalf of future generations can only be founded on the idea of intergenerational responsibility."
+
+    show zeil normal
+    player "On the environmental behalf of the {b}generation that is unborn{/b}, my clients will represent them"
+    player "The same was filed for themselves and others who are equally concerned about the preservation of the virgin tropical forests."
+    player "The opposition is ordering defendant, his agents, representatives and other persons acting in his behalf to:"
+
+    show zeil delighted
+    player "(1) Cancel all existing timber license agreements in the country;
+            (2) Cease and desist from receiving, accepting, processing, renewing or approving new timber license agreements.
+            "
+    show zeil smile
+    player "That is all."
+    hide zeil with dissolve
+
+    show sheep neutral with dissolve
+    Sheep "{i}I admire these kids' energy... to represent a generation they haven't met is bonkers. But... I like that.{/i}"
+    hide sheep with dissolve
+
+    show carl neutral with dissolve
+    Carl "These kids are representing a whole generation huh?"
+    Carl "That’s a bit ideal, though I can’t wait to see what you guys have to offer today."
+    Carl "Would the defense want to make an opening statement or do you want the prosecution to take the stand until their case is finished?"
+    hide carl 
+
+    show sheep neutral at right with dissolve
+    show wolf neutral at left with dissolve
+    Sheep "Your honor, we would like to make an opening statement to the defendant."
+    Sheep "I am Sheep De Lune, and I represent Celtic, the President of Dunrar Mifflin."
+    Celtic "Good day, your honor."
+    Sheep "I’ll state what their side intends to prove and what their version of the story has in store. I assure you that Mr. Celtic is not guilty of this accused crime of not being ecological of cutting trees. "
+    hide wolf with dissolve
+    show sheep at center with easeinright
+    
+    Sheep "The company they wish to sue is {b}one of the leading paper companies in our country.{/b} "
+    Sheep "The quality they pursue is as good that simple water cannot penetrate it."
+    Sheep "The same company perhaps makes the paper you’re reading on?"
+    Sheep "We'll never know."
+    Sheep "But anyway, isn’t it normal for a company that makes the paper to cut trees?"
+    hide sheep 
+
+    show carl neutral
+    Carl "Mrs. De Lune-"
+    hide carl
+
+    show sheep neutral
+    Sheep "It's Ms., not Mrs."
+    hide sheep 
+
+    show carl neutral
+    Carl "Oh my bad. Ms. De Lune, what are you implying?"
+    hide carl 
+
+    show sheep neutral
+    Sheep "What I’m implying is that Mr. Celtic is in legal terms with the law. In fact, a law is backed up regarding it."
+    Sheep "Section 68 of PD 705 of the law states that any person who shall cut, gather, collect, or remove timber or other forest products from any forest land, or timber from alienable and disposable public lands..."
+    Sheep  "... or from private lands, without any authority under a license agreement, lease, license or permit, shall be guilty of qualified theft as defined and punished under Articles 309 and 310 of the Revised Penal Code."
+    hide sheep 
+
+    show zeil normal
+    player "{i}We basically can't sue them since they're backed up in law...{/i}"
+    player "{i}That is if they have a license.{/i}"
+
+    show zeil annoyed
+    player "{i}Damn, she's more assertive than Iro Lockheart{/i}"
+    player "{i}She didn't even check her notes. Looks like she 100 percent knows what she's doing.{/i}"
+
+    show zeil normal
+    player "Ms. Sheep, that is indeed understandable in your part."
+    player "{i}Should I ask a witness regarding their products? Or should I let it be?{/i}"
+    player "{i}If I summon a witness, I get the initiative of asking. But if I keep on going, I can probably squeeze in the information she gives.{/i}"
+    player "{i}Both decisions are risky since Sheep De Lune is an assertive lawyer.{/i}"
+    hide zeil
+
+    #Cheecks if Sheep Delune acts firsst
+    $ SheepFirst = False
+
+    menu:
+        "Inspect Ms. Sheep's Words":
+            $ PlayerChance -= 2
+
+            show zeil smile2
+            player "I would like to listen to Ms. Sheep's words"
+            hide zeil
+
+            if PlayerChance <= 0:
+                show sheep neutral with dissolve
+                Sheep "You're supposed to go first [povname] but alright. Give in to this."
+                hide sheep
+                jump Chapter2_GameOver
+
+            show sheep neutral with dissolve
+            Sheep "{i}Pfft, he should've summoned a witness. You're the one attacking, not us{/i}"
+            Sheep "{i}Get ready, for you will experience how Sheep De Lune takes care of her cases.{/i}"
+            Sheep "{i}A lawyer should always cross examine.{/i}"
+            hide sheep neutral with dissolve
+
+            $ SheepFirst = True
+            jump Chapter2_Stumpy
+        "Summon a witness for further inspection":
+            jump Chapter2_Witness
+
+    
+        
+
+label Chapter2_Witness:
+    show zeil normal with vpunch
+    player "May I speak with your witness? I have a few questions regarding the company's movements."
+    hide zeil 
+
+    if not SheepFirst:
+        show sheep neutral
+        Sheep "{i}Nice thinking for summoning a witness. You're the one attacking so go for it, Rookie.{/i}"
+        Sheep "{i}However, I prepared Dunrar Mifflin's most powerful Product Manager as a witness.{/i}"
+    elif SheepFirst:
+        show sheep neutral
+        Sheep "{i}You summon a witness right after I summoned yours?{/i}"
+        Sheep "{i}I'm not saying it's wrong but I hope you squeezed in the information you need, based on my advances.{/i}"
+        Sheep "{i}Plus, you're the opposition. You should be the one asking the witness first. Hays, you're indeed a rookie.{/i}"
+        Sheep "{i}However, I prepared Dunrar Mifflin's most powerful Product Manager as a witness.{/i}"
+
+
+    Sheep "Gladly, Mr. [povname], though I don’t think you’ll be getting the answer these environmentalists want."
+    hide sheep 
+
+    show zeil annoyed
+    player "{i}Here she is talkin' smack{/i}"
+    hide zeil
+
+    show goose neutral at left with moveinright
+    Witness "{i}Walks to chair{/i}"
+
+    show zeil smug at right with dissolve
+    player "Miss Witness, may you please explain your stance with Mr. Celtic, and how did you exactly meet him?"
+    Witness "Oh uhm… quack I'm pretty much the quality manager of their product."
+    Witness "I think it's pretty obvious how I met Celtic: through a professional hiring process... quack"
+
+    show zeil normal
+    Witness "But anyway, I ensure that no laws prohibit mass-producing our famous paper. I have been doing the job for over three years now which makes me their oldest quack product manager."
+    Witness "In the past few years, I've quacked and compiled their licenses and permits in one folder to show investors, law people, and environmentalists such as these our legitimacy."
+    Witness "Nothing sketchy with quack, right? Our licensed workers cut trees on a private property. We make sure that each tree is cut right, for it will be a waste of nature if we don't do quack. "
+
+    player "{i}Judging by her body movements, she seems to be telling the truth.{/i}"
+    player "{i}To be sure, should I ask to view their permit?{/i}"
+
+    menu:
+        "View Permit":
+            player "May I view your said permits?"
+            Witness "Sure, here you go"
+            hide zeil with dissolve
+            hide goose with dissolve
+            jump Chapter2_Minigame
+            #Jumps to Minigame
+
+        "Believe their stance.":
+            $ PlayerChance -= 2
+            player "I believe she's telling the truth... I'll let this slide.."
+            hide goose with dissolve
+
+            show sheep neutral at left with dissolve
+            Sheep "This is exactly why we hired a permit agent to be our proof reader. Mr. [povname] ,as a lawyer, you should always question your opponent."
+
+            if PlayerChance <= 0:
+                jump Chapter2_GameOver
+
+            Sheep "Mr. Beary Bear, may you please come and proofread for us?"
+            hide zeil with dissolve
+
+            show bear at right with moveinright
+            Beary "Alright, Mrs. Sheep"
+            Sheep "It's Miss Shee-"
+
+            jump Chapter2_PermExam
+            #Jumps to BIR agent
+        
+label Chapter2_Minigame:
+    show permit1 chapter2 with dissolve
+    player "{i}So I gotta memorize the permit numbers.{/i}"
+    player "{i}And then I'll input these numbers into a permit verification application.{/i}"
+    player "{i}I only got one chance of pulling this off. So I gotta memorize this ASAP.{/i}"
+    window hide
+    pause
+    pause
+    player "Hmm... I didn't expect Felipe Fabregas, an official, to approve of this permit."
+    player "He must have tons of power..."
+    player "Wait, should he even sign that?"
+    player "Hmm... I guess it makes sense since Dunrar Mifflin is the country's top 1 paper company."
+    hide permit1 with dissolve
+
+    show zeil smile with dissolve
+    player "{i}I just need to remember what those numbers are.{/i}"
+
+    show zeil annoyed 
+    player "{i}I don't want that Sheep messing me up.{/i}"
+
+    show zeil normal
+    
+    #Check if number input is correct and if wrong, executes FALSE
+    python:
+        permitnum1 = renpy.input("Input Permit Number 1", length=32)
+        permitnum1 = permitnum1.strip()
+
+        if not permitnum1:
+            permitnum1 = "Null"
+
+        if permitnum1 == "6882094328":
+            permitnum1_Check = True
+        else:
+            permitnum1_Check = False
+
+    if permitnum1_Check:
+        show zeil smile2
+        player "{i}Nice, I put the right number!{/i}"
+        player "{i}Huh? Seems like the permit is legal.{/i}"
+    else:
+        show zeil normal
+        $ PlayerChance -= 1
+        player "{i}Crap, I think I put the wrong numb-{/i}"
+        hide zeil
+
+        if PlayerChance <= 0:
+            jump Chapter2_GameOver
+
+
+        show sheep neutral
+        Sheep "Anything wrong, Mr. [povname] ? If you mess up, we'll have to call an actual verifier."
+        hide sheep
+
+        show zeil annoyed
+        player "Nothin, Ms. De Lune."
+        show zeil normal
+        player "{i}The number was actually 6882094328{/i}"
+        player "{i}I'll just put that and...{/i}"
+        player "{i}Huh? Seems like the permit is legal. The number was right all along.{/i}"
+
+    player "Onto the next permit."
+    hide zeil with dissolve
+
+    show permit2 chapter2 with dissolve
+    player "{i}So I gotta memorize the permit numbers.{/i}"
+    player "{i}I only got one chance of pulling this off. So I gotta memorize this ASAP.{/i}"
+    window hide
+    pause
+    pause
+    player "Hmm... Felipe Fabregas again?"
+    player "This guy does have power"
+    hide permit2 with dissolve
+
+    show zeil smile with dissolve
+    player "{i}Same process, input the numbers in the application.{/i}"
+
+    show zeil annoyed 
+    player "{i}Or else this 'lil Sheep will bug me again{/i}"
+
+    show zeil normal
+
+    #Check if number input is correct and if wrong, executes FALSE
+    python:
+        permitnum2 = renpy.input("Input Permit Number 2", length=32)
+        permitnum2 = permitnum2.strip()
+
+        if not permitnum2:
+            permitnum1 = "Null"
+
+        if permitnum2 == "4405189312":
+            permitnum2_Check = True
+        else:
+            permitnum2_Check = False
+        
+    if permitnum2_Check:
+        show zeil smile2
+        player "{i}Nice, I put the right number!{/i}"
+        show zeil normal
+        player "{i}Huh? Seems like the permit is legal again.{/i}"
+    else:
+        show zeil normal
+        $ PlayerChance -= 1
+        player "{i}Crap, I think I put the wrong numb-{/i}"
+        hide zeil
+
+        if PlayerChance <= 0:
+            jump Chapter2_GameOver
+
+        show sheep neutral
+        Sheep "Anything wrong, Mr. [povname] ? If you mess up, we'll have to call an actual verifier."
+        hide sheep
+
+        show zeil annoyed
+        player "Nothin, Ms. De Lune."
+        show zeil normal
+        player "{i}The number was actually 4405189312{/i}"
+        player "{i}I'll just put that and...{/i}"
+        player "{i}Huh? Seems like the permit is legal again... The numbers are right all along.{/i}"
+
+    player "Seems like all of the given permits are legalized."
+    hide zeil
+
+    show goose neutral
+    Witness "Quack, told you so"
+    hide goose
+    
+    show zeil smile
+    player "I understand that may be true, but do you guys maintain the safe practices of Section 4 of E.O. No. 192 and Section 16, Article II of the 1987 of the law?"
+    player "Which is basically  the right of the people to a balanced and healthful ecology on all forms of life and land corresponding to your area? That is the point of this debate after all."
+    hide zeil
+
+    show goose neutral
+    Witness "Yes we do, we replant trees two times more than we cut. Our farms are circled with tons of trees. If you want to visit them, here’s our address: {i}Shows address{/i}"
+    hide goose
+
+    show zeil sad
+    player "Oh..."
+    hide zeil
+
+    show sheep neutral with dissolve
+    Sheep "To prove that the examination Mr. [povname] conducted is true, we have Mr. Beary, a permit inspector, to verify."
+    hide sheep with dissolve
+
+    show bear with dissolve
+    Beary "As you may all know, I am a Permit agent sponsored by this company and the whole city."
+    Beary "I am their {b}official agent {/b}in reading legitimacy. Their number 1. {i}Shows ID{/i} "
+    Beary "As you may see, permit numbers 4405189312, 6882094328, and License ID 94445 are in our 50-level encrypted database."
+    Beary "So yeah, they're legit"
+    hide bear with dissolve
+
+    show zeil annoyed with dissolve
+    player "{i}Jeez they even hired an official reader.{/i}"
+    player "{i}Sheep is such an extra{/i}"
+    hide zeil with dissolve
+
+    show carl neutral
+    Carl "Does that conclude the cross examination of the propesition?"
+    hide carl
+
+    show zeil smile
+    player "Yes, your honor."
+    hide zeil
+
+    $ Chap2Player_Explain = True
+    jump Chapter2_Checker
+
+    #Jump to RouteCheck if Sheep has already explained her stance.
+
+label Chapter2_PermExam:
+    hide sheep with dissolve
+    show bear at center with easeinright
+    Beary "As you may all know, I am a Permit agent sponsored by this company and the whole city."
+    Beary "I am their {b}official agent {/b}in reading legitimacy. Their number 1. {i}Shows ID{/i} "
+    Beary "Give me 5 mins or so to read these permits. I require FULL silence."
+    hide bear with dissolve
+
+    show zeil annoyed with dissolve
+    player "{i}Jeez they even hired an official reader.{/i}"
+    player "{i}Sheep is so assertive that she had the guts to correct me mid-sentence{/i}"
+    hide zeil with dissolve
+
+    "Five Minutes Later"
+
+    show bear with dissolve
+    Beary "Reading the permits and license, I can confirm that they are right. "
+    Beary "They’re stored in our database correctly."
+    Beary "As you may see, permit numbers 4405189312, 6882094328, and License ID 94445 are in our 50-level encrypted database."
+    hide bear with dissolve
+
+    show goose neutral
+    Witness "Quack, told you so"
+    hide goose
+    
+    show zeil smile
+    player "I understand that may be true, but do you guys maintain the safe practices of Section 4 of E.O. No. 192 and Section 16, Article II of the 1987 of the law?"
+    player "Which is basically  the right of the people to a balanced and healthful ecology on all forms of life and land corresponding to your area? That is the point of this debate after all."
+    hide zeil
+
+    show goose neutral
+    Witness "Yes we do, we replant trees two times more than we cut. Our farms are circled with tons of trees. If you want to visit them, here’s our address: {i}Shows address{/i}"
+    hide goose
+
+    show zeil sad
+    player "Oh..."
+    hide zeil
+
+    show carl neutral
+    Carl "Does that conclude the cross examination of the propesition?"
+    hide carl
+
+    show zeil smile
+    player "Yes, your honor."
+    hide zeil
+
+    $ Chap2Player_Explain = True
+    jump Chapter2_Checker
+
+    #Jump to RouteCheck if Sheep has already explained her stance.
+        
+label Chapter2_Checker: #Checks route if player has already answered
+    if Chap2Player_Explain and Chap2Sheep_Explain: #If Sheep and Player has asked both witness, it jumps to judge
+        show carl neutral
+        Carl "Seems like both parties have explained their stance."
+        Carl "Do both parties have no more additional rebutals or arguments?"
+        hide carl 
+        jump Chapter2_Judge
+    elif Chap2Player_Explain and not Chap2Sheep_Explain: #Else if player has asked witness but not sheep, it jumps to Stumpy
+        show carl neutral
+        Carl "So that finishes the opposition's cross examination."
+        Carl "Your turn, Ms. Sheep"
+        hide carl
+        jump Chapter2_Stumpy
+    elif not Chap2Player_Explain and Chap2Sheep_Explain: #Else if sheep has asked witnes sbut not player, it jumps oto Witness
+        show carl neutral
+        Carl "So that concludes the... defense's cross examination."
+        Carl "Your turn, Mr. [povname]"
+        hide carl
+        jump Chapter2_Witness
+            
+
+label Chapter2_Stumpy:
+    show carl neutral 
+    Carl "It's time for your cross examination, Ms. Sheep"
+    hide carl
+
+    show sheep neutral
+    Sheep "Yes your honor! Now we would like to call a witness of the other side."
+    hide sheep
+
+    show triplet neutral at left
+    show zeil normal at right
+    Paddles "Oh no, is she pertaining to us?"
+    player "She is..."
+    Stumpy "I volunteer to be our witness."
+    Nugget "G-good luck, big sis!"
+    hide zeil 
+    hide triplet
+
+    show stumpy neutral at left with moveinright
+    show sheep neutral at right with easeinright
+    Sheep "Alright, Ms. Stumpy. May I ask what motivated you to sue this company, knowing that we have the right to cut trees around the forest that is considered ours? We even have a license to prove it."
+    Stumpy "Well… by using ppetitions to convince the public, we widespread informtaion."
+    Stumpy "This petition concerns Filipinos' right to a balanced and healthy environment, which the petitioners link to the twin concepts of ‘inter-generational responsibility’ and ‘inter-generational justice.’"
+    Stumpy "It specifically addresses whether the petitioners have a cause of action to ‘prevent the misappropriation or impairment’ of Philippine rainforests and ‘arrest the unabated hemorrhage of the country's vital life support systems and infrastructure.’"
+    Sheep "{i}Hmp, looks like she did her research.{/i}"
+    hide stumpy
+    hide sheep
+
+    show carl neutral
+    Carl "The Court explicitly states that petitioners have the locus standi necessary to sustain the bringing and, maintenance of this suit (Decision, pp. 11-12). Locus standi is not a function of petitioners' claim that their suit is properly regarded as a class suit. "
+    hide carl
+
+    show stumpy neutral at left
+    show sheep neutral at right
+    Stumpy "I understand locus standi to refer to the legal interest which a plaintiff must have in the subject matter of the suit."
+    Stumpy "Because of the very broadness of the concept of 'class' here involved — membership in this 'class' appears to embrace everyone living in the country whether now or in the future."
+    Stumpy "it appears to me that everyone who may be expected to benefit from the course of action petitioners seek to require public respondents to take, is vested with the necessary locus standi."
+    hide stumpy
+    hide sheep
+
+    show zeil shocked
+    player "{i}Stumpy defended herself with ease. She's professinally powerful on herself.{/i}"
+    hide zeil
+
+    show stumpy neutral at left
+    show sheep neutral at right
+    Sheep "I understand your endeavors, Miss Stumpy."
+    Sheep "However, even tho we are the number 1 tree cutter, the logic of law backs us. We have the application for Tree Cutting Permits so as the license to conserve land."
+    Sheep "We have authenticated private land ownership; we harvest with a sure environmental plan. We also have an application form that is backed up with permit agents."
+    Sheep "We have what every tree cutting company has. However, we take extreme precautions on cutting and replanting trees. After all, this is a business: we cut trees and make paper = we gain money; we lose money if we lose natural stock, AKA trees."
+    Sheep "We also follow the Department of Environmental and Natural resources guidelines in their endeavors for a more fantastic future."
+    hide stumpy
+    hide sheep
+
+    show carl neutral
+    Carl "Ms. Sheep is right. The Court may be seen therefore to be recognizing a beneficiaries' right of action in the field of environmental protection. "
+    Carl "as against both the public administrative agency directly concerned and the private persons or entities operating in the field or sector of activity involved. "
+    hide carl
+
+    show zeil normal
+    player "{i}Seems like thier plot of land is near a site for indigenous people.{/i}"
+    player "{i}I should ask if this sort of productivity colldies wiht their way of living.{/i}"
+
+    show zeil smile 
+    player "We have noticed something, and it’s that your plot of land is near a tribe of indigenous people. In any case whatsoever, does cutting trees near their site damage their way of living? If not, may you please justify?"
+    hide zeil
+
+    show sheep neutral
+    Sheep "Well, the proximity of tree cutting is indeed followed by our agents. We have people from official agencies who stop workers from cutting in a particular site. Plus, we practice selective cutting."
+    Sheep "If, somehow, old and big trees are seen in an area: people are refrained from cutting century-old endemic trees such as dipterocarps because they believe that these trees harbor the spirits of their ancestors."
+    Sheep "Before cutting old trees, they conduct rituals to seek their ancestors' permission. A shaman locally known as mumbaki directs the rituals."
+    hide sheep
+
+    show zeil smile2
+    player "Thank you!"
+    hide zeil
+
+    $ Chap2Sheep_Explain = True
+    jump Chapter2_Checker
+
+label Chapter2_GameOver:
+    hide zeil
+    hide carl
+    hide triplet
+    hide goose
+    hide stumpy
+
+    show sheep neutral
+    Sheep "Seems like you messed up too much, [povname]"
+    Sheep "I'm not the type to call it bad with my opponent, but you are too ignorant for my tastes."
+    hide sheep
+
+    show carl neutral
+    Carl "You have given a lot of wrong information today, [povname] ..."
+    Carl "This is a bit embarassing"
+    hide carl
+
+    show wolf neutral
+    Celtic "Pfft, you call this a lawyer?"
+    Celtic "I guess I got this case in the bag, boss."
+    hide wolf 
+
+    show triplet neutral
+    Stumpy "Oh no, we are toast..."
+    Nugget "I - thwink we are d-dead"
+    Paddles "Justice for the future... gone..."
+    hide triplet
+
+    show zeil sad
+    player "{i}Christ... I've dissapointed them... my will to keep going is slowing down. Plus I have this bitchy sheep as my opponent {/i}"
+    hide zeil
+
+    show black with Fade(2.0,0.5,1.0)
+
+    $ renpy.full_restart()
+
+label Chapter2_Judge:
+    show sheep neutral with dissolve
+    Sheep "None, your honor."
+    hide sheep
+
+    show zeil normal with dissolve
+    player "{sc}Sweating{/sc} {i}At this pase, we are gonna ennd up a stalemate, both cases will be dismissed … and these beavers will never get what they want to achieve for us.{/i}"
+    player "None, your honor."
+    hide zeil
+
+    show carl neutral
+    Carl "Understandable, you may now present thine closing statements."
+    hide carl with dissolve
+
+    show zeil delighted
+    player "I hereby dub the company Dunrar Mifflin with more questions since the case is not yet optimal nor finished."
+
+    show zeil normal
+    player "While the right to a balanced and healthy ecological is found in the Declaration of Principles and State Policies rather than the Bill of Rights, it is no less vital than any of the civil and political rights included in the latter."
+    player "Such a right belongs to a separate category of rights entirely, for it is concerned with nothing less than self-preservation and self-perpetuation..."
+    player "as the petitioners so eloquently and correctly emphasize, and its progress may even be claimed to precede all governments and constitutions."
+    
+    show zeil smile2
+    player "These fundamental rights, in fact, do not need to be put into the Constitution since they have been presumed from the dawn of time."
+    hide zeil
+
+    show sheep neutral
+    Sheep "Thank you for your attention in this matter. There is a difference between “illegally cutting and cutting with ethics."
+    Sheep "There is a difference between not planting and replanting. And there is a difference between what constitutes reasonable doubt and what amounts to just excuses by the defendant."
+    Sheep "The law doesn’t allow a man to cut without a permit to establish a company solely for creating excellent paper without it. We proclaim that Dunrar Mifflin is not guilty of its environmentally-secured actions since we plant more than we cut. "
+    Sheep "We understand your view for a better future, but we are one of the significant economic contributors in the market, and we also sell good paper."
+    hide sheep
+
+    show carl neutral
+    Carl "Whether such beneficiaries' right of action may be found under any and all circumstances, or whether some failure to act, in the first instance, on the part of the governmental agency concerned must be shown ('prior exhaustion of administrative remedies')"
+    Carl "is not discussed in the decision and presumably is left for future determination in an appropriate case. "
+    Carl "Because of the Rebutal of an actual permit over the cutting of trees, so as the will to give the future generation better air to breathe, this court case has come to a stalemate for btooh sides have prooven equal yet stale points."
+    Carl "This is a tough decision for both… so we, as court, need more time to think about this, This court session is now dismissed."
+    Carl "{b}Dismissed but will resume sometime!{/b}"
+    show carl hammer with vpunch
+    "{i}HAMMER NOISE{/i}"
+    hide carl with Fade(1.7, 2.0, 1.5)
+
+    "The Case Ended With a Stalemate"
+
+label Chapter2_OverLay:
+    scene bg officefirm with Fade(1.5, 2.0, 1.7)
+    show zeil normal at right with easeinright
+    show mommabeaver neutral at center with easeinright
+    show triplet neutral at left with easeinright
+
+    Bmom "We had a stalemate huh..."
+
+    show zeil sad
+    player "Yeah seems like it. Both lawyers provided a good point, and the judge couldnt decide which to choose."
+
+    show zeil normal
+    Paddles "But why? We are fighting for the future of our generation! That’s the gweater good than most of the stuff they’re doin'"
+    player "I know… but they have been backed up by law, making them legal. It’s hard to terminate them, especially if we have no witnesses that prove their harmful environmental doings"
+    
+    show zeil shocked 
+    Stumpy "We got to find a way to somewhat expose them! We need an infultrator to see their actions from the inside!"
+    Nugget "Buz siz, isnt that iwwegal?"
+
+    show zeil smile
+    player "Wait, your sister may have a good idea... "
+    Bmom "But who are we going to rely on? This situation is sticky, and we can’t interfere… don’t tell me we’re sending my children?"
+    Nugget "Oh yeah! An infultrating adventure awaits us mah bros! Let’s start runnin and blasting!! <3"
+    Bmom "Nugget no!"
+
+    show zeil smile2
+    if RouteChecker >= 1:
+        player "I think I might know someone. It will require a bit of convincing though."
+    else:
+        player "This office has sponsored an inspector. He's aso a lawyer that Cassie defeated. It will require a bit of convincing though."
+        
+    scene bg reccomp with dissolve
+    show zeil smile with dissolve
+
+    player "{i}Calls on the Phone{/i}"
+    player "{i}Ringing{/i}"
+    player "{i}Someone answers{/i}"
+
+    if RouteChecker >= 1:
+        player "Hello, is this my good old Iro "
+    else:
+        player "Hello, is this Iro the Inspector?"
+
+    Iro "{bt=1}J-just wait a second,{/bt}"
+    show zeil normal
+
+    Iro "{bt=2}. ..  i think my cat answered the phone– {sc=1}wOoo{/sc} {sc=3}ooAHH {/sc}{/bt}"
+    show zeil shocked
+
+    Iro "{move}WAAAAAAAAAAA *falls of the stairs*{/move}"
+    player "Woah there, are you okay?"
+    Iro "Aoo Arf arf fhchh welp {sc=2}Ocuh{/sc}, woudl you look at that, i fell down haha! That’s the funny man right there!"
+
+    show zeil normal
+    player "Jeez, are you okay?"
+
+    show zeil smile
+    Iro "you bet! So who’s this handsome voice callin from here ey?"
+
+    if RouteChecker >= 1:
+        player "It's me, [povname] . I Came to-"
+
+        show zeil shocked
+        Iro "{sc}WOAHHH [povname]? OMG!! {/sc}{rotat}Long time NO HEAr!!{/rotat} "
+
+        show zeil smile2
+        Iro "{bt}KUMUSTA KA NA?{/bt}"
+        Iro "{sc=1}DO YOU WANNA KNOW{/sc} {sc=2}HOW MANY DALMATIONS I HAVE NA? {/sc} {sc=4}IT’S 2 DIGITSS!!{/sc}"
+
+        show zeil smile
+        player " haha! You never change at all, you cute doggo."
+        Iro "Haha! I sure won’t alright! So how’s it goin?"
+        player "You see, I came to call for some investigating help. "
+        Iro "Investigating help huh… Welp, you called the right place since I got the team and skills. Whatcha lookin for, buddy?"
+
+
+    else:
+        player "Hello, I am [povname] . I walk in the same lawfirm as Cassie The Lawyer."
+        Iro "Ahh Cassie, the one who arfed me out of this world with her {rotat}crazy law skills{/rotat}"
+
+        show zeil smile2
+        player "Yeah, she's a smooth killer indeed! Fast and silent"
+        Iro "HOHOHO! Sounds like you like her"
+
+        show zeil shocked
+        player "No! I just admire her sk-"
+        Iro "Welp, you called the right place for investigations since I got the team and skills. Whatcha lookin for, buddy?"
+
+    hide zeil with dissolve
+    scene bg officefirm with Dissolve(2.0, alpha=False, time_warp=None)
+    show zeil normal at right with dissolve
+    show mommabeaver neutral at left with dissolve
+
+    Bmom "I hope the one you sent to investigate goes well."
+
+    show zeil delighted
+    player "Don’t worry, he’s a top investigator of his time. He’s smooth as a pillar, and fast as a fox. Some may even call him a man’s best friend"
+    Bmom "So he’s a dog?"
+
+    show zeil smile2
+    player "Yep! He got the skills. He’s  currently seeing the company in the inside."
+    Bmom "Isn't that illegal"
+    player "Not really, he has a permit for proof. But I do wonder how’s he goin right now?"
+
+label IroInspect: #Iro Inspeciton Era wow lezgo iro
+
+    scene bg factory3 with Fade(1.7, 2.0, 1.5)
+    show iro neutral at left with moveinleft
+    Iro "Woah! This company big! Welp I better start my inverstigation somewhere."
+    show goose2 neutral at right with moveinright
+    Guard "State your business, Dog!"
+    Iro "Arf."
+    Guard "..."
+    Iro "..."
+    Iro "Oh hey, I’m an investigadorrr as you may see with this badge and permit! I love tackling the law with my job, and I hope to properly inspect this area."
+    Guard "An inspector huh… we didn’t expect one to come today."
+    Iro  "Welp guess who’s here now."
+    Guard "Hmm... {i}gets radio{/i} We got Mr. Inspector comin here at any moment."
+    Guard "We let him in?"
+    Guard "Okay, got it."
+    Guard "Boss said to get in, Dog."
+    Iro "Thank you my good man"
+    Guard "Our crew will be accompanying you"
+    Iro "With pleasure!"
+    hide iro with moveoutright
+    hide goose2 with moveoutright
+
+    scene bg factory1 with Dissolve(1.0, alpha=False,time_warp=None)
+    show iro neutral at left with moveinleft
+    show goose2 neutral at right with moveinleft
+    Iro "WOAHH!  YOU GUYS SURE HAVE TONS OF PAPER, WOOD, AND MILFS HERE"
+    Crew "..."
+    Iro "I mean Mills."
+    Iro "{i}Anyways, what to inspect first?{/i}"
+    $ MillCheck = False
+    $ StorageCheck = False
+
+    menu:
+        "Mills":
+            Iro "I shall inspect the mills first!"
+            Crew "Ok."
+            jump Chapter2_Mills
+
+
+        "Paper and Wood Storage":
+            Iro "I shall inspect your storage first!"
+            Crew "Ok."
+            jump Chapter2_Storage
+
+label Chapter2_IroEval:
+    scene bg factory3 with dissolve
+    show iro neutral at center with moveinright
+    show goose2 neutral at right with moveinright
+    Iro "Seems like I inspected that one!"
+    if MillCheck and StorageCheck:
+        Iro "Oh wow that's all of it..."
+        jump Chapter2_IroDone
+    elif MillCheck and not StorageCheck: #If Mills has been inspected, go to storage
+        Iro "Welp, I guess there's only one thing left to do!"
+        menu:
+            "Inspect Storage":
+                jump Chapter2_Storage
+    elif not MillCheck and StorageCheck: #If storage has been inspected, go to Mills.
+        Iro "Welp, looks like I gotta explore the milfs now!"
+        menu:
+            "Inspect Mills":
+                jump Chapter2_Mills
+
+
+label Chapter2_Mills:
+    scene bg factory1 with dissolve
+    show iro neutral at left with moveinleft
+    show goose2 neutral at right with moveinleft
+    Iro "So this is the mill, my good sir?"
+    Crew "Yes, but to be more specific, this is a sawmill. Im pretty sure you know how it works."
+    Iro "I've cut some {sc=4}heads {/sc}in the past"
+    Crew "..."
+    Iro "{rotat}Just kidding!! {/rotat}haha!"
+    hide goose2 with dissolve
+    hide iro with dissolve
+
+    Iro "Hmm.. everything here seems to be intact."
+    Iro "And the mill seems to be working fine."
+    Iro "Look at this baby chop wood! Smooth as a criminal"
+
+    show iro neutral at left with dissolve
+    show goose2 neutral at right with dissolve
+    Iro " yeahh, this baby seems to be working. Do you have a permit to use this?"
+    Iro "We have a licencse."
+    Iro "Hmm... Good enough!"
+    $ MillCheck = True
+
+    jump Chapter2_IroEval
+
+label Chapter2_Storage:
+    scene bg factory2 with dissolve
+    show iro neutral at left with moveinleft
+    show goose2 neutral at right with moveinleft
+    Iro "Ohh so this is where you keep your logs."
+    Crew "Yeah"
+    Iro "Mind if I inspect it?"
+    Crew "Yes"
+    Iro "Don't mind if I dooooo"
+    Crew "..."
+    hide goose2 with dissolve
+    hide iro with dissolve
+
+    Iro "Hmm the screws are doing neat"
+    Iro "Oh look, a chicken wing!"
+    Iro "Other than that, theese storage systems seem to be organized, safe, and hmm it looks like a good place to chill."
+
+    show iro neutral at left with dissolve
+    show goose2 neutral at right with dissolve
+    Iro "Everything seems to be intact. No infestation, risks were kept at a minimal, and seems like yall even hid some cards here."
+    Crew "sorry bout the cards, boss"
+    Iro "Haha! That's okay, I too bring playing cards in my office"
+    $ StorageCheck = True
+
+    jump Chapter2_IroEval
+
+label Chapter2_IroDone:
+    Iro "{i} Seems like I’ve inspected everything on the inside {/i}"
+    Iro "Great interior! Everything seems to be intact, and … everyhting has a damn permit indeed haha! Y’all sure are operating under the law"
+    Crew "k"
+    Iro "{i}Man, everything here is so intact. They are, under all permits and licenses, legal to operate. I can’t seem to see anything to exploit… I’ve even contacted my BIR friends regarding their permits… {/i}"
+    Iro "{i}I’m cornered with the truth that they are legit… sorry [povname] {/i}"
+    Iro "......."
+    Iro "Aight my good sir, I will get going now."
+    Crew "k bye"
+    
+    show iro neutral at left with easeinright
+    Iro "Adios amigo-"
+    pause (1.0)
+    Iro "..."
+    Iro "{i}{bt=2}*Spots Big Door*{/bt}{/i}"
+    Iro "{bt=3}Heyyyaaa {/bt}if you don’t mind me asking, what’s inside that {b}big door?{/b} Another exit perhaps"
+    Crew "Yeah you can go there, but we prefer if you exit the normal way"
+    Iro "do you mind if I check what’s inside of {bt=2}thaaaaaaaaaaaaaaaaaaaat {/bt}door?"
+    Crew "I mind, you need to have a lumberjack’s license to enter there."
+    Iro "Well I'm {rotat=13}investigadorrr {/rotat}, I have the rights to go in there don’t i?"
+    Crew "..."
+    Iro "I’ll take that as a yes! {i}approaches the door{/i}"
+    Crew "Hey, you haven’t investigated our comfort rooms yet"
+    Iro "{bt}Nahhhhh{/bt}this big door looks more interesting than your tiny comfort rooms my good sir"
+
+    hide iro with easeoutleft
+    Crew "Wait."
+    hide goose2 with easeoutleft
+    
+    show iro neutral at center with moveinright
+    show goose2 neutral at right with moveinright
+    Crew "{bt=2}*Grasps Iro's arm*{/bt} Listen, you really shouldn't be going there."
+    Iro "why cant i? it’s an investigator’s job to meddle at thine operational affairs based on Presidential Decree No. 442 of 1974"
+    Iro "Which is that DOLE shall be solely responsible for the administration and enforcement of occupational safety and health laws, regulations and standards in all establishments and workplaces wherever they may be located."
+    Iro "I gotta see this or else y'all are toast too"
+    Crew "..... {bt=2}*Sneakily gets a hammer and hides it in his pocket*{/bt}"
+    Iro "Aight silent means yes! {bt=3}*enters big door*{/bt}"
+    hide iro neutral with moveoutleft
+    Crew "{bt=2}*Gets radio*{/bt} In coming inspector, sir."
+    hide goose2 with moveoutleft
+
+    scene bg deforest with Fade(1.0, 1.0, 0.5)
+    Iro "{rotat}Damn!{/rotat} So that explains why you got lots of logs. You {b}immensely{/b} cut these trees!"
+    show iro neutral at right with easeinleft
+    show goose neutral at left with easeinleft
+
+    Iro "Where’s the ‘selective logging’ here?"
+    Crew "Everything here is part of our pirvate plot. Nothing here is sacred. If you want to see more trees, I recommend you go deeper, investigador."
+    Iro "Okay!"
+    hide iro with easeoutright
+    hide goose with easeoutright
+
+    scene bg deforest2 with dissolve
+    show iro neutral at right with easeinleft
+    show goose neutral at left with easeinleft
+    Iro "Still looking pretty dead here!"
+    Iro "How often do you cut trees?"
+    Crew "we don’t replant trees instantly. That will hinder their space for growth."
+    Crew "We have to calculate the space in between the trees. We usually plant every month."
+    Iro "Okay."
+    Iro "You seem to have cut a lot in this area, that is what I am {sc}sussy{/sc} about"
+    Crew "Those at the background are the new trees. We usually cut deep within, but the trees we have cut have recently been replanted."
+    Crew "We replant because it's close to an indigenous tri- I mean a ecological property such as lakes. We gotta conserve those areas ASAP unlike here."
+    Iro "Hmmm I'll be the judge of that."
+    Crew "{i}Damn I wanna smack your head, dog.{/i}"
+    hide iro with easeoutright
+    hide goose with easeoutright
+
+    scene bg deforest3 with dissolve
+    Iro "Oh I see what you mean, you did replant on this area"
+    show iro neutral at right with easeinleft
+    show goose neutral at left with easeinleft
+    Crew "Yeah."
+    Iro "Based on ecological standards, you somewhat maintained selective logging huh."
+    Crew "That is what we do as a company"
+    Iro "Alrighties, mi amigo. I'll inspect this forest even more!"
+    hide iro with easeoutright
+
+    Crew "{bt=2}*Sweats*{/bt}"
+
+    #Make it so that the crew is holding a walkiee talkie
+    Crew "{bt=2}*Gets radio*{/bt} Boss, the inspector is going deeper"
+    Crew "Huh? You want me to what?"
+    Crew "....."
+    Crew "Hmm. Alright, I'll trust you with that."
+    hide goose with easeoutright
+
+    
+    scene bg dforest with dissolve
+    Iro "This part of the forest is somewhat deforestated. I see that you’re replanting them though. Great job for proving that."
+    show iro neutral at center with easeinleft
+    show goose neutral at left with easeinleft
+    Crew "...."
+    Iro "Wait what’s that big tree over there?"
+    show iro neutral at right with moveinleft
+    Crew "We’re not allowed to go there, indigenous ppl live there."
+    Iro "Hmm.. That's why there are tons of trees here."
+    Iro "How far are we from the tribe?"
+    Crew "Above 10Km. This is as far as this company can cut."
+    Iro "I see...{i}{sc=2}Cripes, they're legal... I can't go further since I might be disrupting those people.{/sc}{/i}"
+    Iro "So this is as far as we could go huh?"
+    Crew "Yes. I would appreciate it if we go back now."
+    Iro "You betcha, fella-"
+
+    #Insert Scream Audio
+    show iro neutral at right with hpunch
+    "{sc=4}SCREAMING IN THE BACKGROUND{/sc}"
+    "....."
+    pause (1.0)
+    Iro "Hey did someone scream?"
+    Crew "I didn’t hear anything."
+    Iro "If you didn't then why were you startled?"
+    Crew "I startle a lot."
+    Iro "..."
+    Iro "{sc=1}Sussy baka!{/sc}"
+    hide iro with easeoutright
+    Crew "HEY! Don't think you're getting out of here safely! {bt=2}*Gets hammer from pocket*{/bt}"
+
+    Iro "And you call yourself a lumberjack?! {bt=2}*Runs Deeper into the Forest*{/bt}"
+    Crew "I'm from human resources!"
+    hide goose with easeoutright 
+    
+label Chap2QS:
+    "It's advisable that you quicksave here."
+    "A wrong choice can kill Iro."
+    "It will put the game into a gameover."
+    ""
+    "Have you quicksaved yet?"
+    menu:
+        "Yeah, let's go!":
+            "-Game Shall Resume-"
+            pause(1.2)
+        "No, not yet.":
+            "Quicksave now!"
+            jump Chap2QS
+
+    show iro neutral with moveinleft
+    Iro "{bt=2}*Pants*{/bt} Oh my gulay, where to now? There's a lake blocking me from that big tree"
+
+    
+transform alpha_dissolve:
+    alpha 0.0
+    linear 0.5 alpha 1.0
+    on hide:
+        linear 0.5 alpha 0
+    # This is to fade the bar in and out, and is only required once in your script
+
+init: ### just setting variables in advance so there are no undefined variable problems
+    $ timer_range = 0
+    $ timer_jump = 0
+    $ time = 0
+
+screen countdown:
+    timer 0.01 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)]) 
+        ### ^this code decreases variable time by 0.01 until time hits 0, at which point, the game jumps to label timer_jump (timer_jump is another variable that will be defined later)
+
+    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve 
+        # ^This is the timer bar.
+        
+label questiontime1:
+    
+    label menu1:
+        $ time = 3                                     ### set variable time to 3
+        $ timer_range = 3                              ### set variable timer_range to 3 (this is for purposes of showing a bar)
+        $ timer_jump = 'menu1_slow'                    ### set where you want to jump once the timer runs out
+        show screen countdown                          ### call and start the timer
+
+        $ IroSwim = False
+
+        menu:
+            "Go swim":
+                hide iro with dissolve
+                hide screen countdown
+                $ IroSwim = True                  ### stop the timer
+                jump Escape1
+            "Run on the fallen tree":
+                hide iro with dissolve
+                hide screen countdown                  ### stop the timer
+                jump Escape1
+
+    label menu1_slow:
+        jump IroCaught
+
+label IroCaught:
+    hide iro with dissolve
+    hide goose with dissolve
+
+    show goose neutral with dissolve
+    Crew "Hah! There you are, dog!"
+    hide goose
+
+label IroCaught2:
+
+    show iro neutral at center with dissolve
+    Iro "Ahhhhhhhh cripes"
+    
+    show goose neutral at left with easeinleft
+    Crew "I told 'ya you ain't comin back safely! {sc}STRANGGLES IRO{/sc}"
+    Iro "{sc}HEY WAIT WE CAN TALK TH-{/sc}"
+
+    show goose neutral at center with easeinleft
+    Iro "{sc}*TRIPS DOWN*{/sc}"
+    Crew "{sc=1}I{/sc} {sc=2}warned{/sc} {sc=3}you,{/sc} {sc=4}you {/sc} {sc=6}sun of a gun!{/sc} {sc=6}*Hits Iro with a hammer*{/sc}"
+
+    show blood2 at truecenter with hpunch
+    Iro "{sc=6} AAAGH {/sc}"
+    Crew "{sc=2}HOHOHO I'M GONNA TAKE MY SWEET TIME! {/sc}"
+
+    show blood1 with vpunch
+    Crew "{sc=5}TAKE THAT!{/sc}"
+    Iro "{sc=6}AAAARF ST-STOP-- AAAAAAAAAAAAAAA{/sc}"
+
+    show blood3 at truecenter with hpunch
+    Crew "{sc}*Pants{/sc}"
+    Crew "{sc=10}MWAHAHAHHA{/sc}"
+
+    show blood5 with vpunch
+    Crew "{sc=20}MOREEEEEE!!!!{/sc}"
+
+    show blood4 with hpunch
+    Crew "{sc=30}YOU FUCKING DOG!{/sc}"
+
+    show blood6 with vpunch
+    Crew "{sc=30}MWHAHAHAHAHAHAHAHAA{/sc}"
+
+    show blood7 at truecenter with hpunch
+    Iro "{sc=5}AAAAA{/sc}{sc=3}AAAAAAAAAAaaa{/sc}{sc=1}aaaa....{/sc}"
+
+    show blood8 at left with vpunch
+    Crew "{sc}I'll bring you to the boss beaten up now. I am satisfied.{/sc}"
+
+    show black with Fade(4.0,2.0,1.0)
+    "Iro Died With Suspicion."
+    "He was missing for 5 years until he was found dead."
+    "He was burried in mud deep within the forest, near the indigenous tribes."
+    "Justice for the Beavers was never given."
+    "..."
+    "The game will restart now."
+    menu:
+        "Restart":
+            $ renpy.full_restart()
+
+label Escape1:
+    if IroSwim:
+        show iro neutral at center with easeinbottom
+        Iro "Arf arf! I feel like a pup again!"
+    else:
+        show iro neutral at center with easeinleft
+        Iro "Woah, gotta balance!"
+    
+    Iro "Hays, now that's done!"
+    Crew "{sc=1}COME BACK HERE YOU LITTLE DOG!{/sc}"
+    Iro "Oopsies, gotta blasties!"
+    hide iro with easeoutright
+
+    show goose neutral with easeinleft
+    Crew "Co... {sc=1}*pants* {/sc}come back here!"
+    hide goose with easeoutright
+
+    show iro neutral with moveinleft
+    Iro "Oh gosh, he's catching up to me!"
+    Iro "Gagh, there are rocks everywhere!"
+    Iro "Agh, they hurt my feet."
+    Iro "Should I take it slow or run fast?"
+
+transform alpha_dissolve:
+    alpha 0.0
+    linear 0.5 alpha 1.0
+    on hide:
+        linear 0.5 alpha 0
+    # This is to fade the bar in and out, and is only required once in your script
+
+init: ### just setting variables in advance so there are no undefined variable problems
+    $ timer_range = 0
+    $ timer_jump = 0
+    $ time = 0
+
+screen countdown:
+    timer 0.001 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)]) 
+        ### ^this code decreases variable time by 0.01 until time hits 0, at which point, the game jumps to label timer_jump (timer_jump is another variable that will be defined later)
+
+    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve 
+        # ^This is the timer bar.
+        
+label questiontime2:
+    
+    label menu2:
+        $ time = 3                                     ### set variable time to 3
+        $ timer_range = 3                              ### set variable timer_range to 3 (this is for purposes of showing a bar)
+        $ timer_jump = 'menu1_slow'                    ### set where you want to jump once the timer runs out
+        show screen countdown                          ### call and start the timer
+
+
+        menu:
+            "Slow and Steady Wins the Race!":
+                hide screen countdown    
+                Iro "Welp I don't want my paws to get hurt, so I gotta take it slow"
+                show iro neutral at right with easeinleft
+                Iro "I don't wanna be toooo harsh"
+                Iro "I bet he can't even walk here hehe!"
+                Iro "Hey is that goose flying?"
+                Iro "Oh Dalmatians, he is flyin-"
+                Iro "and i oop-"
+                show iro neutral at right with vpunch
+                Iro "{sc}trips down{/sc}"         
+                jump IroCaught
+            "Run like the wind!":
+                hide iro with dissolve
+                hide screen countdown                 
+                jump Escape2
+
+    label menu2_slow:
+        jump IroCaught
+
+label Escape2:
+    show iro neutral at left with moveinleft
+    show iro neutral at left with hpunch
+    Iro "Ouch"
+    show iro neutral at center with moveinleft
+    show iro neutral at center with hpunch
+    Iro "Ouch"
+    show iro neutral at right with moveinleft
+    show iro neutral at right with hpunch
+    Iro "Oof that hurts, but I'm going as fast as I can"
+
+    show goose neutral at left with moveintop
+    Crew "Heh, I forgot that I could fly"
+    Iro "You gotta be kidding me aaaa!"
+    hide iro with moveoutright
+
+    Crew "W-wait... {sc=1}*pants*{/sc}"
+    Crew "Gosh Give me a break! I have little feet you nitwit!"
+    Iro "You call yourself human resources with that speed!"
+    Crew "I'm a goose, you dog!"
+    hide goose with moveoutright
+
+    show iro neutral at right with moveinleft
+    Iro "Oh Dalmatians, I can see the tree from here!"
+    Crew "Not so fast!"
+    show goose neutral at left with moveinleft
+    Iro "Heh, guess you've caught up with me."
+    Crew "Wait... {sc=2}*pants*{/sc}"
+    Crew "I.... {sc=2}*pants*{/sc}"
+    Crew "I ain't {sc=2}*pants*{/sc}"
+    Crew "Going down without a figh...t"
+    Iro "Then let's go, Jose!"
+
+transform alpha_dissolve:
+    alpha 0.0
+    linear 0.5 alpha 1.0
+    on hide:
+        linear 0.5 alpha 0
+    # This is to fade the bar in and out, and is only required once in your script
+
+init: ### just setting variables in advance so there are no undefined variable problems
+    $ timer_range = 0
+    $ timer_jump = 0
+    $ time = 0
+
+screen countdown:
+    timer 0.00000001 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)]) 
+        ### ^this code decreases variable time by 0.01 until time hits 0, at which point, the game jumps to label timer_jump (timer_jump is another variable that will be defined later)
+
+    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve 
+        # ^This is the timer bar.
+        
+label questiontime3:
+    
+    label menu3:
+        $ time = 3                                     ### set variable time to 3
+        $ timer_range = 3                              ### set variable timer_range to 3 (this is for purposes of showing a bar)
+        $ timer_jump = 'menu1_slow'                    ### set where you want to jump once the timer runs out
+        show screen countdown                          ### call and start the timer
+
+        menu:
+            "Punch his belly":
+                hide screen countdown                 ### stop the timer
+                Iro "{bt}Hiyyaaaaaaaaaaa!!!!{/bt}"
+                show iro neutral at left with moveinright
+                Iro "{sc}{i}Attempts to Kick his belly{/i}{/sc}"
+                Crew "{sc}{i}Dodges{/i}{/sc}"
+                Crew "They don't call me shaolin HR for no reason."
+                hide goose with dissolve
+
+                jump IroCaught2
+            "Break his feet":
+                hide screen countdown                  ### stop the timer
+                Iro "{bt}Hiyyaaaaaaaaaaa!!!!{/bt}"
+                show iro neutral at center with moveinright
+                Iro "{sc=1}{i}*Attempts to break his feet but trips instead*{/i}{/sc}"
+                Iro "Arf"
+                Crew "..."
+                Crew "Really? Welp at least you tried."
+                hide goose with dissolve
+
+                jump IroCaught2
+            "Kick his snout":
+                hide screen countdown
+                jump Escape3
+
+    label menu3_slow:
+        jump IroCaught2
+
+label Escape3:
+    Iro "{bt}I hope you like feet!!!!!{/bt}"
+    show iro neutral at left with moveinright
+    Iro "{sc}{i}*Front Kicks his snout*{/i}{/sc}"
+    Crew "{sc}{i}*Attempts to dodge but beak is too long*{/i}{/sc}"
+
+    show goose neutral with vpunch
+    Crew "{sc}OUCH!{/sc}"
+    Iro "Heh! Take this!"
+
+    show goose neutral with hpunch
+    Crew "{sc}Gah!!{/sc}"
+    Iro "Okay I beated you too much, I'm sorry! Please forgive me when this is all done!"
+    hide iro with easeoutright
+
+    Crew "{sc=1}I... I'll catch up with you later...{/sc}"
+
+label IroBigTree:
+    scene bg bigtree with Dissolve(1.5)
+    show iro neutral at left with moveinleft
+    Iro "So....."
+    Iro "{b}THIS {/b}is what you're hiding under the big tree!?"
+
+    show hog neutral at center with moveinright
+    Hog "HELP! THESE PPPL WANT OUR PLOT OF LAND AND WE CAN’T DO ANYTHING TO STOP TH-"
+
+    show goose2 neutral at center with moveinright
+    show goose2 neutral at center with vpunch
+    Guard "{sc}*Slaps Hedgehog*{/sc}"
+    Iro "Hey!"
+
+    hide hog with dissolve
+    "*Clap, Clap, Clap*"
+    Iro "Who's there?!"
+    Celtic "Hello, Iro."
+    show wolf neutral at right with moveinright
+    Iro "Celtic...? {sc=1}I thought you were in the city?{/sc}"
+
+    if RouteChecker >= 1:
+        Celtic "I heard you lost your latest court case… and you lost it to the one you're currently {b}HELPING{/b}."
+    else:
+        Celtic "I knew you'd be here. Didn't you recently lose in court?"
+
+    Iro "Justice should be served, Celtic! You know that!"
+    Celtic "Alright, lil pup. Enough fun and games. This is my turf and these people aren’t going anywhere. They are mine. And their plot of land shall be mine too!"
+    Iro "Under the human rights law nu-"
+    Celtic "Oh shut up. Take care of him, bois."
+    hide wolf with moveoutright
+
+    Iro "I ain’t going down without a -"
+
+    Crew "SUMMMMERSAULTTT!"
+    Iro "Oh what the arf"
+    show goose neutral at left with moveintop
+    show goose neutral with vpunch
+    "{sc=5}*Head gets hit*{/sc}"
+
+label PlayerFirm:
+    scene bg officefirm with Fade(1.5, 2.0, 1.5)
+    show zeil normal with dissolve
+    player "{i}Where is iro? It’s been 10 hours… he should've given us an update.{/i}"
+    show zeil at left with moveinright
+    show mommabeaver neutral at right with moveinright
+    Bmom "How's the situation?"
+
+    show zeil sad
+    player "Don’t be too surprised alright, but the situation isn’t great…"
+
+    show zeil normal 
+    Bmom "What??! Where is Iro?"
+    player "That’s the thing I want to know too. He hasn’t responded to my texts since this morning. "
+    Bmom "Last time we called, he said that he’s entering base…"
+    player "This sounds risky. He usually sends a reply stat. He must be isanely focused right now though."
+    Bmom "I don’t know… should we go visit him?"
+    player "I don't think we can. He's too deep within the catacombs. Either he must've found something nasty or he's focusing"
+    Bmom "Whatever it is, he brought his camera to help him."
+    player "Indeed! Let’s have faith in Iro. He’s a feisty dog, after all."
+    Bmom "I’m still skeptical… but let’s see where he goes. Anyways, what can we rebute to this company’s arguments now?"
+    player "I’m thinking that their licenses are fake. Forged, or somewhat stolen. "
+    Bmom "What makes you say that?"
+    player "Check this. A photographer took a photo of the scenery. This photo includes the plot of land Dunrar Miflin has. Some of the trees aren't replanted, and there seems to be a forest fire."
+
+    Bmom "is he licensed enough to do that?"
+
+    player "He is, but he didn't know that this plot of land is so private that even a professional photographer can't take photos of it. Only an inspector like Iro can do such."
+
+    Bmom "That's crazy. Even Dunrar Mifflin owns a foresty plot of land? That's like a significant portion of the space, yet photos shouldn't be taken."
+
+    player "Indeed. Helicopters can't go over it too. The worst part is that I think they got officials guarding their backs. It's like these officials are also shareholders of said company. Isn't it strange?"
+
+    Bmom "Officials… higher-ups with actual ties with the law? That's overboard! Despite that being speculation, we gotta do something about this."
+
+    player "No, we have to be careful since everyone in the court is in danger, especially if this happens now. Your kids, who have eyes for justice, can be in trouble too… we don't know who we're messing with. We'll have to fight them slowly…"
+
+    Bmom "This is honestly scary..."
+
+    player "These strong people with power are abusing mother nature for money. In all honesty, I'm more worried about the indigenous people nearby."
+    player "They are at risk of losing their homes, especially if they win this case; They may expand real hard and soon take over their land."
+    Bmom "They have the utilities to do so…"
+    player "Yep, the only thing stopping them from adjusting their devious plans is us. We filed a case, and they have to halt their expansion."
+    Bmom "So you're telling me, if your speculation is correct, we're not only fighting a company but also a large organization of officials and criminals?"
+    player "Maam, may I remind you that this is only speculation. But the events at hand align badly. If you look at this photo, you see Mr. Wolf signing an agreement with an official, the falcon."
+    Bmom "Mr. Felipe."
+    player "Yep, so they may have ties with this person. The media states that the agreement is confidential, so they didn't show what's inside it. But that despises the point of transparency… whatever's inside of it, it seems too severe not to show the public"
+    Bmom "what are you implying?"
+    player "I'm implying that we are meddling with something more profound than the generational crisis for air and clean waters. We seem to have found a loophole for something more profound, if I'm correct. "
+    player "That is why Mr. Celtic the wolf wanted to end this court case fast, so he hired Sheep De Lune, the fastest court ender out there. They didn't want anything to spill. "
+    player "And surprisingly, this was their first case after the agreement with Mr. Felipe, the falcon. This company is tied with an organization so strong that an official like Mr. Felipe wants in. There are tons of clues… but we need evidence to prove those."
+    player "… if we want to win the case your children wanted to file, we have to stress that Dunrar Mifflin barely replants their trees, and we have to surprise them with an argument regarding Mr. Felipe."
+    Bmom "Seems like it, but we seem to need to prepare for the worst."
+    player "Indeed. I’m scared of De Lune too. She’s fast at cases, and she will not hesitate to object. "
+    Bmom "I hope Iro comes back too… the court case will resume 3 days from now."
+    player "I hope so, too… he has two days to report. But knowing him, he has a strict view of justice. He’ll come back with sufficient news. I’ll be filing the case now, Ms. Beaver. Leave the rest to me."
+    Bmom "Alright!"
+
+    hide mommabeaver with moveoutright
+    player "I hope you pull this off, Iro"
+    
+label IroWake:
+    scene bg basement with Fade(1.5,2.0,1.3)
+    show iro neutral at center with dissolve
+    Iro "{sc=2}Huh?!{/sc} Where's I at?!"
+    Hog "Helpu me :<"
+    show hog neutral at right with dissolve
+    Iro "Oh my dog, this looks serious…I’ll find a way to get us out!"
+    "Lookie lookie."
+    Iro "{sc=2}Who's there?!{/sc}"
+    Celtic "You're in a place where help isn't visibile."
+
+    show wolf neutral at left with moveinleft
+    Iro "Celtic, I can't believe you've done this!"
+    Celtic "Ain’t it obvious? It’s all money, Iro. You’re a service dog for the law, I am a the wolf of wallstreet."
+    Iro "You don’t even look like Leonardo DeCaprio!"
+    Celtic "Oh, shut it! You know what I mean. You’re underground. No connection to the outside world. Just us under a crummy old base with nothing but ourselves. Oh, not to mention, some guards are here, and they’ll keep you locked tight. "
+    Iro "I'm not in the mood to be tied up right now, but I swear, I’ll get you for this"
+    Celtic "I’d like to see you try, service dog. Once I succeed in your friend’s foolish court case, I will take over more land, produce more money, and soon provide more power to dominate this country. "
+    Iro "That’s an act of terrorism, and I will call someone legal enough to get you railed."
+    Celtic " Pfft. Guards, watch them with your life. I gotta show this to boss!"
+    hide wolf with moveoutleft
+
+    Hog "{bt=2}*Sigh*{/bt}"
+    Iro "Darn it!"
+    show goose neutral at left with moveinleft
+    Guard "I'll be watching you today, lapdog"
+    Iro "understood hays… "
+    Iro "{i}I need to wait for an opening if I wanna succeed… preferably at night when things could go smoother{/i}"
+    Iro "Hey, guard, do you offer any food, perhaps?"
+    Guard "Shut it, dog!"
+    Iro "Rude!"
+
+label PlayerFirm2:
+    scene bg officefirm with Fade(1.5, 2.0, 1.5)
+    show zeil normal at left with dissolve
+
+    player "Just one more day till we head into the abyss. I read the documents carefully, and I am still scared of what’s to come. I am not sure if I am ready to take down Sheep De Lune yet… I’ve overprepared, even. This will be a tough one."
+    "{bt=2}*Knock Knock*{/bt}"
+    player "Come in!"
+
+    show cassie neutral at right with moveinright
+    Cassie "Hello, [povname]"
+
+    show zeil smile2
+    player "Oh hello, Cassie! How may I help you today?"
+
+    show zeil smile
+    Cassie "It’s more of like the other way around. You seem to have found a big case?"
+
+    show zeil sad
+    player "Yeah, I caught a big fish this time. I would not say I like doing cases like these since lives might be on the line if someone wins or someone fails."
+
+    show zeil normal
+    Cassie "Hm? Lost of lives? What are you talking about?"
+    player "I may have found something terrible that is heavily associated with the case I’m handling."
+    Cassie "Aren't you handling a case for those little beavers who want generational justice? I don't see anyone dying there."
+    player "Cassie, you see, Mr. Felipe, The Government official, might be protecting Celtic, Dunrar Mifflin’s Ceo, through so-called “legal” rules. Felipe has the power to do so."
+    Cassie "You sure are speculating quite a lot here. I know that Celtic is associated with Felipe based on their old public photo holding a sign of waver. That was their only public interaction even."
+    Cassie "Are you saying that the waver Felipe signed for Celtic might have been for something else?"
+
+    show zeil normal
+    player "Just a speculation. Though I would love to stress that fact in court."
+    Cassie "Heyya [povname], be cautious on what you're about to do, okay? If this accusation is incorrect, you might be fooling yourself in front of loads of people (including the media)."
+    Cassie "However, if it is correct, you face a literal government official the next time you set foot in court."
+    player "I may sound crazy, but those odds are the ones I’m willing to take. I must pursue this with whomever I can for justice and to stop whatever is happening."
+    Cassie "Pfft, your loss kiddo. But I can help you whenever you need a hand."
+
+    show zeil smile2
+    player "Glad to know that you're on my side <3"
+
+    show zeil shocked
+    Cassie "!!! SSH- SHUT UP >//< {bt=2}*Blush*{/bt}"
+    player "Hmm? Did I say something wrong?"
+
+    show zeil normal
+    Cassie "n..no it’s just.."
+    Cassie "whatEVER! Just do your paperwork, you rookie"
+
+    show zeil delighted
+    player "Yes, maam!"
+
+    show zeil smile
+    Cassie "oh and {bt=2}*still blushng*{/bt} here are some laws regarding your case. Read them well."
+
+    hide cassie with moveoutright
+    "{sc=2}*shuts door*{/sc}"
+    show zeil smile2
+    player "Like said, glad to know that she cares about me and Ben <3"
+
+label IroWake2:
+    scene bg basement with Fade(1.5,2.0,1.3)
+    show iro neutral at center with dissolve
+    show hog neutral at right with dissolve
+
+    Iro "It is evening, my dudes. Okay let’s recap the plan right now!"
+    Hog "Ok"
+    Iro "So I summersault, break his neck, and you get the keys and we baboosh. Got that?"
+    Hog "Uhm... or we can make a diversion and take his keys?"
+    Iro "{bt=2}*Snaps Fingers*{/bt} Great idea! Good thing I got this hairclip. Free yourself while the guard ain’t looking."
+    Hog "Yeah!"
+    Hog "{bt=2}*Gets Hairclip and Struggles to Free Himself*{/bt}"
+    Iro "Wait, here comes a guard."
+
+    show goose neutral at left with moveinleft
+    Guard "What are you two talking bout? Don’t you know y’all will be dead by the time yall come out?"
+    Iro "No way! It’s more like you’ll be {bt}DEAD{/bt} because there aint no way this illegal stuff ain’t not not not goin' public!"
+    Guard " Pfft, you’re stuck here, stinky lapdog!"
+    Iro "Oh yeah, well you stink more than a stinkbomb!"
+    Guard "HUH? Your butt smells so bad that even a car wash can’t clean your butt!"
+
+    show iro neutral with vpunch
+    Iro "OHOHOH IT’S ON NOW! Youre so dumb that when I told you to look for your brain, you’d actually go search for it!"
+
+    show iro neutral with hpunch
+    Guard "You bark so small that i think youre a chihuahua!"
+
+    show iro neutral with vpunch
+    Iro "Oh yeah! WELL you so ugly that when you throw a boomerang, it refused to come back!"
+
+    show iro neutral with hpunch
+    Guard "Pfft! You’re so poor that you can’t even afford to pay attention!"
+    Iro "Hey, I got 25 dollars on me right now! "
+    Iro "You’re so fat that when you go to space, {sc=2}NASA THOUGHT THEY FOUND A NEW PLANET!{/sc}"
+    show iro neutral with vpunch
+
+    show iro neutral with hpunch
+    show iro neutral with vpunch
+    show iro neutral with hpunch
+    Guard "..."
+    Iro "......"
+    Guard "........ :("
+    Guard " {bt=2}*starts tearing up*{/bt} a-a..are you a mi-mirror? B-because I hate y-ou!"
+    Iro "Sheesh a self burn!"
+    Iro "..."
+    Iro "Hey are you okay?"
+    Guard "SHUT UP!"
+    Guard "{bt=2}*Cries Louder*{/bt}"
+    Iro "Oh Jeez... I think I broke her..."
+    Guard "Huh well..."
+
+    show iro neutral with hpunch
+    Guard "You’re so dead that you’re gonna be roasted dog tonight! {bt=2}*points the gun at Iro*{/bt}"
+    hide hog with dissolve
+    Iro "HEYHEHEYHEYHEY!!!"
+    Guard "GOOD BYE, DOG-"
+
+    show hog shocked at left with easeintop
+    show hog shocked at left with vpunch
+    Guard "{bt=2}*Head Gets Hit*{/bt}"
+    hide goose with dissolve
+
+    Iro "OH MYY GUY, I DIDN’T NOTICE YOU GOT OUT!"
+    Hog "Hedgehos are masters of stealth."
+    Iro "I told you summer saulting was a good idea! {bt=2}*chain opens*{/bt} Let’s baboosh!"
+    hide iro with moveoutleft
+    hide hog with moveoutleft
+    hide iro with fade
+
+    show iro neutral at center with moveinright
+    show hog neutral at right with moveinright
+    Iro "Where to now?"
+    menu:
+        "Go left":
+            Iro "Let's go here!"
+        "Go right":
+            Iro "Right is always right!"
+
+    hide iro with moveoutleft
+    hide hog with moveoutleft
+    hide iro with fade
+
+    show iro neutral at center with moveinright
+    show hog neutral at right with moveinright
+    Iro "Wait, isn't that Celtic?"
+    Iro "Oh bad Jubbies, he's talking with somebody!"
+    hide iro with dissolve
+    hide hog with dissolve
+
+    show wolf neutral at left with dissolve
+    show felipe shadow at right with dissolve
+    unk "So how’s the cush goin?"
+    Celtic "The delivery of cush is doing well, sir."
+    unk "And the tree business?"
+    Celtic "It’s going lousy, sir, but we have constructed a plan to gain tons of money in a flash immediately."
+    unk "I’m listening."
+    Celtic "Cutting down that ancient tree will provide us with around 400 million in revenue. The only thing stopping us from cutting is the waves of indigenous bumpkins."
+    unk "{bt=2}*Pops a cigar*{/bt} heh. You’re cutting an ancient tree after all!"
+    unk "But... whatever the prolem is, get it done even if you have to use brute force."
+    Celtic "Roger. We’ll get rich with this."
+    unk "Oh, and don’t lose the case, Celtic."
+    unk "Losing the court case with that rookie will taint my name."
+    unk "{bt=2}*crisps cigar on table*{/bt}"
+    unk "You know the consequences, right?"
+    Celtic "Y-yes sir."
+    hide wolf with dissolve
+    hide felipe with dissolve
+
+    show iro neutral at center with dissolve
+    show hog neutral at right with dissolve
+    Iro "Oh Christ, I got that on record..."
+    Hog "Let's go."
+    hide iro with moveoutleft
+    hide hog with moveoutleft
+    jump IroOut
+
+label IroCaught3:
+    hide goose2
+    hide goose
+    hide iro
+    hide hog
+    Guard "There you are!"
+    Iro "Oh crab apples they found us!"
+
+
+label IroOut:
+    scene bg nforest with fade
+    show iro neutral at center with moveinright
+    show hog neutral at right with moveinright
+    Iro "Now or never, lad!"    
+    Hog "Indeed, friend."
+    Iro "There seems to be a confusing route of ways here. Do you know any shortcuts we could use to get out of here fast?"
+    Hog "I think so. Follow my lead."
+    Iro "Alright-"
+
+    Guard "Where are those snouts?!"
+    Crew "I don't know, they msut be hiding in one of these trees."
+    Guard "Wherever they are, they're as good as dead meat!"
+
+    Iro "Well one thing's for sure, we gotta hide."
+    Hog "I can help you knock them out as the master of stealth."
+    Iro "Violence is indeed the answer"
+    hide iro with moveoutleft
+    hide hog with moveoutleft
+
+    show iro neutral at center with moveinright
+    show hog neutral at right with moveinright
+    show bush at right with dissolve
+    Iro "Agh I could barely see anything."
+    Hog "Using a flashlight won't help."
+    Iro "Yeah, we gotta make our movemtn as silent as possible."
+    Guard "Search there, crew!"
+    Iro "Ah dawg, they're comin' here."
+    
+    show goose neutral at left with moveinleft
+    Crew "Searchin' the area, boss"
+    Iro "{bt=1}I could see him... or her?{/bt}"
+    Hog "{bt=1}Your call. Should I jump her or should we run past her?{/bt}"
+    Iro "How could you be sure they're a her- you know what nevermind."
+
+    "It is recommendable that you quicksave here."
+    "The Game Newly Introduces an Assult Or Evade Mechanism."
+    "The More Sneak Points you have, the better the chances of you succeeding an assult."
+    "Sneak Points Start at 10 and it gets bigger as you progress. Max points is 50 each."
+    $ SneakPoints = 10
+    $ AssultPoints = 10
+
+    menu:
+        "Assult the Goose!":
+            $ AssultPoints += 10
+            Hog "Okay, got it."
+            hide hog with dissolve
+            Crew "Hmm, I smell a dog near me."
+            show hog neutral at left with moveinleft
+            show hog neutral with hpunch
+            "{sc=5}Punch!{/sc}"
+            Crew "{sc=1}G-gagh...{/sc}"
+            hide goose with dissolve
+            
+        "Sneak past The Goose!":
+            $ SneakPoints += 10
+            Iro "Let's sneak past him. I'll follow your lead."
+            Hog "Okay, got it."
+            hide iro with moveoutright 
+            hide hog with moveoutright
+
+
+label IroOut2:
+    scene bg nforest2 with dissolve
+    show iro neutral at center with moveinright
+    show hog neutral at right with moveinright
+    if SneakPoints == 20:
+        Iro "Alrighties! Passed that guy like it was nothing!"
+        Hog "Let's not get toooo cocky, sir."
+    else:
+        Iro "Nice headlock!"
+        Hog "He'll be back in an hour. Good thing I hid his body in a pile of bushes."
+
+    show goose2 neutral at left with dissolve
+    Guard "Quack, I wonder where they at."
+    Iro "More incoming. I don't think he noticed we're right behind him."
+    Hog "Your call, Iro."
+
+    menu:
+        "Hit the Goose in the Head":
+            Hog "Roger"
+            if AssultPoints == 20:
+                hide hog with dissolve
+                hide goose2
+                show goose neutral at left
+                Guard "Hey, you're the wanted ma-"
+                show hog neutral at left with moveinleft
+                show goose with hpunch
+                "{sc=5}*Head Smack!*{/sc}"
+                Iro "Nice One!"
+                $ AssultPoints += 10
+                hide goose with dissolve
+            else:
+                Hog "{bt=2}*Snaps Twig*{/bt}"
+                hide goose2
+                show goose neutral at left
+                Guard "Hey! You're the wanted man!"
+                Iro "Oh oopsies, diversion time!"
+                transform alpha_dissolve:
+                    alpha 0.0
+                    linear 0.5 alpha 1.0
+                    on hide:
+                        linear 0.5 alpha 0
+                    # This is to fade the bar in and out, and is only required once in your script
+
+                init: ### just setting variables in advance so there are no undefined variable problems
+                    $ timer_range = 0
+                    $ timer_jump = 0
+                    $ time = 0
+
+                screen countdown:
+                    timer 0.0001 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)]) 
+                        ### ^this code decreases variable time by 0.01 until time hits 0, at which point, the game jumps to label timer_jump (timer_jump is another variable that will be defined later)
+
+                    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve 
+                        # ^This is the timer bar.
+                        
+                label questiontime4:
+                    
+                    label menu4:
+                        $ time = 3                                     ### set variable time to 3
+                        $ timer_range = 3                              ### set variable timer_range to 3 (this is for purposes of showing a bar)
+                        $ timer_jump = 'menu4_slow'                    ### set where you want to jump once the timer runs out
+                        show screen countdown                          ### call and start the timer
+
+                        menu:
+                            "Hit His Face!":
+                                hide screen countdown
+
+                                Iro "Do it, Hog!"               ### stop the timer
+                                hide hog with dissolve
+                                Guard "What do you think you're talking about?"
+                                Iro "Oh nothing, just a slick surprise!"
+                                show hog shocked at left with moveinleft
+                                show hog with vpunch
+                                "{sc=5}*Gets Head Butted*{/sc}"
+                                Guard "Agh!"
+                                Guard "{sc=5}*Punches Hog*{/sc}"
+                                show goose with vpunch
+                                Iro "Oh no you don't!"
+                                show iro at left with moveinright
+                                show iro with hpunch
+                                "{sc=5}*Gets Kicked in the Head*{/sc}"
+                                Guard "{sc=2}Ugh...{/sc}"
+                                hide goose with dissolve
+
+                                Iro "Nice one!"
+                                hide iro with moveoutleft
+                                hide hog with moveoutleft
+                                $ AssultPoints += 10
+                                jump IroOut3
+                            "Run Away":
+                                hide screen countdown                  ### stop the timer
+                                Guard "Freeze, I have a gun!"
+                                jump IroCaught3
+
+                    label menu4_slow:
+                        jump IroCaught3
+                            
+
+
+        "Sneak out Like Nothing Happened":
+            Iro "Let's skiddaddle."
+            Hog "Roger."
+            hide iro with moveoutright
+            hide hog with moveoutright
+            Guard "Hm? Did something move?"
+            Guard "Hmm I bet it's just a litol owl."
+            hide goose neutral
+            $SneakPoints += 10
+            
+label IroOut3:
+    scene bg nforest4 with dissolve
+    show iro neutral at center with moveinright
+    show hog neutral at right with moveinright
+    Iro "We got out of that one!"
+    Hog "Let's keep going."
+    hide iro with moveoutleft
+    hide hog with moveoutleft
+
+
+    show goose neutral at left with dissolve
+    show goose2 neutral at right with dissolve
+    Guard "Quack, so what did you have for dinner?"
+    Crew "Quack, I had sunflower seeds"
+    Guard "Lucky!"
+    
+    Iro "Oh look, a gang of geese are inspecting the area."
+    Iro "You reckin we can 2 v 2 'em?"
+    if AssultPoints == 30:
+        Hog "I think we can."
+    else:
+        Hog "Too risky, Iro."
+    
+    menu:
+        "2 v 2!":
+            if AssultPoints == 30:
+                Iro "Let's hittem up!"
+                Guard "Quack"
+                Crew "Indeed-"
+                show hog neutral at left with moveintop
+                show hog with vpunch
+                Guard "Quack?!"
+                show iro neutral at right with moveintop
+                show iro with hpunch
+                $ AssultPoints += 10
+            else:
+                Iro "But we could try!"
+                Hog "Okay, if you insist."
+                show hog neutral at left with moveintop
+                Guard "Quack?!"
+                Guard "Hands in the air! {bt=2}*Points Gun at Hog*{/bt}"
+                Iro "Oh crabs"
+                jump IroCaught3
+        "Sneak Past Them.":
+            if SneakPoints >= 20:
+                Iro "Let's just sneak past them"
+                Hog "Got that covered."
+                Crew "Quack, Indeed."
+                Guard "Indeed, my brother"
+                Iro "What are they talking about?"
+                Hog "How should I know?"
+                Crew "So the seeds last thursday were a hit huh?"
+                Guard "I love sunflower seeds and all, but nothing beats sunflower beats."
+                Crew "Quack! You're crazy!"
+                $ SneakPoints += 10
+            else:
+                Crew "Hey did you hear something move in the bushes?"
+                Guard "Yeah!"
+                Crew "Freeze! {bt=2}*points gun at bush*{/bt}"
+                jump IroCaught3
+    
+    hide goose with dissolve
+    hide goose2 with dissolve
+
+    show iro neutral with moveinright
+    show hog neutral with moveinright
+    Iro "Those geese were weird."
+    Hog "Indeed."
+    hide iro with moveoutleft
+    hide hog with moveoutleft
+
+label IroOut4:
+    scene bg nforest5
+    show iro neutral with moveinright
+    show hog neutral with moveinright
+
+    Iro "Looks like we're halfway out of the forest."
+    Hog "I've never been into this part of the forest."
+    Iro ""
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     
 
 

@@ -26,7 +26,7 @@ init python:
 define gui.accent_color = u'#0099ff'
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = u'#aaaaaa'
+define gui.idle_color = u'#bae5f4'
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
@@ -55,25 +55,25 @@ define gui.interface_text_color = u'#404040'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "DejaVuSans.ttf"
+define gui.text_font = "fonts/BarlowCondensed-Regular.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "fonts/BarlowCondensed-ExtraBold.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "fonts/BarlowCondensed-Bold.ttf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 22
+define gui.text_size = 25
 
 ## The size of character names.
-define gui.name_text_size = 30
+define gui.name_text_size = 36
 
 ## The size of text in the game's user interface.
 define gui.interface_text_size = 22
 
 ## The size of labels in the game's user interface.
-define gui.label_text_size = 24
+define gui.label_text_size = 28
 
 ## The size of text on the notify screen.
 define gui.notify_text_size = 16
@@ -104,21 +104,21 @@ define gui.textbox_yalign = 1.0
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 240
-define gui.name_ypos = 0
+define gui.name_xpos = 326
+define gui.name_ypos = -18
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
-define gui.name_xalign = 0.0
+define gui.name_xalign = 0.32
 
 ## The width, height, and borders of the box containing the character's name, or
 ## None to automatically size it.
-define gui.namebox_width = None
-define gui.namebox_height = None
+define gui.namebox_width = 300
+define gui.namebox_height = 75
 
 ## The borders of the box containing the character's name, in left, top, right,
 ## bottom order.
-define gui.namebox_borders = Borders(5, 5, 5, 5)
+define gui.namebox_borders = Borders(5, 5, 20, 5)
 
 ## If True, the background of the namebox will be tiled, if False, the
 ## background of the namebox will be scaled.
@@ -191,27 +191,19 @@ define gui.quick_button_text_size = 14
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
 
-## You can also add your own customizations, by adding properly-named variables.
-## For example, you can uncomment the following line to set the width of a
-## navigation button.
-
-# define gui.navigation_button_width = 250
-
-
 ## Choice Buttons ##############################################################
 ##
 ## Choice buttons are used in the in-game menus.
 
-define gui.choice_button_width = 790
-define gui.choice_button_height = None
-define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(100, 5, 100, 5)
+define gui.choice_button_width = 640
+define gui.choice_button_height = 95
+define gui.choice_button_tile = True
+define gui.choice_button_borders = Borders(100, 30, 100, 30)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = "#cccccc"
+define gui.choice_button_text_idle_color = "#045181"
 define gui.choice_button_text_hover_color = "#ffffff"
-define gui.choice_button_text_insensitive_color = "#444444"
 
 
 ## File Slot Buttons ###########################################################
@@ -258,7 +250,7 @@ define gui.notify_ypos = 45
 define gui.choice_spacing = 22
 
 ## Buttons in the navigation section of the main and game menus.
-define gui.navigation_spacing = 4
+define gui.navigation_spacing = 6
 
 ## Controls the amount of spacing between preferences.
 define gui.pref_spacing = 10
@@ -308,7 +300,7 @@ define gui.frame_tile = False
 ## bars, scrollbars, and sliders.
 define gui.bar_size = 25
 define gui.scrollbar_size = 12
-define gui.slider_size = 25
+define gui.slider_size = 40
 
 ## True if bar images should be tiled. False if they should be linearly scaled.
 define gui.bar_tile = False
