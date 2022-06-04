@@ -3464,6 +3464,8 @@ label Case2_Start2:
     show zeil normal at right with dissolve
     show triplet neutral at center with dissolve
     player "Thank you, your honor. Today I’m representing these 3 triplets with their right of expression. The subject matter of the complaint is of common and general interest not just to several, but to all citizens of the Philippines. "
+    hide triplet with dissolve
+    show zeil at center with easeinright
     player "Consequently, since the parties are so numerous, it becomes impracticable, if not totally impossible, to bring all of them before the court. We likewise declare that the plaintiffs therein are numerous and representative enough to ensure the full protection of all concerned interests. "
     player "To put in perspective, the triplets are representing a generation to come. Needless to say, every generation has a responsibility to the next to preserve that rhythm and harmony for the full enjoyment of a balanced and healthful ecology."
     player "Put a little differently, the minors' assertion of their right to a sound environment constitutes, at the same time, the performance of their obligation to ensure the protection of that right for the generations to come."
@@ -3508,38 +3510,601 @@ label Case2_Start2:
     player "Where is Iro anyways?"
     hide zeil
 
-
-
-
-
+label IroOut7:
+    scene bg factory2 with Fade(1.5, 0.6, 1.5)
+    Iro "Oh Dalmatians, I barely got out of that one."
+    show iro neutral with moveinright
+    Iro "Looks like I made it to the factory in one piece haha! Or... two pieces if you count the blood."
+    Crew "He is near! I could see his footsteps!"
+    Iro "Oh come on! Give me a break!"
+    hide iro with moveoutleft
     
-
-
+    show goose2 neutral with moveinright
+    Crew "Hah! How the tables have turned!"
+    Guard "Close the exits! He's getting nearer!"
+    Crew "Roger!"
+    hide goose2 with moveoutleft
     
+    scene bg factory3 with dissolve
+    show iro neutral with moveinright
+    Iro "I could see the exit!! My car is waiting for me!!!"
+    Crew "Not so Fast!"
+     
+    show goose2 neutral at right with moveinright
+    show iro at left with moveinright
+    Crew "It's you against me, dog!"
+    Iro "Heh... just like last time?"
+    Crew "Indeed... but this time, I ain't gonna lose!"
+    Iro "Alright, I'd like to see you try! Master of Judo against master of hammers!"
+    Crew "{sc=2}I like the odds!{/sc}"
     
+    #New stuff will be added here.
+    #If AssultPoints >= 50 : Player will Get One Punch Option
+    #If SneakPoints >= 50 : Player will get Run Away Option
+    #If random, player will get one punch, one fight, or one dodge option.
+    #If A Battle Scene regarding the player's attributes will hold. A battle scene that will require the player to mix their Assult and Sneak attributes.
+
+    if AssultPoints >= 50:
+        jump OnePunch
+    elif SneakPoints >= 50:
+        jump HideOut
+    else:
+        jump MixFight
+
+label MixFight:
+    menu:
+        "Punch His Face!":
+            jump MixFight2
+        "Snout Kick!":
+            jump MixFight2
+        "Poke His Eyes!":
+            jump MixFight2
+
+label MixFight2:
+    Iro "{sc=1}AAAAAAAA!!!{/sc}"
+    Crew "{sc=1}AAAAAAAA!!!{/sc}"
+
+    show goose2 at center with moveinright
+    show iro at center with moveinleft
+    show iro with vpunch
+    show iro with hpunch
+
+    Iro "{sc=2}Ouch!{/sc}"
+    Crew "{sc=2}AGH! Did you really have to do that?!{/sc}"
+    show goose2 at right with easeinleft
+    Iro "Yes, I di-"
+
+    Crew "{sc=4}*Starts Swinging Hammer!*{/sc}"
+    Iro "King in the castle! That is a dangerous mama!"
+transform alpha_dissolve:
+    alpha 0.0
+    linear 0.5 alpha 1.0
+    on hide:
+        linear 0.5 alpha 0
+    # This is to fade the bar in and out, and is only required once in your script
+
+init: ### just setting variables in advance so there are no undefined variable problems
+    $ timer_range = 0
+    $ timer_jump = 0
+    $ time = 0
+
+screen countdown:
+    timer 0.01 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)]) 
+        ### ^this code decreases variable time by 0.01 until time hits 0, at which point, the game jumps to label timer_jump (timer_jump is another variable that will be defined later)
+
+    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve 
+        # ^This is the timer bar.
+        
+label questiontime7:
+    
+    label menu7:
+        $ time = 3                                     ### set variable time to 3
+        $ timer_range = 3                              ### set variable timer_range to 3 (this is for purposes of showing a bar)
+        $ timer_jump = 'menu1_slow'                    ### set where you want to jump once the timer runs out
+        show screen countdown                          ### call and start the timer
+
+        $ IroSwim = False
+
+        menu:
+            "Run and Ram!":
+                hide iro with dissolve
+                hide screen countdown
+                jump MixFight3
+            "Dodge Roll!":
+                hide iro with dissolve
+                hide screen countdown                  
+                jump MixFight3
+
+    label menu7_slow:
+        show goose2 at center
+        show goose2 with hpunch
+        Iro "Ouch!"
+        jump MixFight3
+
+label MixFight3:
+    show iro neutral at left with moveinright
+    Iro "That was uncalled for!"
+    Iro "{sc=2}*Push and Kicks Goose!*{/sc}"
+    show goose2 with hpunch
+
+    Crew "{sc=4}*sighs*{/sc}"
+    Iro "{bt=4}*pants*{/bt}"
+    Crew "{sc=3}This has got to end now!{/sc}"
+
+    Iro "Indeed."
+    menu:
+        "{sc=4}One Punch!{/sc}":
+            jump OnePunch
+        "The Great Escape!":
+            jump HideOut
 
 
 
 
+label HideOut:
+    menu:
+        "The Great Escape!":
+            Iro "I have sneak into every area in the forest for quite some time now."
+            Crew "So? You're a scared dog! You won't even fight us!"
+            Iro "Heh, that's what you think!"
+            Crew "Huh?!"
+            Iro "{sc=2}*Throws Rock at Crew Member*{/sc}*"
+            Crew "{sc=3}*Dodge*{/sc}"
+            Crew "You missed!"
+            Iro "I wasn't aiming at you!"
+            Crew "Huh?!"
+            Iro "Lights out, goose!"
+            show black with dissolve
+            Crew "{sc=3}HUH?! HEY!{/sc}"
+            Iro "{sc=1}*Escapes*{/sc}"
+            Iro "Adios Y' Gracias!"
+            hide iro with dissolve
+            hide black with dissolve
+            Crew "{sc=3}Huh?! Where is he?!{/sc}"
+            Crew "CRAP THE DOORS ARE CLOSED. IM LOCKED IN!"
+            Iro "HAHA! Adios!"
+            Crew "{sc=4}IROOOOO!!!{/sc}"
+            jump Chapter2_FinalExam
 
+label OnePunch:
+    menu:
+        "{sc=4}One Punch!{/sc}":
+            Crew "I know you're gonna pull of something sick so {sc=4}HERE IS THE GANG!{/sc}"
+            Crew "{sc=4}GANG, GET HIM!{/sc}"
+            Guard "{sc=5}EAT FIST, DOG!{/sc}"
+            show goose neutral at left with moveinright
+            show goosewalky left at left with moveintop
+            show goosewalky right at left with moveinleft
+            show goose2 at left with moveinright
+            Crew "Dodge this, DOG!"
+            Iro "Wrong mistake, my friend. Wrong mistake."
+            Crew "Hu-"
+            Iro "This is.."
+            Iro "{b}{sc=2}Goodbye.{/sc}{/b}"
+            show black with dissolve
+            Crew "{sc=2}H...huh?!{/sc}"
+            Iro "I have bent space and time."
+            Iro "It is time, mr. Crew member."
+            Crew "Wh...{sc=4}WHAT ARE YOU TALKING ABOUT?!{/sc}"
+            Iro "I'm sorry for I have to do this."
+            Crew "HUH?!"
+            Iro "{bt}*Sigh*{/bt}"
+            Iro "{sc=2}One....{/sc}"
+            Iro "{sc=10}PUUUUUUUUUUUUUNCCCCCCCCCCHHHHHHHHHHHHHHHHHHHHHH{/sc}"
+            Crew "{sc=6}AYOOOO?!!!!{/sc}"
+            Iro "{sc=20}AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{/sc}"
+            Guard "{sc=10}WAIT NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO{/sc}"
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            Iro "{bt=1}*sigh*{/bt}"
+            Iro "{sc=5} 20 PERCENT OF MY POWER! {/sc}"
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            Iro "{bt=5}*sigh*{/bt}"
+            Iro "{sc=5} 40 PERCENT OF MY POWER! {/sc}"
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            Iro "{bt=5}*sigh*{/bt}"
+            Iro "{sc=5} You... LEAVE ME NO CHOICE!!{/sc}"
+            Iro "{sc=10}100 PERCENT!{/sc}"
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            show black with vpunch
+            show black with hpunch
+            hide black with dissolve
+            Iro "Heh."
+            hide goose neutral with dissolve
+            hide goosewalky left with dissolve
+            hide goosewalky right with dissolve
+            hide goose2 with dissolve
+            Crew "{sc=5}It.....{/sc}"
+            Crew "{sc=3}Doesn't{/sc}"
+            Crew "{sc=1}Hurt at all...{/sc}"
+            Iro "That is because I stunned you for an hour."
+            Iro "Don't even try catching up with me now! I have justice to serve!"
+            hide iro with moveoutleft
+            jump Chapter2_FinalExam
 
+label Chapter2_FinalExam:
+    scene bg courtroom with Fade(1.5,2.0,1.3)
+    show carl neutral with dissolve
+    Carl "Your turn, Opposition. Give us another stance."
+    hide carl with dissolve
 
+    show zeil normal with dissolve
+    player "“Twenty-five (25) years ago, the Philippines had sixteen (16) million hectares of rainforests, accounting for roughly 53 percent of the country's land mass"
+    player "However, satellite images taken in 1987 reveal that only 1.2 million hectares of rainforests remained, accounting for only 4 percent (4.0 percent) of the country's land area."
+    player "According to more recent estimates, there are just 850,000 hectares of virgin old-growth rainforests left, or around 2.8 percent of the Philippine archipelago's total land mass, and roughly 3.0 million hectares of immature and uneconomical secondary growth forests.”"
+    player "“Another point is that At the current pace of deforestation, which is almost 200,000 hectares per year or 25 hectares per hour — including nightfall, Saturdays, Sundays, and holidays — the Philippines would be devoid of forest resources by the end of this decade, if not sooner."
+    player "The negative implications, devastating consequences, substantial injury, and irreversible damage that this sustained trend of deforestation will have on the plaintiff minor's generation and future generations are obvious and undisputed."
+    player "In reality, the environmental losses listed in paragraph 6 are already being felt, experienced, and suffered by the plaintiff adults' generation."
+    hide zeil with dissolve
 
+    show sheep neutral with dissolve
+    Sheep "{i}... I honestly didn’t expect you to be this assertive, [povname]. Compared to last time, you were a bit of a nitwit in law. But now, you’re starting to be a formidable opponent. I appluad you. Though I’m not going down easily.{/i}"
+    hide sheep
 
+    show carl neutral
+    Carl "These are indeed nice points. Any objections. Mrs. De Lune?”"
+    hide carl neutral
 
+    show sheep neutral
+    Sheep "It’s Ms- you know waht? Nevemind. I do have objections. It’s that we have timber license agreements with everyone…"
+    hide sheep
 
+label Chapter_Almost:
+    scene bg reccomp with dissolve
+    show cassie sad at left with dissolve 
+    Cassie "I hope [povname] is doing okay..."
+    Cassie "Hmm is that a dog?"
+    Iro "IN COMINGGG!!!!!!"
 
+    show cassie shocked 
+    Cassie "Huh?"
+    Cassie "Wait is that I-"
+    Iro "{sc=2}INCOMINGG DOG!{/sc}"
+    show iro neutral at right with moveinright
+    show iro with vpunch
 
+    Iro "{bt}Ugh....{/bt}"
+    Cassie "W-wait Iro?! What are you doing here?!"
 
+    show cassie sad
+    show iro mad
+    Iro "Heh, long story, miss Meow Meow."
+    Iro "But I gotta know where [povname] is!"
+    show iro neutral
+    show cassie neutral
 
+    Cassie "He's at the lawfirm right now! Hurry!"
+    Iro "Oh dang my dalmatians, gotta blasties, miss Meowy!"
+    hide iro with moveoutright
 
+    Cassie "... what an odd dog."
 
+label Chapter2_FinalExam2:
+    scene bg courtroom with Fade(1.5,2.0,1.3)
+    show zeil normal with dissolve
+    player "The court session is going well for me and Sheep. We are providing 100 percent Good points once more. Though this time, she’s more factual than before. This is bad, since I too try to be factual here."
+    hide zeil
 
+    show carl neutraltable
+    Carl "Carl “Hays… why do y’all have to mkae things hard?"
+    hide carl 
 
+    show zeil sad 
+    player "{i}Another Stalemate, huh...{/i}"
+    hide zeil
 
+    show carl neutraltable
+    Carl "With the proper introductions of law and nature given by [povname], things have been reasonable on their end. The next generation’s healthy ecological standards are indeed helpful for the better good of everything. "
+    Carl "However, Ms. Sheep De Lune also provided points needed for a fairer environment. LumberLaws are a thing, and they have shown lots of evidence of actual replanting. They even hired agents to prove that… which is kinda overkill if you ask me."
+    hide carl 
 
+    show sheep neutral
+    Sheep "{i}Not again. With this pace, he is asking for a stalemate{/i}"
+    hide sheep
 
+    show carl neutraltable
+    Carl "I’m sad to say that, over my 10 years of beinga  a local judge, this has been one of my most intense cases ever. With that I proclaim this session as a stale-"
+    show carl with hpunch
+    Iro "OBJECTION!"
+    hide carl
 
+    show iro mad with dissolve
+    Iro "'Tis I! Iro the Insepctor, Lawyer, Dalmatian COllector, and cute DOG!"
+    hide iro
+
+    show mommabeaver cry
+    Bmom "IROOO!!"
+    hide mommabeaver
+
+    show triplet neutral
+    Paddles "It's Iro!!"
+    Stumpy "The inspector made it in time!"
+    Nugget "Doggo!!"
+    hide triplet
+
+    show sheep neutral
+    Sheep "Iro?! The Formiddable City Inspector?!"
+    hide sheep
+
+    show iro mad
+    Iro "I.. I have clear evidence of.. Questionability …"
+    hide iro 
+
+    show wolf neutral
+    Celtic "... heh. It's surely not about me!"
+    hide wolf neutral
+
+    show iro mad
+    Iro "Dunrar Mifflin has been operating questionable acts under our noses! They have been transactioning multiple drugs in their forestry with evidence of this photo! {i}*Shows Photo to Everyone*{/i}"
+    hide iro 
+
+    show carl neutral
+    Carl "This.. THIS IS OUTRAGEOUS?!"
+    hide carl 
+
+    show sheep neutral
+    Sheep "No way, this is actual evidence from an insepctor. Iro the legendary inspector, who GOES ABOVE BOUNDS to prove something. This piece of evidence is nothing but true."
+    hide sheep
+
+    "Everyone in the courtroom gasped."
+
+    show sheep neutral
+    Sheep "This is… destructive and way out of bounds. How could this fly over my head?! Over my past 5 years of being a lawyer…"
+    hide sheep
+
+    show zeil smug
+    player "And with that, how does the defendant want to defend themselves?"
+    hide zeil
+
+    show wolf neutral
+    Celtic ".... Uhm!!! My humble lawyer, Mrs. Sheep De Lune, can explain all of this for me-"
+    hide wolf neutral
+
+    show sheep neutral
+    Sheep "Regarding the case for a healthier ecology, All administrative remedies with the defendant's office have been exhausted by the plaintiff."
+    Sheep "Plaintiffs presented defendant with a final demand to terminate all logging permits in the nation on March 2, 1990. As Annex , a copy of the plaintiffs' letter dated March 1, 1990 is attached."
+    hide sheep
+
+    show zeil shocked
+    player "{i}Oh my, Miss De Lune is helping us?{/i}"
+    hide zeil
+
+    show wolf neutral
+    Celtic "Wait werent you supposed to help me?"
+    hide wolf
+
+    show sheep neutral
+    Sheep "However, I do say that this form of ecological acquisition is deemed APPROVED. With the impending amount of illegal transactions happening in the forests, Dunbar Mifflin used the tribe’s human rights as a place for quiet transactions."
+    Sheep "However, may I please know if the one I’m saying is true? Regarding the license, sir Iro"
+    hide sheep 
+
+    show iro mad
+    Iro "I have captured photos of fake license transactions by a shadowy figure and Mr. Celtic to add to this case. This has been a tough case since I, too, had to be wary of my acts in getting this information. I hold one of the plagiarized documents of many fake licenses bestowed upon sir Celtic’s name!"
+    hide iro 
+
+    show sheep neutral
+    Sheep "I HAVE BEEN DEFENDING A THIEF, A CORRUPT OFFICIAL, AND A LIAR THE WHOLE TIME!? You hyppocrite! The guts of you to hire a prestine lawyer as I?!"
+    hide sheep
+
+    show iro neutral
+    Iro "Before I forget, Celtic and his crew were planning to cut an ancient tree speical for the indigenous people. They even hurt and harassed those people who tried defending their tree!"
+    hide iro 
+
+    show carl neutral
+    Carl "This is... over the top. Mr. Celtic, PLEASE defend yourself."
+    hide carl
+
+    show sheep neutral
+    Sheep "No, your honour. I accuse, my defendant, with the support of multiple evidences proclaimed by Iro Lockheart,{b} as GUILTY of faking NUMEROUS permits {/b} and for LYING TO ME!"
+    Sheep "Mr. Bear, despite the layers of encryption your permit database has, why is this so?!"
+    hide sheep
+
+    show bear with dissolve
+    Beary "It seems like I too have been damned. An official higher than Celtic must've paved their way into our database and approved it as theirs without our confirmation."
+    hide bear
+    show zeil shocked
+    player "{i}On official?! This might be Mr. Felipe.{/i}"
+    hide zeil
+    show bear
+    Beary "I hearby conclude Permit 6882094328 and 4405189312 as fake and illegal permits!"
+    hide bear
+
+    show sheep neutral
+    Sheep "Is this enough to prove Celtic the LIAR guilty of everything he does?!"
+    Sheep "IF NOT then..."
+    Sheep "The specific provisions applicable to particular licenses or permits in this title, the City Council may revoke any license or permit issued under this title after it has been issued, when any one or more of the following grounds are found to exist:"
+    Sheep "Illegal issuance of the permit or license;  Issuance of the permit or license without authority or power; Issuance under an unauthorized ordinance or under an ordinance illegally adopted; Issuance in violation of an ordinance."
+    Sheep "GOSH, and the lsit GOES ON AND ON!"
+    hide sheep with dissolve
+
+    show iro mad with dissolve
+    Iro "The Indigenous promotes sustainable forest management as expressed in their respect to customary laws pertaining to land rights, adoption of upland cultivation practices following soil and water conservation principles, stand management to promote ample supply of wood and fuel wood, and biodiversity protection"
+    Iro "Furthermore, they symbolize our undying Filipino culture.  Hence, the government, NGOs and other concerned stakeholders need to continuously support programmes in order to protect the aesthetic and traditional value of the Indigenous landscapes."
+    Iro "Celtic, with no due respect, violated these standards. {i}*Shows Photos*{/i}"
+    hide iro with dissolve
+
+    show zeil normal
+    player "Under Section 14, Article XIV, id. we must conserve and promote the nation's cultural heritage and resources (sic)"
+    player "Under Section 16, Article II, id. we must protect and advance the right of the people to a balanced and healthful ecology in accord with the rhythm and harmony of nature."
+    player "Finally, defendant's act is contrary to the highest law of humankind — the natural law — and violative of plaintiffs' right to self-preservation and perpetuation."
+    player "There is no other plain, speedy and adequate remedy in law other than the instant action to arrest the unabated hemorrhage of the country's vital life support systems and continued rape of Mother Earth."
+    hide zeil
+
+    show carl neutral with dissolve
+    Carl "..."
+    Carl "This is the frist time... I saw 3 lawyers make a trio to expose... a corrupt official..."
+    Carl "I am... amazed."
+    show carl neutraltable
+    Carl "Ehem. But with that note. I conclude, the defendant with tied strings to an unknown official, as {b}guilty{/b} of charge for his... multiple cases."
+    Carl "Dunrar Mifflin's Operations will be halted for further inspection. Your licenses shall be inspected. Plus, you have to pay for the charges you have been given."
+    Carl "This is next level."
+    Carl "I know people messed up exist, but I have never met someone as messed up as you, Celtic."
+    Carl "Really? Even hitting an indigenous person?"
+    show carl neutraltable hammer with vpunch
+
+label Chapter2_CourtDone:
+    scene bg courtroom with Fade(3.0,1.0,3.0)
+    show mommabeaver cry at right with dissolve
+    show triplet neutral at center with dissolve
+
+    Bmom "Did.."
+    Paddles "{sc=1}Mom... we...{/sc}"
+    Stumpy "{sc=5}MOM, WE WON THE CASE!{/sc}"
+    Nugget "I want chicken nugger"
+    Bmom "{sc=5}KIDS!!! I CAN'T EXPLAIN ME RIGHT NOW!!!{/sc}"
+    show mommabeaver at center with moveinright
+    Bmom "{sc=2}*CRIES MORE AND HUGS KIDS*{/sc}"
+    Stumpy "{bt}WAAAAAAAAAAAAAHHHHH{/bt}"
+    Paddles "{sc=3}WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{/sc}"
+    Nugget "i want fries, mom"
+    Stumpy "{sc=2}FOR THE GENERATIONS TO COME!{/sc}"
+    Paddles "{sc=2}INDEED!{/sc}"
+    Nugget "Yes!"
+    Bmom "{sc=5}MY KIDSSSSSSSSSSS!!!! T-T{/sc}"
+
+    scene bg courtroom with fade
+    show zeil normal at left with dissolve
+    show iro neutral at center with dissolve
+
+    player "I-Iro...."
+    Iro "Arf."
+    player "..."
+    Iro "..."
+    Iro "I mean WHAT'S UP [povname] !!! DID YA MISS ME?!"
+
+    show zeil sad 
+    player "{sc=2}OF COURSE I DID{/sc}"
+    player "{sc=2}I WAS SO WORRIED!!! *Hugs iro*{/sc}"
+    Iro "Hehe, I smell like dog poo hehehehe"
+    player "Yeah..."
+    Iro "Yknow stuff was crazy back there... with all those fighting and sneaking! and runnin! endlesss runninggg!!!!!!! I felt like a pup."
+    player "Still, Iro!!! >:( I am so glad that you're okay!!! :("
+    player "We were all so worried!!!"
+    player "You were gone for 2 days?! No police wanted to help us for some werid reason..."
+    show zeil normal
+    Iro "It must be Celtic and his strings."
+    player "Yeah. I have to tell you soemthing later. It's about Felipe and Celtic."
+    Iro "Felipe... the government official?"
+
+    show zeil smile2
+    player "Oh wait, that's Sheep De Lune!"
+    player "Sheep!"
+
+    show sheep neutral at right with moveinright
+    Sheep "You called, [povname] ?"
+    player "Yeah... I was gonna ask, why did you help us?"
+    Sheep "[povname] it isn't that complicated, okay?"
+    Sheep "I am consistently serious, I have integrity, always honest, has etiquette, and I was raised by classists."
+
+    show zeil annoyed
+    player "{i}You're narcissistic too.{/i}"
+    show zeil normal
+    Sheep "I am... the type of person who would instantly DROP the case if I sense something fishy."
+    Sheep "I don't like working with criminals. It taints my name, and my theory of law."
+    Sheep "By far, this was the most stressful one. I can't believe I believed what must be unbelievable."
+    Sheep "And on that note... *bows* I am sorry, [povname] for I have sided with someone I did not know was evil."
+
+    player "{i}Jeez talk about a formal apology...{/i}"
+
+    show zeil smile
+    player "It's okay, Sheep. I know you're the type of lady who woul-"
+    show zeil shocked
+    Sheep "So let me treat you in a fancy buffet worth 1000 dollars per head! My treat~"
+    show zeil annoyed
+    player "{i}Like said, she interrupts me mid-sentence.{/i}"
+    show zeil smile
+    player "No, it's okay Miss De Lune. I am fine with the apology. I'm not that materialistic."
+    Sheep "Still, please take this coupon. It gives you 1000 dollars off on your orders in said Buffet. It's fancy, and I hope you could use it to date with someone!"
+    
+    show zeil annoyed
+    player "HEY! I am not into dating righ-"
+    Sheep "Oh really?"
+    Sheep "With those looks, you must be falling for some colleague in your firm."
+
+    show zeil shocked
+    player "Hey!"
+    Iro "Heh, I knew you got it in you, [povname] . I knew you liked the Meow meow!"
+
+    show zeil annoyed 
+    player "No, I do not >:( She is my colleague!"
+    Sheep "Heh. We'll see."
+    Sheep "Anyways, I have to go now. I have a fancy buffet reserved for Ms. De Lune."
+    Sheep "Ciao!!!"
+    hide sheep with moveoutright
+
+    show zeil smile2
+    player "What a sweet and fancy Sheep!"
+    Iro "I will get going now, my friend. I have other things to insp.. {sc=1}insepc.......{/sc}"
+
+    show zeil normal
+    Iro "{sc=5}*COLLAPSES*{/sc}"
+    show iro with vpunch
+    hide iro with dissolve
+    show zeil shocked
+
+    player "{sc=1}Iro?{/sc}{sc=4}IRO!!!!!!!!!!!{/sc}"
+    show black with dissolve
+
+    player "H."
 
 
 
