@@ -1,28 +1,46 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 4105, in script
-    show black with Dissolve
-Exception: Expected transition to be a displayable, not a <curry <class 'renpy.display.transition.Dissolve'> () {'new_widget': <Fixed at 2ae0ea50>, 'old_widget': <Fixed at 2ae0ea10>}>
+  File "game/script.rpy", line 1960, in script
+    Bmom "We had a stalemate huh..."
+IOError: Couldn't find file 'audio/bgm_lawfirm.wav'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 4105, in script
-    show black with Dissolve
-  File "renpy/ast.py", line 1443, in execute
-    renpy.exports.with_statement(trans, paired)
-  File "renpy/exports.py", line 1684, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "renpy/display/core.py", line 2762, in do_with
-    clear=clear)
+  File "game/script.rpy", line 1960, in script
+    Bmom "We had a stalemate huh..."
+  File "renpy/ast.py", line 721, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "renpy/exports.py", line 1419, in say
+    who(what, *args, **kwargs)
+  File "renpy/character.py", line 1249, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "renpy/character.py", line 901, in do_display
+    **display_args)
+  File "renpy/character.py", line 647, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "renpy/ui.py", line 298, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "renpy/display/core.py", line 3325, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
-  File "renpy/display/core.py", line 3679, in interact_core
-    raise Exception("Expected transition to be a displayable, not a %r" % trans)
-Exception: Expected transition to be a displayable, not a <curry <class 'renpy.display.transition.Dissolve'> () {'new_widget': <Fixed at 2ae0ea50>, 'old_widget': <Fixed at 2ae0ea10>}>
+  File "renpy/display/core.py", line 4025, in interact_core
+    renpy.audio.audio.periodic()
+  File "renpy/audio/audio.py", line 1162, in periodic
+    raise_(exc[0], exc[1], exc[2])
+  File "renpy/audio/audio.py", line 1140, in periodic_thread_main
+    periodic_pass()
+  File "renpy/audio/audio.py", line 1082, in periodic_pass
+    c.periodic()
+  File "renpy/audio/audio.py", line 518, in periodic
+    topf = load(filename)
+  File "renpy/audio/audio.py", line 69, in load
+    rv = renpy.loader.load(fn)
+  File "renpy/loader.py", line 798, in load
+    raise IOError("Couldn't find file '%s'." % name)
+IOError: Couldn't find file 'audio/bgm_lawfirm.wav'.
 
 Windows-10-10.0.19041
 Ren'Py 7.4.11.2266
 Fursuit of Justice 
-Sun Jun  5 03:03:52 2022
+Tue Jun  7 02:43:01 2022

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 3554: expected 'simple_expression' not found.
-    show goose neutral at left with with moveinright
-                                    ^
+File "game/options.rpy", line 45: invalid syntax
+    “audio/bgm_mainmenu.mp3”
+     ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Sat Jun  4 22:31:41 2022
+Tue Jun  7 01:24:45 2022

@@ -41,11 +41,13 @@ label start:
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
+    
     "Finally, all my time spent in law school..."
     "All the money I spent..."
     "And the horrid, horrid, HORRIDD bar exam."
     "It has all come into a halt."
     "A new chapter of my life is unfloding."
+    play music "audio/bgm_silence.wav" fadein 3.0 volume 0.3 #MUSIC BUTTON
     "This is not the end, but the beginning."
     with fade
 
@@ -121,7 +123,7 @@ label Chapter1:
     show zeil normal at left
     with moveinleft
     pause (3.0) #Pauses screen and shows better transition till the next line.
-    show benjamin neutral at right
+    show benjamin sleep at right
     with dissolve
     pause (3.0)
     show zeil smile2
@@ -136,10 +138,12 @@ label Chapter1:
 menu:
 
     "Tap him":
+        show benjamin neutral
         Ben "WAIT WHQAT WHO'S THERE?" 
         jump benjaminWake
     
     "Wake him up":
+        show benjamin neutral
         Ben "AGH I PROMISE I WASN'T SLEEPING!!"
         jump benjaminWake
 
@@ -673,6 +677,7 @@ label AfterChap1:
     Chi "I swear I love you, Gina!"
     hide zeil
 
+    #I tried adding a scene for the rabbits. I based it off something that would happen in real life
     show chi right at left with dissolve
     show gina neutral at right with dissolve
     Barr "You don't! You always make things awkward!"
@@ -917,10 +922,11 @@ label Chapter2_Start:
     player "{i}But despite us always bickering, it’s nice to know she does care about Ben and I.{/i}"
     player "Speaking of Ben, I should message him and see if he's alright."
 
+    stop music fadeout 3.0
+    play music "audio/bgm_bmomworry.wav" volume 0.3 fadein 3.0 loop #MUSIC INPUT
     show zeil shocked at left with easeinleft
     "{i}KNOCK KNOCK{/i}"
 
-    stop music fadeout 2.0
     "Hello? Is someone in?"
     player "Oh yes, would you like to talk?"
     "Yes please..."
@@ -991,8 +997,6 @@ menu:
         show mommabeaver neutral at center with moveinleft
         Bmom "Yes! I'll do whatever I can to help you."
 
-
-        stop music fadeout 2.0
         $ RouteChecker += 1
 
         jump Case2_BeforeTalk
@@ -1022,7 +1026,7 @@ menu:
 
         player "That was hard..."
         stop music fadeout 2.0
-        $ renpy.full_restart()
+        $ renpy.full_restart() #ADD more scenes here PLEASE
     "Wait, let me think again.":
         show zeil normal
         player "Wait, let me think again."
@@ -1121,6 +1125,7 @@ label Case2_BeforeTalk:
 
 label Case2:
     show black with Fade (0.5, 0.5, 0.5)
+    stop music fadeout 3.0
     "Three Weeks Later..."
     "Court day."
     "It's advisable that you quick save here."
@@ -1231,6 +1236,7 @@ menu:
 
 label Case2_Start:
     scene bg courtroom with Fade(0.5, 0.5, 0.5)
+    play music "audio/bgm_courtroom2.wav" volume 0.3 fadein 3.0 loop
     show carl neutral with dissolve
     show baliff neutral at right with dissolve
 
@@ -1936,6 +1942,10 @@ label Chapter2_Judge:
     Carl "{b}Dismissed but will resume sometime!{/b}"
     show carl hammer with vpunch
     "{i}HAMMER NOISE{/i}"
+
+    stop music fadeout 3.0
+    stop audio fadeout 3.0
+    stop sound fadeout 3.0
     hide carl with Fade(1.7, 2.0, 1.5)
 
     "The Case Ended With a Stalemate"
@@ -1946,6 +1956,7 @@ label Chapter2_OverLay:
     show mommabeaver neutral at center with easeinright
     show triplet neutral at left with easeinright
 
+    play music "audio/bgm_lawfirm.mp3" volume 0.3 fadein 3.0 loop
     Bmom "We had a stalemate huh..."
 
     show zeil sad
@@ -1966,7 +1977,7 @@ label Chapter2_OverLay:
     Bmom "Nugget no!"
 
     show zeil smile2
-    if RouteChecker >= 1:
+    if RouteChecker >= 2:
         player "I think I might know someone. It will require a bit of convincing though."
     else:
         player "This office has sponsored an inspector. He's aso a lawyer that Cassie defeated. It will require a bit of convincing though."
@@ -1978,7 +1989,7 @@ label Chapter2_OverLay:
     player "{i}Ringing{/i}"
     player "{i}Someone answers{/i}"
 
-    if RouteChecker >= 1:
+    if RouteChecker >= 2:
         player "Hello, is this my good old Iro "
     else:
         player "Hello, is this Iro the Inspector?"
@@ -1999,7 +2010,7 @@ label Chapter2_OverLay:
     show zeil smile
     Iro "you bet! So who’s this handsome voice callin from here ey?"
 
-    if RouteChecker >= 1:
+    if RouteChecker >= 2:
         player "It's me, [povname] . I Came to-"
 
         show zeil shocked
@@ -2044,10 +2055,15 @@ label Chapter2_OverLay:
     Bmom "Isn't that illegal"
     player "Not really, he has a permit for proof. But I do wonder how’s he goin right now?"
 
+    stop music fadeout 2.0
+
 label IroInspect: #Iro Inspeciton Era wow lezgo iro
 
     scene bg factory3 with Fade(1.7, 2.0, 1.5)
     show iro neutral at left with moveinleft
+
+    play music "audio/bgm_iroinspecting.wav" volume 0.3 fadein 3.0 loop
+
     Iro "Woah! This company big! Welp I better start my inverstigation somewhere."
     show goose2 neutral at right with moveinright
     Guard "State your business, Dog!"
@@ -2267,6 +2283,7 @@ label Chapter2_IroDone:
     #Insert Scream Audio
     show iro neutral at right with hpunch
     "{sc=4}SCREAMING IN THE BACKGROUND{/sc}"
+    stop music fadeout 2.0 
     "....."
     pause (1.0)
     Iro "Hey did someone scream?"

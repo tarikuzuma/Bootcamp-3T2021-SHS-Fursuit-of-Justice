@@ -42,6 +42,8 @@ define build.name = "FursuitofJustice"
 
 ## Sounds and music ############################################################
 
+define config.main_menu_music = "audio/bgm_mainmenu.wav"
+
 ## These three variables control, among other things, which mixers are shown
 ## to the player by default. Setting one of these to False will hide the
 ## appropriate mixer.
