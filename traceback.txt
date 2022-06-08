@@ -1,46 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 1960, in script
-    Bmom "We had a stalemate huh..."
-IOError: Couldn't find file 'audio/bgm_lawfirm.wav'.
+  File "game/options.rpy", line 35, in script
+    define preferences.text_cps = 20
+  File "game/options.rpy", line 35, in script
+    define preferences.text_cps = 20
+  File "renpy/common/000namespaces.rpy", line 52, in set
+    raise Exception("The define statement can not be used with the preferences namespace.")
+Exception: The define statement can not be used with the preferences namespace.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 1960, in script
-    Bmom "We had a stalemate huh..."
-  File "renpy/ast.py", line 721, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "renpy/exports.py", line 1419, in say
-    who(what, *args, **kwargs)
-  File "renpy/character.py", line 1249, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-  File "renpy/character.py", line 901, in do_display
-    **display_args)
-  File "renpy/character.py", line 647, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "renpy/ui.py", line 298, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "renpy/display/core.py", line 3325, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
-  File "renpy/display/core.py", line 4025, in interact_core
-    renpy.audio.audio.periodic()
-  File "renpy/audio/audio.py", line 1162, in periodic
-    raise_(exc[0], exc[1], exc[2])
-  File "renpy/audio/audio.py", line 1140, in periodic_thread_main
-    periodic_pass()
-  File "renpy/audio/audio.py", line 1082, in periodic_pass
-    c.periodic()
-  File "renpy/audio/audio.py", line 518, in periodic
-    topf = load(filename)
-  File "renpy/audio/audio.py", line 69, in load
-    rv = renpy.loader.load(fn)
-  File "renpy/loader.py", line 798, in load
-    raise IOError("Couldn't find file '%s'." % name)
-IOError: Couldn't find file 'audio/bgm_lawfirm.wav'.
+  File "renpy/bootstrap.py", line 331, in bootstrap
+    renpy.main.main()
+  File "renpy/main.py", line 560, in main
+    renpy.game.context().run(node)
+  File "game/options.rpy", line 35, in script
+    define preferences.text_cps = 20
+  File "game/options.rpy", line 35, in script
+    define preferences.text_cps = 20
+  File "renpy/ast.py", line 2213, in execute
+    self.set()
+  File "renpy/ast.py", line 2228, in set
+    ns.set(self.varname, value)
+  File "renpy/common/000namespaces.rpy", line 52, in set
+    raise Exception("The define statement can not be used with the preferences namespace.")
+Exception: The define statement can not be used with the preferences namespace.
 
 Windows-10-10.0.19041
 Ren'Py 7.4.11.2266
 Fursuit of Justice 
-Tue Jun  7 02:43:01 2022
+Wed Jun  8 08:49:04 2022

@@ -32,6 +32,7 @@ define Hog = Character('Indigenous Hedgehog', color='#aa1c53ff')
 define unk = Character('???', color='#290505ff')
 define Felipe = Character('Felipe Fevidal', color='#290505ff')
 
+
 # The game starts here.
 
 
@@ -41,12 +42,12 @@ label start:
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
-    
+
     "Finally, all my time spent in law school..."
     "All the money I spent..."
     "And the horrid, horrid, HORRIDD bar exam."
     "It has all come into a halt."
-    "A new chapter of my life is unfloding."
+    "A new chapter of my life is unfolding."
     play music "audio/bgm_silence.wav" fadein 3.0 volume 0.3 #MUSIC BUTTON
     "This is not the end, but the beginning."
     with fade
@@ -102,7 +103,7 @@ label wrongEval:
 
 label Chapter1:
     show zeil delighted
-    player "Oki! If that is the name you insisted then I'll go for it <3"
+    player "Okie! If that is the name you insisted then I'll go for it <3"
     show zeil angry
     player "But you do know that you have to undergo the tutorial to see me do great right?"
     show zeil laugh
@@ -139,12 +140,12 @@ menu:
 
     "Tap him":
         show benjamin neutral
-        Ben "WAIT WHQAT WHO'S THERE?" 
+        Ben "WAIT WHAT WHO'S THERE?" 
         jump benjaminWake
     
     "Wake him up":
         show benjamin neutral
-        Ben "AGH I PROMISE I WASN'T SLEEPING!!"
+        Ben "ARGH I PROMISE I WASN'T SLEEPING!!"
         jump benjaminWake
 
 
@@ -179,7 +180,7 @@ label benjaminWake:
     Cassie "{i}sigh{/i}"
     Cassie "I've been here all this time, dumdum! You were too busy sucking up to Benjamin to notice."
     show zeil annoyed 
-    player "I'm greatful! There's a difference"
+    player "I'm grateful! There's a difference"
     Cassie "Sure thing."
     show zeil smug
     player "Even if I was... You'd do the same as well!"
@@ -189,7 +190,7 @@ label benjaminWake:
 
     #5th Scene
     Ben "{i}Uhm I think they forgot I'm still here ;-;{/i}"
-    player "Well you're still pretty smol, Cassi-"
+    player "Well you're still pretty small, Cassi-"
     show zeil normal
     Ben "Ahem."
 
@@ -232,13 +233,13 @@ label chapter1_beforeTalk:
     show zeil smile2
     player "Yes, Your Honor!" 
     show zeil normal
-    Ben "Okay, to put in an easier context what we have here is Ms Rosa Barreto wanted to annul her marriage with Mr. Rivero Barreto due to ---- "
+    Ben "Okay, to put in an easier context what we have here is Ms Rosa Barreto wanted to annul her marriage with Mr. Robert Barreto due to ---- "
     show zeil shocked
     player "Due to what your Honor?"
     Ben "Due to *chuckles*"
     show zeil bored
     player "Sir please say it already your building up the suspense"
-    Ben "Due to their relationship failing because Mr Rivero doesn't want to get intimate with Mrs. Rosa"
+    Ben "Due to their relationship failing because Mr Robert doesn't want to get intimate with Mrs. Rosa"
     show zeil normal
     player "sounds melo intense, sire."
     Ben "Your objective is to see through this to the end."

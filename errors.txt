@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/options.rpy", line 45: invalid syntax
-    “audio/bgm_mainmenu.mp3”
-     ^
+File "game/gui.rpy", line 84: expected '=' not found.
+    define default preferences.text_cps = 20
+                   ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Tue Jun  7 01:24:45 2022
+Wed Jun  8 08:48:29 2022
