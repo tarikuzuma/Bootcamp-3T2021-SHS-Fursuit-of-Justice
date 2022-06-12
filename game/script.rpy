@@ -37,17 +37,18 @@ define Felipe = Character('Felipe Fevidal', color='#290505ff')
 image splash = "splash.png"
 
 label splashscreen:
-    scene black
+    scene beach 
     with Pause(1)
 
-    play sound "audio/sfx/sfx_gavel2taps.wav"
+    play sound "audio/sfx/sfx_seagull.wav" fadein 1.0
 
     show splash with dissolve
-    with Pause(2)
+    with Pause(4.3)
 
     scene black with dissolve
-    with Pause(1)
+    with Pause(3)
 
+    stop music fadeout 3.0
     return
 
 
@@ -63,7 +64,6 @@ label start:
     "It has all come into a halt."
     "A new chapter of my life is unfolding."
     play music "audio/bgm_silence.wav" fadein 3.0 volume 0.3 #MUSIC BUTTON
-    play sound "audio/sfx/sfx_gavel1tap.wav"
 
     "This is not the end, but the beginning."
     with fade
@@ -367,7 +367,7 @@ label Case1:
     scene bg courtroom with fade
     "Witnesses, please stand up"
 
-    play music "audio/bgm_courtroom.mp3" fadein 3.0 volume 0.3 loop #MUSIC BUTTON BUTTON WONT PLAY
+    play music "audio/bgm_courtroom.mp3" fadein 3.0 volume 0.3 loop #MUSIC BUTTON
 
     show zeil normal at left with moveinleft
     show baliff neutral at right with moveinright
@@ -420,9 +420,12 @@ label Case1:
     Chi "Hello I'm Chi, also known as Mr. Barretto."
     hide chi with dissolve
 
-    show zeil normal
-    player "To explain the case, Ms Rosa Barretto wanted to annul their wedding due to the lack of intimacy that she experienced with Mr. Robert Barretto in the past 1 year of their marriage."
-    player "As we all know, love comes in a different form not only in the act of sexual intercourse. As hard as it may, we would be defending the case, and once we had laid all the facts we hope that you will give us a verdict of {b}DENIED.{/b}"
+    menu:
+        "Explain the Case":
+            show zeil normal
+            player "To explain the case, Ms Rosa Barretto wanted to annul their wedding due to the lack of intimacy that she experienced with Mr. Robert Barretto in the past 1 year of their marriage."
+            player "As we all know, love comes in a different form not only in the act of sexual intercourse. As hard as it may, we would be defending the case, and once we had laid all the facts we hope that you will give us a verdict of {b}DENIED.{/b}"
+    
 
     hide zeil
     show carl neutral with dissolve
@@ -2958,6 +2961,8 @@ label IroWake:
     show iro neutral at center with dissolve
     show iro mad
     Iro "{sc=2}Huh?!{/sc} Where's I at?!"
+
+    play music "audio/bgm_courtroom.mp3" fadein 3.0 volume 0.3 loop #MUSIC BUTTON BUTTON WONT PLAY
     Hog "Helpu me :<"
     show hog neutral at right with dissolve
     show iro sad 
@@ -2994,6 +2999,7 @@ label IroWake:
     Iro "Hey, guard, do you offer any food, perhaps?"
     Guard "Shut it, dog!"
     Iro "Rude!"
+    stop music fadeout 2.0
 
 label PlayerFirm2:
     scene bg officefirm with Fade(1.5, 2.0, 1.5)
@@ -3066,6 +3072,7 @@ label IroWake2:
     show iro neutral at center with dissolve
     show hog neutral at right with dissolve
 
+    play music "audio/bgm_courtroom.mp3" fadein 3.0 volume 0.3 loop #MUSIC BUTTON BUTTON WONT PLAY
     Iro "It is evening, my dudes. Okay let’s recap the plan right now!"
     Hog "Ok"
     Iro "So I summersault, break his neck, and you get the keys and we baboosh. Got that?"
@@ -3185,6 +3192,8 @@ label IroWake2:
     Hog "Let's go."
     hide iro with moveoutleft
     hide hog with moveoutleft
+
+    stop music fadeout 3.0
     jump IroOut
 
 label IroCaught3:
@@ -3749,6 +3758,7 @@ label IroOut6:
 
 label Case2_Start2:
     show black with Dissolve(2.0)
+    play music "audio/bgm_courtroom2.wav" volume 0.3 fadein 3.0 loop
     "-Iro Couldn't Come In Time-"
     "-Now it is...-"
     "-Court Day.-"
@@ -3827,7 +3837,7 @@ label Case2_Start2:
     player "Court was never easy >:("
     player "Where is Iro anyways?"
     hide zeil
-
+    stop music fadeout 3.0
 label IroOut7:
     scene bg factory2 with Fade(1.5, 0.6, 1.5)
     Iro "Oh Dalmatians, I barely got out of that one."
@@ -4103,7 +4113,7 @@ label Chapter2_FinalExam:
     scene bg courtroom with Fade(1.5,2.0,1.3)
     show carl neutral with dissolve
 
-
+    play music "audio/bgm_courtroom2.wav" volume 0.3 fadein 3.0 loop
     Carl "Your turn, Opposition. Give us another stance."
     hide carl with dissolve
 
@@ -4127,10 +4137,12 @@ label Chapter2_FinalExam:
     show sheep neutral
     Sheep "It’s Ms- you know waht? Nevemind. I do have objections. It’s that we have timber license agreements with everyone…"
     hide sheep
+    stop music fadeout 3.0
 
 label Chapter_Almost:
     scene bg reccomp with dissolve
     show cassie sad at left with dissolve 
+    play music "audio/bgm_lawfirm.wav" volume 0.3 fadein 3.0 loop
     Cassie "I hope [povname] is doing okay..."
     Cassie "Hmm is that a dog?"
     Iro "IN COMINGGG!!!!!!"
@@ -4157,6 +4169,7 @@ label Chapter_Almost:
     hide iro with moveoutright
 
     Cassie "... what an odd dog."
+    stop music fadeout 3.0
 
 label Chapter2_FinalExam2:
     scene bg courtroom with Fade(1.5,2.0,1.3)
@@ -4426,6 +4439,7 @@ label Chapter2_CourtDone:
     show zeil shocked
 
     player "{sc=1}Iro?{/sc}{sc=4}IRO!!!!!!!!!!!{/sc}"
+    stop music fadeout (4.0)
     show black with Dissolve(5.0)
     
 

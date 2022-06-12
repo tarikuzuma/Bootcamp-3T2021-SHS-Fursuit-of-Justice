@@ -1,34 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/options.rpy", line 35, in script
-    define preferences.text_cps = 20
-  File "game/options.rpy", line 35, in script
-    define preferences.text_cps = 20
-  File "renpy/common/000namespaces.rpy", line 52, in set
-    raise Exception("The define statement can not be used with the preferences namespace.")
-Exception: The define statement can not be used with the preferences namespace.
+  File "renpy/common/00start.rpy", line 233, in script call
+    call _splashscreen from _call_splashscreen_1
+  File "game/script.rpy", line 52, in script
+    return with dissolve
+SyntaxError: invalid syntax (script.rpy, line 52)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/bootstrap.py", line 331, in bootstrap
-    renpy.main.main()
-  File "renpy/main.py", line 560, in main
-    renpy.game.context().run(node)
-  File "game/options.rpy", line 35, in script
-    define preferences.text_cps = 20
-  File "game/options.rpy", line 35, in script
-    define preferences.text_cps = 20
-  File "renpy/ast.py", line 2213, in execute
-    self.set()
-  File "renpy/ast.py", line 2228, in set
-    ns.set(self.varname, value)
-  File "renpy/common/000namespaces.rpy", line 52, in set
-    raise Exception("The define statement can not be used with the preferences namespace.")
-Exception: The define statement can not be used with the preferences namespace.
+  File "renpy/common/00start.rpy", line 233, in script call
+    call _splashscreen from _call_splashscreen_1
+  File "game/script.rpy", line 52, in script
+    return with dissolve
+  File "renpy/ast.py", line 1553, in execute
+    renpy.store._return = renpy.python.py_eval(self.expression)
+  File "renpy/python.py", line 2274, in py_eval
+    code = py_compile(code, 'eval')
+  File "renpy/python.py", line 835, in py_compile
+    raise e
+SyntaxError: invalid syntax (script.rpy, line 52)
 
 Windows-10-10.0.19041
 Ren'Py 7.4.11.2266
 Fursuit of Justice 
-Wed Jun  8 08:49:04 2022
+Sun Jun 12 16:44:09 2022
