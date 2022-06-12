@@ -61,7 +61,7 @@ define gui.text_font = "fonts/BarlowCondensed-Regular.ttf"
 define gui.name_text_font = "fonts/BarlowCondensed-ExtraBold.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "fonts/BarlowCondensed-Bold.ttf"
+define gui.interface_text_font = "fonts/Minecraftia-Regular.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 25
@@ -80,7 +80,6 @@ define gui.notify_text_size = 16
 
 ## The size of the game's title.
 define gui.title_text_size = 50
-
 
 ## Main and Game Menus #########################################################
 

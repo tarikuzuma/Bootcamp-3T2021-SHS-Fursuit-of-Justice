@@ -292,8 +292,8 @@ screen navigation():
         style_prefix "navigation"
 
         if renpy.get_screen("main_menu"):
-            xalign 0.2
-            yalign 0.6
+            xalign 0.28
+            yalign 0.5
         else:
             xoffset 60
             yalign 0.5
@@ -396,7 +396,7 @@ style main_menu_vbox:
     xalign 0.17
     xoffset -20
     xmaximum 800
-    yalign 1.0
+    yalign 1.09
     yoffset -500
 
 style main_menu_text:
