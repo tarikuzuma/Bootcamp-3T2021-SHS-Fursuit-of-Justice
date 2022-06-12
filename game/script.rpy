@@ -2851,10 +2851,10 @@ label IroBigTree:
     show iro surprised
     Iro "Celtic...? {sc=1}I thought you were in the city?{/sc}"
 
-    if RouteChecker >= 1:
-        Celtic "I heard you lost your latest court case… and you lost it to the one you're currently {b}HELPING{/b}."
-    else:
+    if RouteChecker == 1:
         Celtic "I knew you'd be here. Didn't you recently lose in court?"
+    else:
+        Celtic "I heard you lost your latest court case… and you lost it to the one you're currently {b}HELPING{/b}."
 
     show iro mad
     Iro "Justice should be served, Celtic! You know that!"
@@ -3791,7 +3791,11 @@ label Case2_Start2:
 
     show zeil normal at right with dissolve
     show triplet neutral at center with dissolve
-    player "Thank you, your honor. Today I’m representing these 3 triplets with their right of expression. The subject matter of the complaint is of common and general interest not just to several, but to all citizens of the Philippines. "
+
+    menu:
+        "Explain Stance":
+            player "Thank you, your honor. Today I’m representing these 3 triplets with their right of expression. The subject matter of the complaint is of common and general interest not just to several, but to all citizens of the Philippines. "
+
     hide triplet with dissolve
     show zeil at center with easeinright
     player "Consequently, since the parties are so numerous, it becomes impracticable, if not totally impossible, to bring all of them before the court. We likewise declare that the plaintiffs therein are numerous and representative enough to ensure the full protection of all concerned interests. "
@@ -3865,7 +3869,9 @@ label IroOut7:
     Crew "Indeed... but this time, I ain't gonna lose!"
     Iro "Alright, I'd like to see you try! Master of Judo against master of hammers!"
     Crew "{sc=2}I like the odds!{/sc}"
-    
+
+    play music "audio/bgm_irofight.wav" volume 0.3 fadein 3.0 loop
+
     #New stuff will be added here.
     #If AssultPoints >= 50 : Player will Get One Punch Option
     #If SneakPoints >= 50 : Player will get Run Away Option
@@ -4110,6 +4116,7 @@ label OnePunch:
             jump Chapter2_FinalExam
 
 label Chapter2_FinalExam:
+    stop music fadeout 3.0
     scene bg courtroom with Fade(1.5,2.0,1.3)
     show carl neutral with dissolve
 
@@ -4142,7 +4149,7 @@ label Chapter2_FinalExam:
 label Chapter_Almost:
     scene bg reccomp with dissolve
     show cassie sad at left with dissolve 
-    play music "audio/bgm_lawfirm.wav" volume 0.3 fadein 3.0 loop
+    play music "audio/bgm_lawfirm.mp3" volume 0.3 fadein 3.0 loop
     Cassie "I hope [povname] is doing okay..."
     Cassie "Hmm is that a dog?"
     Iro "IN COMINGGG!!!!!!"
@@ -4365,6 +4372,8 @@ label Chapter2_CourtDone:
     Iro "Arf."
     player "..."
     Iro "..."
+
+    show iro happy
     Iro "I mean WHAT'S UP [povname] !!! DID YA MISS ME?!"
 
     show zeil sad 
@@ -4377,11 +4386,16 @@ label Chapter2_CourtDone:
     player "We were all so worried!!!"
     player "You were gone for 2 days?! No police wanted to help us for some werid reason..."
     show zeil normal
+
+    show iro mad
     Iro "It must be Celtic and his strings."
     player "Yeah. I have to tell you soemthing later. It's about Felipe and Celtic."
+
+    show iro surprised
     Iro "Felipe... the government official?"
 
     show zeil smile2
+    show iro neutral
     player "Oh wait, that's Sheep De Lune!"
     player "Sheep!"
 
@@ -4418,11 +4432,15 @@ label Chapter2_CourtDone:
 
     show zeil shocked
     player "Hey!"
+
+    show iro happy
     Iro "Heh, I knew you got it in you, [povname] . I knew you liked the Meow meow!"
 
     show zeil annoyed 
     player "No, I do not >:( She is my colleague!"
     Sheep "Heh. We'll see."
+
+    show iro neutral
     Sheep "Anyways, I have to go now. I have a fancy buffet reserved for Ms. De Lune."
     Sheep "Ciao!!!"
     hide sheep with moveoutright

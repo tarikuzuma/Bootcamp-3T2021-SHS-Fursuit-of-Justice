@@ -1,28 +1,46 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00start.rpy", line 233, in script call
-    call _splashscreen from _call_splashscreen_1
-  File "game/script.rpy", line 52, in script
-    return with dissolve
-SyntaxError: invalid syntax (script.rpy, line 52)
+  File "game/script.rpy", line 4154, in script
+    Cassie "Hmm is that a dog?"
+IOError: Couldn't find file 'audio/bgm_lawfirm.wav'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00start.rpy", line 233, in script call
-    call _splashscreen from _call_splashscreen_1
-  File "game/script.rpy", line 52, in script
-    return with dissolve
-  File "renpy/ast.py", line 1553, in execute
-    renpy.store._return = renpy.python.py_eval(self.expression)
-  File "renpy/python.py", line 2274, in py_eval
-    code = py_compile(code, 'eval')
-  File "renpy/python.py", line 835, in py_compile
-    raise e
-SyntaxError: invalid syntax (script.rpy, line 52)
+  File "game/script.rpy", line 4154, in script
+    Cassie "Hmm is that a dog?"
+  File "renpy/ast.py", line 721, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "renpy/exports.py", line 1419, in say
+    who(what, *args, **kwargs)
+  File "renpy/character.py", line 1249, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "renpy/character.py", line 901, in do_display
+    **display_args)
+  File "renpy/character.py", line 647, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "renpy/ui.py", line 298, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3325, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
+  File "renpy/display/core.py", line 4025, in interact_core
+    renpy.audio.audio.periodic()
+  File "renpy/audio/audio.py", line 1162, in periodic
+    raise_(exc[0], exc[1], exc[2])
+  File "renpy/audio/audio.py", line 1140, in periodic_thread_main
+    periodic_pass()
+  File "renpy/audio/audio.py", line 1082, in periodic_pass
+    c.periodic()
+  File "renpy/audio/audio.py", line 518, in periodic
+    topf = load(filename)
+  File "renpy/audio/audio.py", line 69, in load
+    rv = renpy.loader.load(fn)
+  File "renpy/loader.py", line 798, in load
+    raise IOError("Couldn't find file '%s'." % name)
+IOError: Couldn't find file 'audio/bgm_lawfirm.wav'.
 
 Windows-10-10.0.19041
 Ren'Py 7.4.11.2266
 Fursuit of Justice 
-Sun Jun 12 16:44:09 2022
+Sun Jun 12 17:40:28 2022
