@@ -31,6 +31,17 @@ define Guard = Character('Guard', color='#1caaa1ff')
 define Hog = Character('Indigenous Hedgehog', color='#aa1c53ff')
 define unk = Character('???', color='#290505ff')
 define Felipe = Character('Felipe Fevidal', color='#290505ff')
+define Tristan = Character('Tristan', color='#ff0000ff')
+define Terisita = Character('Terisita', color='#00ff22ff')
+define Theodora = Character('Theodora', color='#2c7f92ff')
+define Bunoy = Character('Bunoy', color='#bc1eceff')
+define Bryan = Character('Bryan', color='#40cc0dff')
+define Totoy = Character('Totoy', color='#5087e7ff')
+define Analyn = Character('Analyn', color='#a9bbdcff')
+define John = Character('John', color='#8be681ff')
+define Maria = Character('Maria', color='#2b8a21ff')
+define Angel = Character('Angel', color='#a9701aff')
+define Cesar = Character('Cesar', color='#94c481ff')
 
 # The game starts here.
 
@@ -3641,7 +3652,7 @@ label IroOut4:
                                 hide screen countdown
                                 Hog "{bt=2}*Grabs a Rock*{/bt}"
                                 Guard "Oh no you don't!"
-                                show hig with hpunch
+                                show hog with hpunch
                                 Guard "{bt=2}*Shoot Hog's arm*{/bt}"
                                 Hog "{sc=6}GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA{/sc}"
                                 Guard "Freeze! I'm not afraid to shoot!"
@@ -4499,6 +4510,30 @@ label ExtraScene2:
 
     show blood7 with hpunch
 
+    unk "Hmp. Cleaning blood up is my expertise I guess."
+
+    show felipe neutral with dissolve
+    Felipe "I guess the delivery is going well, I pressume?"
+    Felipe "Tristan, my finest handler and smartest customer."
+    Felipe "You've indeed tackled the situation well."
+    
+    show felipe at right with moveinleft
+    show tristan neutral at left with moveinleft
+
+    Tristan "Indeed, Mr. Felipe."
+    Tristan "The delivery of the drugs are on the way to our station, ready for distribution"
+    
+    Felipe "Oh hush, Tristan. You've earned the right to call me Fill, my very own nickname."
+    Tristan "Heh, I hope so, Boss. But my respect for you is still high."
+    Felipe "You flatter me, my boy. You're like a son to me sometimes."
+    Felipe "{bt=2}*Gets straw and powder*{/bt}"
+    Felipe "To victory, my lad!"
+    Tristan "Heh. We haven't won yet boss, remember?"
+    Felipe "{cps=9}What makes you say that?{/cps}"
+    Tristan "I think we're being speculated."
+    Felipe "Hmm..."
+    Tristan "We are in a brink of being "
+
 label Chapter3_BeforeStart:
     scene bg osfirm with Fade(2.0,1.5,1.0)
     show zeil normal with dissolve
@@ -4532,6 +4567,1054 @@ label Chapter3_BeforeStart:
     Cassie "{sc=1}I-It's Ben!!! He-{/sc}"
 
     stop music fadeout 2.0
+
+label Chapter3_Start:
+    scene bg courtroom with Fade(2.0,1.5,2.0)
+
+    play music "audio/bgm_courtroom3.wav" fadein 3.0 volume 0.3 loop    
+    show carl neutraltable with dissolve
+    show baliff neutral at right with dissolve
+    Lady "For the trial, all rise. RTC branch 24 is now in session. Honorable Carl Cabales, please proceed."
+    Carl "Thank you, you may all be seated"
+
+    play sound "audio/sfx/sfx_gavel1tap.wav" #Gavel Tap
+
+    Carl "Let's call the case"
+    Lady "the court is now in session, we call on case #133438 .People of the Philippines, plaintiff-appealee vs  Felipe (Falcon) Dimapilis, accused - appealant."
+
+    hide baliff with dissolve
+
+    Carl "Is the prosecution ready?"
+
+    hide carl
+    show zeil normal with dissolve
+    player "Yes, your honor."
+    hide zeil
+
+    show carl neutral
+    Carl "Is the Defense ready?"
+    hide carl with dissolve
+
+    show tristan neutral with dissolve
+    Tristan "Yes your honor."
+    hide tristan
+
+    show carl neutral
+    Carl "We will now hear the opening statement of the prosecution."
+    hide carl with dissolve
+
+    show zeil concerned with dissolve
+    player "{i}i need to win this case,or else ill never know what ben wanted to achieve. What was he doing? why didnt he ask for help?{/i}"
+    
+    show zeil normal
+    player "Your honor, members of the jury, my name is [povname] and I represent the People of the Phillipines in this case."
+    player "We intend to prove that, Accused, {b}Felipe Dimapilis{/b} had stabbed a senior lawyer, Benjamin (binturong) Bustamante during a business meeting in the afternoon."
+    
+    show zeil angry 
+    player "By being the lead cause to benjamin’s passing, he unlawfully and willfully took away a person’s life. When you have heard all the facts, please decided a verdict of guilty."
+    hide zeil 
+
+    show carl neutral
+    Carl " would the defense like to give a opening statement or would you like to give the stand to the prosecution side until they rests their case?"
+    hide carl 
+
+    show tristan neutral 
+    Tristan "We would like to stay your honor in the case of the People of the {b}Philipines vs Felipe Dimapilis {/b}."
+    Tristan "My name is Tristan (Tiger) Benavides and i represent Felipe Dimapilis in this case. My client, Felipe was accused of murder, rather than a homocide that only transpired due to Benjamin’s verbal threats towards Felipe Dimapilis."
+    Tristan "Once we have stated the facts, the verdict we ask for your honor is {b}Not Guilty.{/b}"
+    hide tristan 
+    
+    show carl neutral 
+    Carl "Thank you. For the persecution, you may now call on your first witness."
+    hide carl 
+
+    show zeil smile
+    player "yes, your honor. The persecution would like to call on Ms. Terisita (Tariktik) Kaparo to the stand."
+    hide zeil
+
+    show baliff neutral with dissolve
+    Lady "Do you swear to tell the whole truth and nothing but the truth so help me God?"
+    hide baliff with dissolve
+
+    show bird neutral at left with dissolve
+    Terisita "Y-yes, I swear!"
+    
+    show zeil question at right with dissolve
+    player "May I proceed your honor?"
+    hide zeil 
+    hide bird
+
+    show carl neutral with dissolve
+    Carl "yes, you may now proceed."
+    hide carl with dissolve
+
+    show bird neutral at left with dissolve
+    show zeil smile at right with dissolve
+    player "Please Introduce yourself miss"
+
+    show zeil question at right with dissolve
+    Terisita "My name is Terisita Kaparo and I'm one of be Mr. Bustamante’s many business partners."
+
+    show zeil smug
+    player "On October 21, around 9’oclock, where were you Ms. Kaparo?"
+    Terisita "I believe i was on my way to a meeting with Mr. Bustamante in his home."
+    show zeil question 
+
+    menu: 
+        "Were you the only one in the house during the meeting?":
+            player "Were you the only one in the house during the meeting?"
+            Terisita "No, I wasn’t the only one there in Mr. Bustamate’s home"
+            Terisita "On the way to the house, I was alone but I ran into {b}Mrs. Hernandez, another fellow business partner{/b}, and we ended up going there together when we found out we were both called by Benjamin."
+            player "Who else was in Mr. Bustamante’s home?"
+            Terisita "{b}Mr. Miedes{/b} was already in the house when we arrived, and {b}Mr. Dimapilis{/b} showed up as well."
+        "Was somebody else with you in the house during this meeting?":
+            player "Was somebody else with you in the house during this meeting?"
+            Terisita "Yes, there were four of us - excluding Mr. Bustamante - in the house."
+            player "And who were these three guests with you in Mr. Bustamante’s home?"
+            Terisita "{b}Mrs. Hernandez, another fellow business partner of ours {/b}who I ran into when I was heading towards Benjamin’s house,  {b}Mr. Miedes{/b}, and {b}Mr. Dimapilis.{/b}"
+
+
+    $ PlayerChance = 3
+    $ Choice1 = False
+    $ Choice2 = False
+    $ Choice3 = False
+
+label Chap3_Inter1Checker:
+    if Choice2 and Choice3:
+        jump Chap3_Inter1Done
+    else:
+        menu:
+            "So, what time would you say Mrs. Hernandez joined?":
+                $ Choice1 = True
+                jump Inter1Choice1
+
+            "What was Mr. Miedes doing in Mr. Bustamante’s home?":
+                $ Choice2 = True
+                jump Inter1Choice2
+
+            "Was Mr. Dimapilis also part of the meeting with you?":
+                $ Choice3 = True
+                jump Inter1Choice3
+        
+label Inter1Choice1:
+    player "So, what time would you say Mrs. Hernandez joined?"
+
+    show zeil shocked
+    Terisita "Weren’t you listening to my statement?"
+    show zeil bored
+    player "Uh..."
+    Terisita " I clearly said I ran into Mrs. Hernandez on the way to Benjamin’s house, so, of course, we arrived together at the same time!"
+
+    show zeil smug 
+    Carl "Are you alright [povname]? Everyone in the room heard Mrs. Kaparo’s statement but you. Please pay attention."
+
+    show zeil annoyed
+    player "{i}What was I thinking?! I can't mess up again.{/i}"
+
+    show zeil question 
+    $ PlayerChance -= 1
+    jump Chap3_Inter1Checker
+
+label Inter1Choice2:
+    player "What was Mr. Miedes doing in Mr. Bustamante’s home?"
+
+    show zeil concerned
+    Terisita "Um… I’m not really sure… He seemed to be just waiting for something in Benjamin’s home."
+
+    show zeil annoyed
+    player "{i}That lead nowhere. I should ask another question{/i}"
+    show zeil question
+    jump Chap3_Inter1Checker
+
+label Inter1Choice3:
+    player "Was Mr. Dimapilis also part of the meeting with you?"
+    Terisita "Im unsure, When Mr. Bustamante invited me h-he did not mention other individuals who will be present in the m-meeting we agreed upon."
+    jump Chap3_Inter1Checker
+
+label Chap3_Inter1Done:
+    show zeil question 
+    player "I see,  Well Ms. Kaparo, going back on your statement, you said that Mr. Dimapilis had exhanged a few words with Mr. Bustamente? Can you please elaborate?"
+
+    show zeil shocked
+    Terisita "To my knowledge, I believe mr. Bustamante and Mr. dimapilis share a history together. "
+
+    show zeil normal
+    Terisita "So when Mr. dimapilis started conversing, I assumed it was somewhat private so I chose to stay away from eavesdropping."
+    Terisita "In any case, I was too far to hear anything clear, however I did hear Mr Bustamante say in “stop, before someone gets hurt” in a stern tone then Mr. Dimapilis left. "
+    player "Did anything unusual happen after their exchange?"
+
+    show zeil smug
+    Terisita "Obviously!"
+
+    show zeil bored
+    player "Would you care to elaborate on that Ms. Terisita?"
+    Terisita "Mr. Dimapilis left for a while, but then he came back… and then h-he, {sc=2}he…{/sc}"
+
+    show zeil concerned
+    player "{i}I hope I was right...{/i}"
+
+    show zeil shocked
+    Terisita "{sc=2}He stabbed Benjamin!{/sc}"
+
+    show zeil smug
+    player "Who stabbed Mr. Bustamante?"
+
+    show zeil shocked
+    Terisita "Why, {sc=1}it was Mr. Felipe Dimapilis!{/sc}"
+    player "When Mr. Bustamante was stabbed, where were you in the house?"
+
+    show zeil annoyed
+    Terisita "I was directly in front of them as it was happening."
+
+    show zeil smug 
+    player "Exactly how far were you away from them?"
+    Terisita "I would say a meter or 2"
+
+    show zeil question
+    player "and what part of the body was Mr. Bustamante stabbed?"
+    
+    show zeil sad
+    Terisita "He was stabbed in the back."
+    player "And if i remember correctly miss, that the accused, Mr. Dimapilis stabbed Mr. Bustamante’s back, did you happen to see the weapon that was used to harm him?"
+   
+    Terisita "It was a Knife."
+
+    show zeil normal
+    player "That is all, your honor."
+
+    hide bird with moveoutleft
+    show zeil at center with moveinright
+    player "{i}I wonder how will the defense counter what we just witnessed?{/i}"
+    hide zeil
+
+    show carl neutral
+    Carl "Thank you, [povname]. Would the defense like to cross examine?"
+    hide carl 
+
+    "{b}Factoid:{/b} Cross examination: used to combat an unreliable testimony from a witness. It attacks the accuracy and truth behind the nature of a testimony."
+
+    show tristan neutral with dissolve
+    Tristan "Yes, your honor."
+    hide tristan
+
+    show carl neutral
+    Carl "You may proceed."
+    hide carl 
+
+    show bird neutral at left with moveinleft
+    show tristan neutral at right with moveinright
+    Tristan "Ms. Terisita, could you please restate what you had heard Mr. Bustamante had said to Mr. Dimapilis."
+    Terisita "he had said 'Stop, before someone gets hurt'"
+    Tristan "Your honor, I believe that the accused was threatened by Mr. Bustamante. The statement alone showed a possible infliction of hurt towards an individual, i. E my client."
+    Tristan "Anyone in a situation like this would be thrown to a fit of panic which can cause a multitude of outcome however since what was used as a threat was physical, they retailiated physically through the act of stabbing."
+    Tristan "That is all, your honor."
+    hide tristan with moveoutright
+    hide bird with moveoutleft
+
+    show zeil annoyed
+    player "{i}ah.. So you're focused on lowering the blow on your client huh?{/i}"
+    "The appelant is attempting to argue for {b}appreciation of mitigating circumstances of passion and obfuscation.{/b} It essentially means that the crime was commited due to a burst of emotion evoked by stimuli enough to throw away all sense of reason. "
+    "Basically getting very mad enough to be able to hurt someone physically"
+    hide zeil
+
+    show carl neutral 
+    Carl "Would the prosecution like to redirect?"
+    hide carl 
+
+    "{b}Factoid:{/b} redirect:examination of your own witness after a cross examination."
+
+    show zeil smug
+    player "No, your honor."
+    hide zeil 
+
+    show carl neutral
+    Carl "You may go back to your seat, Mrs. Kaparo."
+    Carl "does the prosecution have anymore witnesses to present?"
+    hide carl
+
+    show zeil normal 
+    player "Yes your honor. The prosecution would like to call  {b}Mrs. Theodora Hernandez{/b} to  the witness stand"
+    hide zeil
+
+    show smol
+    Theodora "Hello everyone! My name Theodora Hernandez, I am also a long time business partner of Mr. Bustamante."
+    show smol at left with moveinleft
+    show zeil question at right with moveinright
+    player "So tell me Mrs. Hernandez, how close were you to Mr. Bustamante and the accused when they having their 'private conversation'"
+
+    Theodora "why I was alot more closer than Ms. Kaparo was! For some reason she opped to move away when Mr. Bustamante and Mr. Dimapilis started conversing."
+    player "Did anything in their conversation sound unusual to you? "
+
+    show zeil smug 
+    Theodora "I really can’t say I have. The whole conversation they were having was pretty hush hush y'know?"
+
+    show zeil shocked 
+    Theodora "Oh! But I did hear Mr. Bustamante saying something all stern like."
+    Theodora "It was something along the lines of: ‘You need to stop before someone gets hurt. Im sorry Im not in a good mood for this discussion’ and ‘can you please leave’ a bit after."
+    
+    show zeil smug
+    player "Well isn't that  kinda sinister?"
+    player "Despite being close to the victim by proximity, why was it you were not able to hear the rest of their conversation?"
+
+    hide zeil
+    hide smol 
+
+    show tristan neutral
+    Tristan "{sc=2}{b}Objection!{/b}{/sc}"
+    Tristan "That is an opinonated statement"
+    hide tristan 
+
+
+    "{b}Factoid:{/b} Opinionated statement: witness testified based on their opinion- no facts but only subjectivity"
+
+    show carl neutral with dissolve
+    Carl "Objection sustained. Good ears, Tristan. It's kinda terrifying."
+    hide carl 
+
+    show zeil annoyed 
+    player "{i}shoot, I said that aloud, i gotta be more careful.{/i}"
+    hide zeil
+
+    show smol at left with moveinleft
+    show zeil question at right with moveinleft
+    Theodora "Well y’see a tricycle with a loud engine zoomed by. It was soo loud it muffled some parts of the conversation."
+    player "Can you describe what had happened between the accused and Mr. Bustamante."
+    Theodora " It all happened fast y’see? We didnt even see Mr. Dimapilis return, cause im guessing it was because  Myself and Ms. kaparo were both preoccupied with the documents that was given to us by Mr. Bustamante."
+    
+    show zeil shocked 
+    Theodora "All of the sudden he came from behind and stabbed Mr. Bustamante in front of our eyes! "
+    player "Did you notice anything off about the accused when he approached the victim?"
+
+    show zeil normal 
+    Theodora "well for starters he didnt really alert anyone that he arrived and he also approached Mr. Bustamante from behind. He was also carrying something?"
+
+    hide zeil 
+    hide smol
+
+    show tristan neutral 
+    Tristan "If so, how come you didnt alarm Mr. Bustamante?"
+    hide tristan 
+
+    show smol at left
+    show zeil question at right
+    Theodora "Y’see I didnt see the weapon on Mr. Bustamante, not until he was stabbed."
+    player "That is all your honor."
+    hide zeil with dissolve
+    hide smol with dissolve
+    
+    show carl neutral with dissolve
+    Carl "Would the defense like to cross examine"
+    hide carl 
+
+    show tristan neutral
+    Tristan "Yes, your honor."
+    hide tristan 
+
+    show carl neutral 
+    Carl "Proceed."
+    hide carl
+
+    show smol at left with moveinleft
+    show tristan neutral at right with moveinright 
+    Tristan "Mrs. Hernandez, you said that you weren't able to hear the conversation between he victim and the accused because of a loud tricycle driving by."
+    Tristan "Can you please tell the court what time the tricycle had gone by."
+    Theodora "I'm afraid I cannot specify the time my dear."
+    Theodora "I was too engulfed in the conversation that the time didnt really seem to be relevant. "
+    Tristan "How can we be certain that a tricycle did pass by during the conversation?"
+    Tristan "Mrs. Hernandez, are you certain that you did not mis hear what Mr. Bustamante had said?"
+    Theodora "I- Uh i guess its possible that i had misheard some parts. My age does really hinder my everyday living these days."
+    Tristan " And if i recall correctly, you said you hadnt seen the weapon the accused was holding until the crime had already been executed?"
+    Theodora "well yea!"
+    Tristan " As I recall Mrs. Hernandez the weapon that had been used was a 5-inch knife with a 9-inch blade, dont you think that would be easy to spot right away?"
+    Theodora "Yeah..."
+    Tristan "You would need to hide it before its actual use."
+    Theodora " As I recall, weren't you the one who pulled the knife out of Mr. Bustamante’s back?"
+    Theodora "Yes I did."
+    Theodora "{i}Somehow, my nonchallant style has disperssed. Who even is this?{/i}"
+    Tristan "How come you pulled the knife out knowing that it could cause more damage to the victim?"
+    show smol with hpunch
+
+    player "Objection!"
+
+    hide smol 
+    hide tristan 
+
+    show zeil annoyed 
+    player "Compound Question!"
+    hide zeil 
+
+    "{b}Factoid:{/b} The compound question objection is when there are two or more questions combined into one question. They are banned in court because they have the ability to confuse the witness and the judge."
+    
+    show carl neutral 
+    Carl "Objection sustained."
+    hide carl 
+
+    show smol at left
+    show tristan neutral at right
+    Tristan "Pfft."
+    Tristan "Why did you pull the knife out of the victim’s body?"
+    Theodora "I pulled it cause it damaged his body. I mean you would pull something off if it harms you."
+    Tristan "Do recall a jacket nearby the knife that was used?"
+    Theodora "I had noticed the jacket hanging onto the knife when i opped to pull in out."
+    Tristan "The jacket was left hanging onto the knife lodged into the victim's back can prolude to the fact that the jacket may have been used to hide a big weapon such as a 5-inch knife with a 9-inch blade."
+    Tristan "Furthur evidence to back that up would be the bloodstains on the jacket."
+    Tristan "However, that begs the question of why would you use such a noticeable weapon to take a person’s life."
+    Tristan "Its not very discreet because of its size and you cant quite dispose of it quickly either."
+    Tristan "If this was truly a murder, wouldnt the accused had planned more carefully? Bring a more compact or at least natural looking weapon to do the deed."
+    Tristan "The way the crime was executed was careless."
+    Tristan "That is all, your honor."
+    hide smol with dissolve
+    hide tristan with dissolve
+
+    show carl neutral with dissolve
+    Carl "...."
+    Carl "Would the prosecution like to redirect?"
+    hide carl with dissolve
+
+    show zeil smile 
+    player "Yes, your honor."
+
+    show zeil normal at right with moveinright
+    show smol at left with moveinleft
+    player "Mrs. Hernandez, you were in close proximity with Mr. Bustamante when he was talking to the accused correct?"
+    Theodora "Yes"
+    player " Your honor, I believe Mrs. Hernandez’s hearing did not fail her. "
+    player " If she truly had an issue with hearing she wouldnt have been able to give us a sentence that is similarly worded with what Ms. Kaparo had heard."
+    player "as for the loud tricycle engine, if Mrs. hernandez had hearing problems she wouldnt had heard their conversation in the fist place with how they were whispering. "
+    player "If anything she would have just heard the tricycle zooming by."
+    player "That is all your honor."
+    hide smol with dissolve
+    hide zeil with dissolve
+
+    show carl neutral with dissolve
+    Carl "Would the Defense like to Re-Cross Examine?"
+    hide carl 
+
+    "{b}Re-Cross Examine:{/b} a chance to question the witness again. Used to combat an unreliable testimony from a witness. It attacks the accuracy and truth behind the nature of a testimony."
+
+    show tristan neutral 
+    Tristan "No, your honor."
+    hide tristan
+
+    show carl neutraltable
+    Carl "Does the prosecution want to cal lanother witness to the stand."
+    hide carl
+
+    show zeil normal
+    player "Yes your honor. Prosecution would like to call {b}Mr. Bunoy Miedes{/b} to the witness stand"
+    hide zeil
+
+
+label desheveled_court:
+    show zeil normal with dissolve
+    player "Please introduce yourself witness"
+    hide zeil normal
+
+    "A silence falls in the court as eveyone waits for the witness to formally introduce himself."
+    "..."
+    "..."
+    "..."
+    
+
+    show bunoy happy at right with vpunch
+    show zeil normal at left with moveinleft
+    Bunoy "HM! HM! HELLO TO EVERYONE IN COURT!"
+    hide bunoy happy 
+
+    show bunoy neutral at right
+    show zeil normal at left
+    player "*startled*"
+    player "OH GEEZES!"
+    Bunoy "My name is Bunoy Miedes! Im the victim’s far away neighbor!"
+    hide zeil normal
+    hide bunoy neutral
+
+    show zeil concerned with dissolve
+    player "{i}Faraway neighbor?{/i}"
+    hide zeil concerned
+
+    show zeil normal at left with dissolve
+    show bunoy neutral at right with dissolve 
+    player "Mr. Miedes can you tell us what you were doing in the victim’s home?"
+    Bunoy "Oh, I was actually there cause i was waiting to be picked up by my tricycle for WORK!"
+    player "I see. Mr. Miendes can you please describe the events that had transpired with the victim?"
+    Bunoy "Well, while Mrs. Hernandez and Ms Kaparo was discussing something with Mr. Bustamante. The accused had stabbed him from behind and ran toward the direction of the Municipal Hall."
+    Bunoy "Basically what happened is that Ms. Hernandez quickly went to Mr. Bustamante in a rush and took out the knife with the jacket lodged into Mr. Bustamante’s back."
+    Bunoy "During that time myself and  Ms. terisita went to look for help. Once we did get a few people to help us with the search, I lead them towards the direction i saw him run towards. HMM HMM! We later found out he was going to the police station. Apparently he surrendered HMM HM!"
+    player "Thank Mr. Miedes. That will be all your honor."
+
+    hide zeil normal
+    hide bunoy neutral
+
+    show carl neutraltable with dissolve
+    Carl "does the prosecution want to call another witness to the stand?"
+    hide carl
+
+    show zeil normal
+    player "Yes your honor. Prosecution would like to call {b}Mr. Bryan Bustamante{/b} to the witness stand"
+
+    "A familiar but not so familiar frame emerges from the crowd."
+    "A young binturong walks to the stand calmly despite having eyes that looked like they had been crying for weeks."
+    "You remember that face, in fact you remember that face on a child you met once before."
+    "After the oath of honesty, it was time for you to question the witness."
+
+    player "please introduce yourself witness."
+
+    show zeil normal at left 
+    show bryan neutral at right with dissolve 
+
+    Bryan "H-Hello everyone. My name is Bryan B-Bustamante. I’m the victim’s son that was informed of my father’s incident by Mrs. Hernandez."
+    player "Mr witness what transpired as you heard the news of your father?"
+    Bryan "Well when Mrs. Hernandez informed me of my father’s incident we had rushed back home only to see my father being taken by the ambulance of the nearby hospital."
+    Bryan "I followed suit along with Mr. Miedes with the supplies needed and the documents my dad had kept for business."
+    player "that will be all your honor."
+
+    hide zeil normal
+    hide bryan neutral 
+
+    show carl neutraltable with dissolve
+    Carl "Would the defense like to cross examine?"
+    hide carl
+
+    show tristan neutral with dissolve
+    Tristan "no your honor."
+    hide tristan neutral
+
+    show carl neutraltable with dissolve
+    Carl "does the prosecution want to call another witness to the stand?"
+    hide carl
+
+    show zeil normal
+    player "Yes your honor. Prosecution would like to call  {b}Mr Totoy Bibo Ouano{/b} to  the witness stand"
+    hide zeil normal
+
+    "A Philippine mouse deer emerges from the crowd."
+    "It was a police man, in a peculiar size at that however size hardly equates for the amount of skill an individual can offer on the table."
+    "Oath of honesty was executed by the baliff and the witness and again the stand was open for questioning"
+    
+
+    show zeil normal at left 
+    show toty neutral at right with dissolve 
+    player "please introduce yourself witness."
+    Totoy "AHeM! My name is Totoy Bibo Ouano sir/mam! I am an inspector that was present in Tandian police station where the accused surrendered"
+    player "how did the accused surrender?"
+    Totoy "Well quite frankly he came in all blodied. I of course thought of the worst possible reason for why he was bloodied."
+    Totoy "But before I could approach to check him he just blurted out that he had stabbed someone! So I took him in custody immediately for questioning. That is all sir/mam."
+    player "what other occurrences had happened afterwards?"
+    Totoy "well while I was dealing with the accused, I had my collegue, Analyn inspect the crime scene."
+    Totoy "She came back and recovered the evidences that you hold now in your evidence folder as far as I know sir/mam."
+    player "that will be all your honor."
+    hide zeil normal
+    hide toty neutral
+
+
+    show carl neutraltable with dissolve
+    Carl "Would the defense like to cross examine?"
+    hide carl
+
+    show tristan neutral with dissolve
+    Tristan "yes your honor."
+    hide tristan neutral
+
+    show carl neutraltable with dissolve
+    Carl "proceed"
+    hide carl
+
+    show tristan neutral at left with moveinleft
+    show toty neutral at right with dissolve
+    Tristan "Didn’t you say the accused confessed that he had stabbed someone?"
+    Totoy "Yes he did"
+    Tristan "by chance did he also provide you where the incident had happened?"
+    Totoy "yes in fact he did"
+    Tristan "that will be all my questions your honor."
+    hide tristan neutral
+    hide toty neutral
+
+    show carl neutraltable with dissolve
+    Carl "does the prosecution want to call another witness to the stand?"
+    hide carl
+
+    show zeil normal
+    player "Yes your honor. Prosecution would like to call {b}Ms. Analyn Garcia{/b} to the witness stand"
+    hide zeil normal
+
+    "A small squeak can barely be heard from the court as a Isarog striped shrew-rat came out from under a huge crowd."
+    "Yet again it was another policeman (why are all the police soo small?) proudly flashing the police badge on their uniform as the walk to the stand."
+    "The oath of honesty was executed and the questioning progress is a go."
+    
+
+    show zeil normal at left 
+    show analyn neutral at right with dissolve
+
+    player "please introduce yourself witness."
+    Analyn "My name is Analyn Garcia and I am a Police officer of Tandian Police station."
+    player "Now tell us Ms. Garcia. What did the crime scene look like?"
+
+    Analyn "when I arrived at the crime scene there was blood on and near a chair. There was a pool of blood near the base of the chair, and near it t was a jacket."
+    Analyn "At least I thought it was JUST a jacket but as i inspected closely, I had noticed that there was a knife."
+    Analyn "To be exact it was a 15-inch knife with a 9-inch blade with a width of 1 inch at its widest and 1 cm."
+    Analyn "This knife was lodged into the jacket making a hole in the jacket."
+    player "That will be all your honor."
+    hide zeil normal
+    hide analyn normal
+
+    show carl neutraltable with dissolve
+    Carl "Would the defense like to cross examine?"
+    hide carl
+    
+    show tristan neutral with dissolve
+    Tristan "yes your honor."
+    hide tristan neutral
+
+    show carl neutraltable with dissolve
+    Carl "proceed"
+    hide carl
+
+    show tristan neutral at left with moveinleft
+    show analyn neutral at right with dissolve
+    Tristan "As you said, the jacket with the knife lodged into it was left in the crime scene?"
+    Analyn "correct"
+    Tristan "It was found in plain sight?"
+    Analyn "Affirmative"
+    Tristan "That is all my questions your honor."
+    hide tristan neutral
+    hide analyn neutral
+
+    show carl neutraltable with dissolve
+    Carl "would the prosecution like to redirect?"
+    hide carl
+
+    show zeil normal
+    player "no your honor."
+    hide zeil normal
+
+    show carl neutraltable with dissolve
+    Carl "does the prosecution want to call another witness to the stand?"
+    hide carl
+
+    show zeil normal
+    player "Yes your honor. Prosecution would like to call {b}Mr John Ramos{/b} to the witness stand"
+    hide zeil normal
+
+    "A Palawan- peacock arose from the croud elegantly with his feathers drawing the crowd’s attention."
+    "There was no denying this peacock’s beauty carrying the attire of a physician as he walks towards the stand."
+    "The witness preforms the oath of honesty and once again you were called to the front of the court."
+    
+
+    show zeil normal at left 
+    show antonio neutral at right with dissolve
+
+    player "please introduce yourself witness."
+    John "Good morning everyone, my name is John Ramos and I am a physician that attended to Mr. Bustamante."
+    player "Mr. Ramos can you please brief us on the condition of the Mr. Bustamante when he had arrived in the hospital."
+    John "Well when Mr. Bustamante had arrived he was already in a pretty bad condition. He had about 2.5 cm stab wound on her left scapula which also managed to penetrate the left lung."
+    John "You can imagine the amount of damage control we had to conduct that day."
+    John "We were actually planning on moving him to another hospital for more of a specialized treatment but sadly he didn’t make it by the time of the transfer."
+    player "That is all your honor"
+    hide zeil normal
+    hide antonio neutral
+
+    show carl neutraltable with dissolve
+    Carl "would the defense like to cross examine?"
+    hide carl
+
+    show tristan neutral with dissolve
+    Tristan "yes your honor."
+    hide tristan neutral
+
+    show carl neutraltable with dissolve
+    Carl "proceed"
+    hide carl
+
+    show tristan neutral at left with moveinleft
+    show antonio neutral at right with dissolve
+    Tristan "Mr. Ramos in a medical stand point, do you think that the victim would’ve survived if the knife had not been pulled out?"
+    John "well that damage is pretty serious when we got him, but I would say that there would be LESS more damage if the knife was indeed not pulled out from the wound."
+    Tristan "no further questions your honor"
+    hide tristan neutral
+    hide antonio neutral 
+
+    show carl neutraltable with dissolve
+    Carl "would the prosecution like to redirect?"
+    hide carl
+
+    show zeil normal
+    player "no your honor."
+    hide zeil normal
+
+    show zeil normal
+    player "Yes your honor. Prosecution would like to call {b}Ms. Maria Perez{/b} to the witness stand"
+    hide zeil normal
+
+    "Emerged from the dark side of the court a Fruit bat appears and flied to the stand."
+    "The little creature dawned the same physician attire the peacock had gracefully walked to the stand."
+    "With the same process, the oath was done and now the time for questioning has come once again."
+
+    show zeil normal at left 
+    show maria neutral at right with dissolve
+    player "please introduce yourself witness"
+    Maria "Heya! My name is Maria Perez and I am a physician that closely attended by Mr. Bustamante at his stay in the hospital."
+    player "Ms. Maria can you please talk about the condition the patient?"
+    Maria "Lets see! Oh! He arrived in a pretty bad condition. Yep! Pretty bad!"
+    Maria "When we ran him under the X-ray there was a huge bleeding action in the thorax cavity."
+    Maria "Oh! In simpler terms"
+    Maria "it’s a hugeee space in the body that house organs and tissues that are vital to several systems like the respiratory system and etc! uhuh! in simpler terms!"
+    player "Can you tell us how the victim had died?"
+    Maria "From my understanding! Yes my understanding! He had died due to hypovolemic shock that is secondary to massive hemorrage. Again in simpler terms! He lost a lot of blood so he died."
+    player "that is all your honor."
+    hide zeil normal
+    hide maria neutral
+
+
+    show carl neutraltable with dissolve
+    Carl "would the defense like to cross examine?"
+    hide carl
+
+    show tristan neutral with dissolve
+    Tristan "yes your honor."
+    hide tristan neutral
+
+    show tristan neutral at left with moveinleft
+    show maria neutral at right with dissolve
+
+    Tristan "Ms. Maria you said that Mr. Bustamante had died due to the bleeding"
+    Maria "yes that’s true"
+    Tristan "so he had not died due to the damage on his lungs?"
+    Maria "uh- yes technically he did not die because of the damage dealt to his left lung"
+    Tristan "I have no other questions your honor,"
+    hide tristan neutral
+    hide maria neutral
+
+    show carl neutraltable with dissolve
+    Carl "would the prosecution like to redirect?"
+    hide carl
+
+    show zeil normal
+    player "no your honor."
+    hide zeil normal
+
+    show carl neutraltable with dissolve
+    Carl "does the prosecution want to call another witness to the stand?"
+    hide carl
+
+    show zeil normal
+    player "no your honor, that will be all."
+    hide zeil normal
+
+    show carl neutraltable with dissolve
+    Carl "Thank you, The defense may now call their first witness to the stand."
+    hide carl
+
+    show tristan neutral at left
+    show carl neutraltable at right 
+    Tristan "Thank you your honor. May I proceed?"
+    Carl "you may."
+    hide tristan neutral
+    hide carl neutral 
+
+    show tristan neutral 
+    Tristan "The defense would like to call Mrs. Angel Ramirez to the witness stand."
+    hide tristan
+
+    "A sweet old pig walks up to the stand carrying her bright blue purse with her"
+    "She gave the aura of a queen despite quite obviously not being one."
+    "The bailiff assisted and instructed her on the oath of honesty and the defense was now ready."
+
+    show tristan neutral
+    Tristan "May I proceed your honor?"
+    hide tristan
+
+    show carl neutraltable
+    Carl "You may proceed"
+    hide carl
+
+    "Witness walks in front of the court to begin the direct examination."
+    
+    show tristan neutral at left with moveinleft
+    show angel neutral at right with dissolve
+    Tristan "The defense would like to call Mrs. Angel Ramirez to the witness stand."
+    Angel "Why hello everyone, My name is Mrs. Angel Ramirez and I was a civilian that was in the area when the incident happened."
+    Tristan "witness can you tell me what you had witnessed on October 21."
+    Angel "*snort” I walking by the Bustamante residences and I remember hearing a scream of a woman *snort*."
+    Angel "Shortly after the scream a gust of wind zoomed by me, I didn’t really see who it was but I do recall feathers *snort* *snort*."
+    Tristan "What did you do witness?"
+    Angel "why I just told them I saw someone zoom past me in the direction of the Police station."
+    Tristan "Thank you, That will be all your honor."
+    hide tristan
+    hide angel
+
+    show carl neutraltable with dissolve
+    Carl "would the prosecution like to cross examine?"
+    hide carl
+
+    show zeil normal
+    player "no your honor."
+    hide zeil normal
+
+    show carl neutraltable
+    Carl "Mrs. Ramirez you may return to your seat."
+    Carl "Does the Defense want to call anymore witnesses to the stand?"
+    hide carl 
+
+    show tristan neutral at left with dissolve
+    show carl neutraltable at right
+    Tristan "Defense: yes your honor. May we proceed?"
+    Carl "You may proceed"
+    hide carl
+    hide tristan
+
+    Tristan "The defense would like to call Mr. Cesar Diaz to the witness stand."
+    hide tristan
+
+    "A loud thumping can be heard approaching from behind the court."
+    "It seems that the witness is quite rough or at least everyone else thinks so?"
+    "A Philippine crocodile emerges and walks confidently to the stand, completely oblivious to the noise they were creating in the court."
+    "Once again the oath of honesty was recited and it was tme for the defense to start questioning."
+
+    show tristan neutral at left
+    show carl neutraltable at right 
+    Tristan "May I proceed your honor?"
+    Carl "You may proceed"
+    hide tristan
+    hide carl
+
+    show tristan neutral
+    Tristan "Witness please introduce yourself"
+    hide tristan 
+
+    show tristan neutral at left with moveinleft
+    show ceasar happy at right with moveinright
+    Cesar "HELLOOOOOO EVERYONEEEEE!"
+    Cesar "MY NAME IS CESAR DIAZ! AND I AM THE INSPECTOR IN CHARGE OF THIS CASE!"
+    hide ceasar 
+
+    show carl neutraltable hammer at right with vpunch
+    Carl "bashes the hammer* CEASAR- I mean, Mr. Diaz can you PLEASE lower your voice."
+    hide tristan
+
+    show ceasar neutral at left
+    Cesar "sorry carl"
+    Carl "*sigh*"
+    Carl "defense, you may proceed."
+    hide carl neutraltable hammer 
+
+    show ceasar neutral at right with moveinleft 
+    show tristan neutral at left
+    Tristan "uhh okay.. aheM Mr. Diaz can you please brief us on the crime scene"
+    Cesar "In the crime scene a knife was stabbed into a jacket on the ground."
+    Cesar "Both the knife and jacket were covered in blood of the victim."
+    Cesar "The blood suggest on the ground suggest that the accused had ran in the direction of the police station."
+    Cesar "There was no sign of attempted cover ups in the crime scene."
+    Tristan "Mr. Diaz can you give the court a description of what you think had happened based on the evidence."
+    Cesar "well judging by the position of the weapon and the the blood marks, topped with the attopsy report."
+    Cesar "I’d say it was a crime from behind that came as a surprised, based of the lack of struggling the victim had."
+    hide ceasar neutral 
+    show ceasar happy at right with dissolve
+    Cesar "It’s pretty straightforward, it was a stab and run, but stead of actually running away the perpetrator went straight to the police! HAHA!"
+    hide ceasar
+    Tristan ".... that was not funny"
+    Tristan "ahem!, uhm thank you Mr. Diaz, that will be all your honor"
+    hide tristan
+
+    show carl neutraltable
+    Carl "You may go back your seat Mr. Diaz. Would the defense like to call another witness per chance?"
+    hide carl
+
+    show tristan neutral at left
+    Tristan "yes your honor May we proceed?"
+    show carl neutraltable at right with moveinright
+    Carl "You may"
+    hide carl
+    show tristan neutral
+    Tristan "the defense would like to call on Mr. Felipe Dimapilis to the stand."
+    hide tristan
+
+    "The policemen escort a tall falcon to the stand. Despite being the accused the falcon seemed composed."
+    "The falcon quietly walked towards the stand both policemen behind him. Unlike most of the witnesses called to the stand, he was the most normal out of all of them."
+    "As he took up the oath of honesty with the bailiff he takes a glance towards you then immediately shifts his attention to the defense as they start their first question."
+
+    show tristan neutral 
+    Tristan "may I proceed your honor?"
+    hide tristan 
+    
+    show carl neutraltable
+    Carl "Proceed"
+    hide carl 
+
+    show tristan neutral at left with moveinleft
+    show felipe neutral at right with moveinright
+    
+    Tristan "Mister witness Where were you on October 21?"
+    Felipe "I was visiting Mr. Bustamante on account of a business plan i had in mind. But rather than a business based discussion it had transpiredd into a teasing battle and later a debate battle."
+    Felipe "Ben was always passionate about what he stood for so he got aggravated with me at some point."
+    Felipe "But..."
+    Felipe "He said something that rubbed me the wrong way. So i left because of the amount of hurt i felt- betrayal even. I was humuliated by my own friend."
+    Felipe "I acted on impulse and took anything i could grab from the marketplace nearby and before i knew it Ben had a knife on his back.. And i was holding it."
+    Felipe "I ran away, but I decided to surrender once i saw the chief of the police."
+    Tristan "Can you detail to me what you thought was occuring in Mr. Bustamante’s home?"
+    Felipe "I really couldn’t tell."
+    Felipe "I'd assume it was a business meeting considering that two of her business partner’s was there."
+    Felipe "However there was another person there who I wasnt really familiar with so.. Im not quite sure."
+    Tristan "That will be all your honor"
+    hide felipe
+    hide tristan
+
+    show carl neutral with dissolve
+    Carl "Would the prosecutor like to cross-examine?"
+    hide carl
+
+    show zeil normal 
+    player "No, your honor."
+    hide zeil
+
+    show carl neutral
+    Carl "Alright, Witnesses. You may all go back to your seat."
+    Carl "Does the defense have anymore witnesses theyd like to bring to the stand?"
+    hide carl
+
+    show tristan neutral 
+    Tristan "No, your honor."
+    hide tristan
+
+    show carl neutraltable 
+    Carl "We call the witness testimonies and arguments heard in court. It shall be submitted and reviewed for resolution."
+    hide carl  
+
+    "Factoid: Typically, the judge asks the defense the preferred date  and time for the court final judgement. The schedule is has to be approved by both the defense and the prosecution through a signature. "
+    "Final judgement usually happens a few days after the trial depending on the case. In this way, the court can review and have organized schedules per case they encounter every day."
+    
+    show carl neutraltable
+    Carl "Hearing adjourned, so order. "
+    Carl "*Slams hammer*"
+    play sound "audio/sfx/sfx_gavel1tap.wav"
+    hide carl with Fade(3.0,1.5,3.0)
+
+    scene bg osfirm
+    show zeil normal with dissolve
+    player "Whew that was stressful... "
+    player "{i}The whole sesison seems kinda off...{/i}"
+    player "{i}Why was Ben’s killer so polite? More than just polite- more like actually guilty for what he did.{/i}"
+    show zeil at left with easeinleft
+    show cassie happy at right with easeinleft
+    Cassie "Good job. Rookie, especially on such a heavy case. Our firm shouldn’t even supposed to be handling this case in hindsight."
+    player "Well I think I owe it to Ben. To defend him all I can."
+    player "His training would be put to waste if I didn’t"
+    Cassie "Me too.. He was one of the best and one of the good ones too."
+    Cassie "Why would anyone want to harm him."
+    player "It is kinda weird that a few words from ben triggered something terrible. "
+    player "Ben is usually careful for his words"
+    Cassie "That's true."
+
+    show zeil sad
+    player "I still can't believe Ben is..."
+
+    show cassie sad
+    Cassie "Me too... He was one of the best and one of the good ones too.  Why would anyone want to harm him."
+    player "It is kinda weird that a few words from ben triggered something terrible. Ben is usually careful for his words."
+    Cassie "That’s true. Ben was a natural at calming and explaining properly, without bias or too much uneeded emotion."
+    Cassie "I mean have you seen that guy talk about his family? Its probably the most wholesome and calming thing ive ever seen on this earth."
+    player "Yeah... I miss him"
+    Cassie "Me too..."
+    Cassie "well don’t relax about this case though Rook."
+    player "what do you mean..?"
+    Cassie "{i}*Sigh*{/i}we still have a final judgement session in a couple of days"
+    Cassie "So we aren’t out of the waters yet. Lets see if you really did do a good job Rookie."
+    "To be continued..."
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
