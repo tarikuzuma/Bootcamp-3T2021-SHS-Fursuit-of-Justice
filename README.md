@@ -12,10 +12,12 @@ To Install The Game:
 4. Launch Renpy and Play the Game
 
 
+**
+Fursuit of Justice: An Interactive Visual Novel Game in Compliance with The Philippine Legal System**
 
-Fursuit of Justice: An Interactive Visual Novel Game in Compliance with The Philippine Legal System
+**_Introduction_**
 
-Introduction The world is continuously evolving, and this includes how we rule it. Existing laws change into other legal laws by leading governments as time passes. Based on Anthony D’Amoto (2011), the law is a state-enforced publicly declared standard of behavior, which is backed up by punishments due to transgression. The cycle continues until the present, when laws have a more solid foundation, and the concept of justice is further emphasized. Rendering to each person on what he or she deserves gives justice the reason to fight for (D'Amato, 2011). Everyone can have rights since they are backed by law. However, everyone can also be jailed due to the illegal acts proclaimed by the law itself.  While numerous informal elements impact how individuals interact, contemporary civilizations rely heavily on law to explicitly manage human behavior (Katz et al., 2020).
+The world is continuously evolving, and this includes how we rule it. Existing laws change into other legal laws by leading governments as time passes. Based on Anthony D’Amoto (2011), the law is a state-enforced publicly declared standard of behavior, which is backed up by punishments due to transgression. The cycle continues until the present, when laws have a more solid foundation, and the concept of justice is further emphasized. Rendering to each person on what he or she deserves gives justice the reason to fight for (D'Amato, 2011). Everyone can have rights since they are backed by law. However, everyone can also be jailed due to the illegal acts proclaimed by the law itself.  While numerous informal elements impact how individuals interact, contemporary civilizations rely heavily on law to explicitly manage human behavior (Katz et al., 2020).
 
 Whenever something illegal, either alleged or conducted, happens, trials are usually held in a court to serve justice to people accused of illegitimate actions. In specific words, trials are conducted because they mediate conflicts between individuals, businesses, and government agencies. Courts are frequently relied upon to defend government limits. They guard against all levels of government abusing their power. They defend minorities of all kinds from the majority, as well as the rights of those who are unable to defend themselves (American Bar Association, 2019). This makes it fair for everyone, even for the accuser if that is the matter.
 
@@ -35,7 +37,7 @@ The game will be a visual text game where users have to input the choice they pi
 
 Problem Statement Students who are interested in learning law often struggle with the initial information regarding legal topics. There is an existing struggle when it comes to reading and comprehending legal language. This is a problem because students are expected to be familiarized with the legal system and laws that come with it. This is also a problem because it leaves the individuals clueless with the rule of law which is fundamental to SDG #16.
 
-Objectives of the Study:
+_**Objectives of the Study:**_
 
 General Objectives 
 
@@ -45,7 +47,7 @@ Specific Objectives 
 
 Team Wright’s goal is to promote true-to-life laws and court cases in the Philippines that give the player awareness. They also hope to make the game easy to understand to spark the user’s creativity while also inserting some jargon. The team hopes that it may encourage individuals to follow the law while also defending themselves against the law.
 
-** Scope and Delimitation of your study** 
+_** Scope and Delimitation of your study** _
 
 Providing an alternative means of introducing concepts of law and making it entertaining is the main aspect of team Wright’s goal. In other words, the game mainly revolves around the concept of law. With visual novel as a medium to attain the goal, the team hopes to make it easier to understand laws. This will target undecided students, teachers providing alternative ways of learning, gamers that want to enjoy the narrative aspect of the game and people that are avid fans of the light novel genre. The team would limit the target users to as old as 15 years old and above for its users. This is for the team to establish a maturity content enough for the said age bracket. A mature audience is a prerequisite because they are mostly the ones who can grasp the concepts of law (Edu Vic Gov, 2021).
 
